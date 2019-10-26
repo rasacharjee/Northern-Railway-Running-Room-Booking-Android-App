@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph_user_login_to_register"
+    app:startDestination="@id/user_login_fragment">
+
+    <fragment
+        android:id="@+id/user_login_fragment"
+        android:name="com.gamecodeschool.nr.user_login_fragment"
+        android:label="fragment_user_login_fragment"
+        tools:layout="@layout/fragment_user_login_fragment" >
+        <action
+            android:id="@+id/action_user_login_fragment_to_user_register_fragment"
+            app:destination="@id/user_register_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/user_register_fragment"
+        android:name="com.gamecodeschool.nr.user_register_fragment"
+        android:label="fragment_user_register_fragment"
+        tools:layout="@layout/fragment_user_register_fragment" >
+        <action
+            android:id="@+id/action_user_register_fragment_to_user_login_fragment"
+            app:destination="@id/user_login_fragment" />
+    </fragment>
+</navigation>
