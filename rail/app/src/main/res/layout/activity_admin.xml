@@ -5,32 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    tools:context=".user_main_activity">
-
+    tools:context=".admin">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="408dp"
+        android:id="@+id/admin_btmNav"
+        android:layout_width="407dp"
         android:layout_height="76dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         android:background="#FFFFFF"
+        app:menu="@menu/admin_bottom_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <fragment
-        android:id="@+id/nav_host_fragment"
+        android:id="@+id/admin_nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="411dp"
+        android:layout_width="409dp"
         android:layout_height="523dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/admin_btmNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/bottom_nav_graph" />
-
+        app:navGraph="@navigation/admin_bottom_nav_graph" />
 </androidx.constraintlayout.widget.ConstraintLayout>
