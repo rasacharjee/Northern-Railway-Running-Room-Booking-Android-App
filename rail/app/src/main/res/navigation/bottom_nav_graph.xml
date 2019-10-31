@@ -11,6 +11,9 @@
         android:label="fragment_user_home_fragment"
         tools:layout="@layout/fragment_user_home_fragment" >
 
+        <action
+            android:id="@+id/action_user_home_fragment_to_room_booking_fragment"
+            app:destination="@id/room_booking_fragment" />
     </fragment>
     <fragment
         android:id="@+id/user_bookings_fragment"
@@ -35,5 +38,14 @@
         <action
             android:id="@+id/action_change_password_fragment_to_user_settings_fragment"
             app:destination="@id/user_settings_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/room_booking_fragment"
+        android:name="com.gamecodeschool.nr.room_booking_fragment"
+        android:label="fragment_room_booking"
+        tools:layout="@layout/fragment_room_booking" >
+        <action
+            android:id="@+id/action_room_booking_fragment_to_user_home_fragment"
+            app:destination="@id/user_home_fragment" />
     </fragment>
 </navigation>
