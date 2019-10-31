@@ -1,13 +1,17 @@
 package com.gamecodeschool.nr;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -33,11 +37,37 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull cityViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final cityViewHolder holder, int position) {
         cities_java_class cities= citiesList.get(position);
 
         holder.tv.setText(cities.getCity());
-        holder.iv.setImageDrawable(context.getResources().getDrawable(cities.getImage()));    }
+        holder.iv.setImageDrawable(context.getResources().getDrawable(cities.getImage()));
+        holder.iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog=new Dialog(context);
+                dialog.setContentView(R.layout.dialogbox);
+                dialog.setCancelable(false);
+                dialog.setTitle("Room Availability Status");
+
+                Button btn_Can=dialog.findViewById(R.id.btn_Can);
+                Button btn_Book=dialog.findViewById(R.id.btn_Book);
+                btn_Can.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context,"Booking Cancelled",Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                btn_Book.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
 
     @Override
     public int getItemCount() {

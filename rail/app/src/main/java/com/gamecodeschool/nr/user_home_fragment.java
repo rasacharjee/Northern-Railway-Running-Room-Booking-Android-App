@@ -44,15 +44,7 @@ public class user_home_fragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment user_home_fragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static user_home_fragment newInstance(String param1, String param2) {
         user_home_fragment fragment = new user_home_fragment();
         Bundle args = new Bundle();
