@@ -16,13 +16,24 @@
         android:id="@+id/user_bookings_fragment"
         android:name="com.gamecodeschool.nr.user_bookings_fragment"
         android:label="fragment_user_bookings_fragment"
-        tools:layout="@layout/fragment_user_bookings_fragment" >
-    </fragment>
+        tools:layout="@layout/fragment_user_bookings_fragment" />
     <fragment
         android:id="@+id/user_settings_fragment"
         android:name="com.gamecodeschool.nr.user_settings_fragment"
         android:label="fragment_user_settings_fragment"
         tools:layout="@layout/fragment_user_settings_fragment" >
 
+        <action
+            android:id="@+id/action_user_settings_fragment_to_change_password_fragment"
+            app:destination="@id/change_password_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/change_password_fragment"
+        android:name="com.gamecodeschool.nr.change_password_fragment"
+        android:label="fragment_change_password_fragment"
+        tools:layout="@layout/fragment_change_password_fragment" >
+        <action
+            android:id="@+id/action_change_password_fragment_to_user_settings_fragment"
+            app:destination="@id/user_settings_fragment" />
     </fragment>
 </navigation>
