@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frame"
     tools:context=".room_booking_fragment">
 
   <RelativeLayout
@@ -122,6 +123,7 @@
               android:layout_width="123dp"
               android:layout_height="wrap_content"
               android:layout_toEndOf="@id/checkout"
+              android:id="@+id/checkintimeval"
               android:layout_below="@id/checkoutval"
               android:hint="Select Time"
               android:layout_marginStart="10dp"

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,6 +63,9 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                 btn_Book.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        room_booking_fragment room=new room_booking_fragment();
+                        ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.replacelayout,room).commit();
+                        dialog.dismiss();
                     }
                 });
                 dialog.show();
