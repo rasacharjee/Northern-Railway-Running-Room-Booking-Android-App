@@ -8,18 +8,16 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="408dp"
-        android:layout_height="211dp"
-        android:layout_marginStart="2dp"
+        android:layout_width="411dp"
+        android:layout_height="190dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="425dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.222"
         app:srcCompat="@color/colorPrimary" />
 
     <TextView
@@ -31,21 +29,22 @@
         android:layout_marginBottom="307dp"
         android:gravity="center_horizontal"
         android:text="HELLO USER"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintVertical_bias="0.253" />
 
     <fragment
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="409dp"
-        android:layout_height="514dp"
+        android:layout_width="429dp"
+        android:layout_height="487dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
@@ -55,6 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.526"
         app:navGraph="@navigation/navigation_graph_user_login_to_register" />
 
 

@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="15dp"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="34dp"
         android:text="ROOMS AVAILABLE="
-        android:layout_marginStart="72dp"
-        android:id="@+id/room"
         android:textAlignment="center"
         android:textSize="22sp" />
+
     <TextView
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -20,35 +24,44 @@
         android:layout_marginStart="8dp"
         android:layout_toEndOf="@id/room"/>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_below="@id/room"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_marginTop="10dp">
+
         <Button
-            android:layout_width="240dp"
+            android:id="@+id/btn_Can"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/user"
             android:text="CANCEL"
-            android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
-            android:layout_weight="1"
-            android:id="@+id/btn_Can"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_Book"
+            app:layout_constraintHorizontal_bias="0.152"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="186dp" />
 
         <Button
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:id="@+id/btn_Book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/user"
             android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
             android:text="Book a room"
-            android:id="@+id/btn_Book"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.794"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="186dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>

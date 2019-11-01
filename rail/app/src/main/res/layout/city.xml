@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="380dp"
     android:layout_height="100dp"
+    android:layout_marginStart="11dp"
     android:layout_marginTop="10dp"
-    app:cardCornerRadius="20dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="10dp">
+    android:layout_marginEnd="10dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginStart="1dp"
+        android:layout_width="362dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="5dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="1dp"
         android:layout_marginRight="50dp">
+
+        <Button
+            android:id="@+id/btncity"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/cityid"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/enterval"
+            android:background="@drawable/back"
+            android:text="UPDATE"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/enterval"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/cityid"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/room"
+            android:inputType="number" />
 
         <TextView
             android:id="@+id/cityid"
@@ -37,27 +58,6 @@
             android:layout_marginTop="15dp"
             android:text="No. of Rooms Available:"
             android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/enterval"
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:layout_below="@id/cityid"
-            android:layout_marginStart="5dp"
-            android:layout_toEndOf="@id/room"
-            android:inputType="number" />
-
-        <Button
-            android:id="@+id/btncity"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_below="@id/cityid"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/enterval"
-            android:background="@drawable/back"
-            android:text="UPDATE"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
 
 
     </RelativeLayout>

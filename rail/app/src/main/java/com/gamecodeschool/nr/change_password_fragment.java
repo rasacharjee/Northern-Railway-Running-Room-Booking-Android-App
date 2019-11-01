@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -45,7 +46,6 @@ public class change_password_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         etM=view.findViewById(R.id.etM);
         button_authenticate=view.findViewById(R.id.button_authenticate);
         mAuth=FirebaseAuth.getInstance();
@@ -56,6 +56,7 @@ public class change_password_fragment extends Fragment {
 
                 if (usermail.equals(" ")){
                     Toast.makeText(getActivity(),"Please enter your email id",Toast.LENGTH_SHORT).show();
+
                 }
                 else{
                     mAuth.sendPasswordResetEmail(usermail).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -63,7 +64,11 @@ public class change_password_fragment extends Fragment {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(getActivity(),"Password Reset email sent!",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getActivity(),user_settings_fragment.class));
+                                startActivity(new Intent(getActivity(),MainActivity.class));
+                                mAuth.signOut();
+                                getActivity().finish();
+                                Intent intent=new Intent(getActivity(),MainActivity.class);
+                                startActivity(intent);
                             }
                             else{
                                 Toast.makeText(getActivity(),"Error in sending password reset email",Toast.LENGTH_SHORT).show();

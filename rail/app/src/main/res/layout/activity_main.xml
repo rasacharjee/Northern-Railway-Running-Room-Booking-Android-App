@@ -4,102 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="411dp"
-        android:layout_height="336dp"
-        android:layout_marginBottom="323dp"
-        android:background="@drawable/back"
-        android:orientation="horizontal"
-        android:weightSum="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="261dp"
-            android:layout_height="138dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginBottom="80dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/logo" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_admin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginBottom="124dp"
-        android:background="@drawable/user"
-        android:fontFamily="@font/times_new_roman"
-        android:text="ADMIN"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.252" />
-
-    <Button
-        android:id="@+id/btn_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="198dp"
-        android:background="@drawable/user"
-        android:fontFamily="@font/times_new_roman"
-        android:text="USER"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btn_admin" />
-
-    <TextView
-        android:id="@+id/tv_role_description"
-        android:layout_width="341dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="99dp"
-        android:background="@drawable/select"
-        android:clickable="false"
-        android:fontFamily="@font/times_new_roman"
-        android:gravity="center"
-        android:text="SELECT A ROLE"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_user"
-        app:layout_constraintVertical_bias="1.0" />
+    android:background="@drawable/bgg"
+    tools:context=".MainActivity" >
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_role_description"
+        android:layout_width="155dp"
+        android:layout_height="158dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753"
-        app:srcCompat="@drawable/adminlogo" />
+        app:layout_constraintVertical_bias="0.134"
+        app:srcCompat="@drawable/logo" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -107,9 +24,69 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.542"
+        app:layout_constraintVertical_bias="0.535"
         app:srcCompat="@drawable/adminlogo" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.537"
+        app:srcCompat="@drawable/adminlogo" />
+
+    <Button
+        android:id="@+id/btn_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/user"
+        android:fontFamily="@font/times_new_roman"
+        android:text="Admin"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.086" />
+
+    <Button
+        android:id="@+id/btn_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/user"
+        android:fontFamily="@font/times_new_roman"
+        android:text="user"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.753"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn"
+        android:fontFamily="@font/times_new_roman"
+        android:paddingTop="10sp"
+        android:text="SELECT A ROLE"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.831" />
 </androidx.constraintlayout.widget.ConstraintLayout>
