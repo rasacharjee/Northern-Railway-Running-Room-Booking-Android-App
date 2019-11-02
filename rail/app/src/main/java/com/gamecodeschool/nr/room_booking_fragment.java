@@ -25,6 +25,7 @@ public class room_booking_fragment extends Fragment {
     private EditText checkinval;
     private EditText checkoutval;
     private EditText checkintime;
+    private EditText checkouttime;
     private EditText crisidval;
     private EditText trainnoval;
     private Button submitval;
@@ -43,6 +44,7 @@ public class room_booking_fragment extends Fragment {
         checkinval=view.findViewById(R.id.checkinval);
         checkoutval=view.findViewById(R.id.checkout);
         checkintime=view.findViewById(R.id.checkintime);
+        checkouttime=view.findViewById(R.id.checkouttime);
         crisidval=view.findViewById(R.id.crisidval);
         trainnoval=view.findViewById(R.id.trainnoval);
         submitval=view.findViewById(R.id.submitval);
@@ -96,6 +98,19 @@ public class room_booking_fragment extends Fragment {
                     public void onTimeSet(TimePicker view , int hourOfDay , int minute) {
                         String time=hourOfDay+":"+minute;
                         checkintime.setText(time);
+                    }
+                },hour,min,false);
+                timePickerDialog.show();
+            }
+        });
+        checkouttime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity() , new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view , int hourOfDay , int minute) {
+                        String time=hourOfDay+":"+minute;
+                        checkouttime.setText(time);
                     }
                 },hour,min,false);
                 timePickerDialog.show();
