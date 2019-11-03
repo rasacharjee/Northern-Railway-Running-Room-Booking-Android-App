@@ -59,9 +59,10 @@
               android:layout_toEndOf="@id/trainno"/>
 
       </RelativeLayout>
+
       <RelativeLayout
-          android:layout_width="wrap_content"
-          android:layout_height="314dp"
+          android:layout_width="123dp"
+          android:layout_height="wrap_content"
           android:layout_below="@id/relative"
           android:layout_alignParentStart="true"
           android:layout_alignParentEnd="true"
@@ -74,47 +75,96 @@
           android:orientation="vertical"
           android:padding="16dp">
 
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="CHECK-IN DATE:"
-              android:id="@+id/checkin"
-              android:textSize="15sp"
-              android:textColor="#000000"
+          <Button
+              android:id="@+id/submitval"
+              android:layout_width="92dp"
+              android:layout_height="68dp"
+              android:layout_below="@id/checkintime"
+              android:layout_alignParentBottom="true"
+              android:layout_marginStart="80dp"
               android:layout_marginTop="80dp"
-              android:textStyle="bold"/>
+              android:layout_marginBottom="5dp"
+              android:background="#110084"
+              android:text="SUBMIT"
+              android:textColor="#FFFFFF" />
+
           <EditText
-              android:layout_width="123dp"
-              android:layout_height="wrap_content"
-              android:layout_toEndOf="@id/checkout"
-              android:layout_marginTop="66dp"
-              android:id="@+id/checkinval"
-              android:layout_marginStart="10dp"
-              android:hint="Select Date"/>
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textStyle="bold"
-              android:text="CHECK-OUT DATE:"
-              android:layout_below="@id/checkin"
-              android:id="@+id/checkout"
-              android:layout_marginTop="22dp"
-              android:textSize="15sp"
-              android:textColor="#000000"/>
-          <EditText
-              android:layout_width="123dp"
-              android:layout_height="wrap_content"
               android:id="@+id/checkoutval"
-              android:layout_toEndOf="@id/checkout"
+              android:layout_width="123dp"
+              android:layout_height="wrap_content"
               android:layout_below="@id/checkinval"
               android:layout_marginStart="10dp"
-              android:hint="Select Date"/>
+              android:layout_toEndOf="@id/checkout"
+              android:hint="Select Date" />
+
+          <EditText
+              android:layout_width="123dp"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/checkoutval"
+              android:layout_marginStart="10dp"
+              android:layout_toEndOf="@id/checkout"
+              android:hint="Select Time" />
+
+          <EditText
+              android:id="@+id/etTime"
+              android:layout_width="123dp"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/checkinval"
+              android:layout_alignParentBottom="true"
+              android:layout_marginStart="12dp"
+              android:layout_marginTop="87dp"
+              android:layout_marginBottom="82dp"
+              android:layout_toEndOf="@+id/checkouttime"
+              android:ems="10"
+              android:hint="Select Time"
+              android:inputType="textPersonName"
+              android:textSize="18sp" />
+
+          <EditText
+              android:id="@+id/checkinval"
+              android:layout_width="123dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="10dp"
+              android:layout_marginTop="26dp"
+              android:layout_toEndOf="@id/checkout"
+              android:hint="Select Date" />
+
           <TextView
+              android:id="@+id/checkout"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="CHECK-IN TIME:"
+              android:layout_below="@id/checkin"
+              android:layout_marginTop="22dp"
+              android:text="CHECK-OUT DATE:"
+              android:textColor="#000000"
               android:textSize="15sp"
+              android:textStyle="bold" />
+
+          <TextView
+              android:id="@+id/checkouttime"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/checkintime"
+              android:layout_marginTop="22dp"
+              android:layout_marginBottom="240dp"
+              android:text="CHECK-OUT TIME:"
+              android:textColor="#000000"
+              android:textSize="15sp"
+              android:textStyle="bold" />
+
+          <TextView
+              android:id="@+id/checkin"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="40dp"
+              android:text="CHECK-IN DATE:"
+              android:textColor="#000000"
+              android:textSize="15sp"
+              android:textStyle="bold" />
+
+          <TextView
               android:id="@+id/checkintime"
+<<<<<<< HEAD
               android:textColor="#000000"
               android:layout_below="@id/checkout"
               android:textStyle="bold"
@@ -129,15 +179,16 @@
               android:layout_marginStart="10dp"
               />
           <Button
+=======
+>>>>>>> cabe084be2d1da16011c4dce2a3b8d11e13b478b
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="SUBMIT"
-              android:background="#110084"
-              android:textColor="#FFFFFF"
-              android:layout_below="@id/checkintime"
-              android:layout_marginTop="40dp"
-              android:id="@+id/submitval"
-              android:layout_centerHorizontal="true"/>
+              android:layout_below="@id/checkout"
+              android:layout_marginTop="22dp"
+              android:text="CHECK-IN TIME:"
+              android:textColor="#000000"
+              android:textSize="15sp"
+              android:textStyle="bold" />
 
 
       </RelativeLayout>

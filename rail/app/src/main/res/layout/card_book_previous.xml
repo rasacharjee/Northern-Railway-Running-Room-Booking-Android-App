@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:layout_marginTop="70dp"
+    app:cardCornerRadius="30dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="10dp">
+
+    <RelativeLayout
+        android:layout_width="411dp"
+        android:layout_height="179dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="50dp">
+
+        <Button
+            android:id="@+id/btncomplaint"
+            android:layout_width="170dp"
+            android:layout_height="57dp"
+            android:layout_below="@id/cityidBook"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="103dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginEnd="138dp"
+            android:background="@drawable/back"
+            android:text="Lodge complaint"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/entervalin"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cityidBook"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="16dp"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/cityidBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="PATHANKOT"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/checkdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cityidBook"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Check-in Date:"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvCheckin"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="241dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginBottom="109dp"
+            android:text="Check In: " />
+
+        <TextView
+            android:id="@+id/tvtime1"
+            android:layout_width="62dp"
+            android:layout_height="20dp"
+            android:layout_alignStart="@+id/tvCheckin"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="111dp" />
+
+        <TextView
+            android:id="@+id/tvCheckout"
+            android:layout_width="73dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="237dp"
+            android:layout_marginTop="77dp"
+            android:layout_marginEnd="101dp"
+            android:layout_marginBottom="82dp"
+            android:text="Check out:" />
+
+        <TextView
+            android:id="@+id/tvtime2"
+            android:layout_width="69dp"
+            android:layout_height="21dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="315dp"
+            android:layout_marginTop="78dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="80dp" />
+
+        <TextView
+            android:id="@+id/dateout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="80dp"
+            android:text="Check Out Date:" />
+
+        <TextView
+            android:id="@+id/entervalout"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="80dp" />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
