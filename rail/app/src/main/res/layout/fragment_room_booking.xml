@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".room_booking_fragment">
 
+<<<<<<< HEAD
   <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent">
@@ -141,6 +142,167 @@
       </RelativeLayout>
 
   </RelativeLayout>
+=======
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="259dp"
+            android:id="@+id/relative"
+            android:background="#110084">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CRIS ID:"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="124dp"
+                android:textSize="20sp"
+                android:id="@+id/crisid"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="43dp"
+                android:layout_toEndOf="@id/crisid"
+                android:layout_marginStart="37dp"
+                android:id="@+id/crisidval"
+                android:layout_marginTop="115dp"
+                android:hint="Enter your CRIS ID"
+                android:textColorHint="#FFFFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TRAIN NO:"
+                android:layout_below="@id/crisid"
+                android:layout_marginStart="78dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:id="@+id/trainno"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="43dp"
+                android:layout_below="@id/crisid"
+                android:hint="Enter the Train No."
+                android:textColorHint="#FFFFFF"
+                android:layout_marginStart="20dp"
+                android:id="@+id/trainnoval"
+                android:layout_toEndOf="@id/trainno"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="314dp"
+            android:layout_below="@id/relative"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="42dp"
+            android:background="@drawable/box"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECK-IN DATE:"
+                android:id="@+id/checkin"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/checkout"
+                android:layout_marginTop="22dp"
+                android:focusableInTouchMode="false"
+                android:id="@+id/checkinval"
+                android:layout_marginStart="10dp"
+                android:hint="Select Date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="CHECK-OUT DATE:"
+                android:layout_below="@id/checkin"
+                android:id="@+id/checkout"
+                android:layout_marginTop="22dp"
+                android:textSize="15sp"
+                android:textColor="#000000"/>
+            <EditText
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkoutval"
+                android:focusableInTouchMode="false"
+                android:layout_toEndOf="@id/checkout"
+                android:layout_below="@id/checkinval"
+                android:layout_marginStart="10dp"
+                android:hint="Select Date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECK-IN TIME:"
+                android:textSize="15sp"
+                android:id="@+id/checkintime"
+                android:textColor="#000000"
+                android:layout_below="@id/checkout"
+                android:textStyle="bold"
+                android:layout_marginTop="22dp"/>
+            <EditText
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/checkout"
+                android:id="@+id/checkintimeval"
+                android:focusableInTouchMode="false"
+                android:layout_below="@id/checkoutval"
+                android:hint="Select Time"
+                android:layout_marginStart="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECK-OUT TIME:"
+                android:textSize="15sp"
+                android:id="@+id/checkouttime"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_below="@id/checkintime"
+                android:layout_marginTop="22dp"/>
+            <EditText
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/checkout"
+                android:id="@+id/checkouttimeval"
+                android:focusableInTouchMode="false"
+                android:layout_below="@id/checkintimeval"
+                android:hint="Select Time"
+                android:layout_marginStart="10dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SUBMIT"
+                android:background="#110084"
+                android:textColor="#FFFFFF"
+                android:layout_below="@id/checkouttime"
+                android:layout_marginTop="40dp"
+                android:id="@+id/submitval"
+                android:layout_centerHorizontal="true"/>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+>>>>>>> 3781ed9... Fixes for room_booking_fragment
 
 
 </FrameLayout>

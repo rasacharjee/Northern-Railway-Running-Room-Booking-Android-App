@@ -24,7 +24,12 @@ public class room_booking_fragment extends Fragment {
     private String date;
     private EditText checkinval;
     private EditText checkoutval;
+<<<<<<< HEAD
     private EditText checkintime;
+=======
+    private EditText checkintimeval;
+    private EditText checkouttimeval;
+>>>>>>> 3781ed9... Fixes for room_booking_fragment
     private EditText crisidval;
     private EditText trainnoval;
     private Button submitval;
@@ -41,8 +46,14 @@ public class room_booking_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_room_booking , container , false);
         checkinval=view.findViewById(R.id.checkinval);
+<<<<<<< HEAD
         checkoutval=view.findViewById(R.id.checkout);
         checkintime=view.findViewById(R.id.checkintime);
+=======
+        checkoutval=view.findViewById(R.id.checkoutval);
+        checkintimeval=view.findViewById(R.id.checkintimeval);
+        checkouttimeval=view.findViewById(R.id.checkouttimeval);
+>>>>>>> 3781ed9... Fixes for room_booking_fragment
         crisidval=view.findViewById(R.id.crisidval);
         trainnoval=view.findViewById(R.id.trainnoval);
         submitval=view.findViewById(R.id.submitval);
@@ -94,8 +105,40 @@ public class room_booking_fragment extends Fragment {
                 TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity() , new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view , int hourOfDay , int minute) {
+<<<<<<< HEAD
                         String time=hourOfDay+":"+minute;
                         checkintime.setText(time);
+=======
+                        String time;
+                        if(hourOfDay>12)
+                        {
+                            time=(hourOfDay-12)+":"+minute+" PM";
+                        }
+                        else {
+                            time = hourOfDay + ":" + minute + " AM";
+                        }
+                        checkintimeval.setText(time);
+                    }
+                },hour,min,false);
+                timePickerDialog.show();
+            }
+        });
+        checkouttimeval.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity() , new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view , int hourOfDay , int minute) {
+                        String time;
+                        if(hourOfDay>12)
+                        {
+                            time=(hourOfDay-12)+":"+minute+" PM";
+                        }
+                        else {
+                            time = hourOfDay + ":" + minute + " AM";
+                        }
+                        checkouttimeval.setText(time);
+>>>>>>> 3781ed9... Fixes for room_booking_fragment
                     }
                 },hour,min,false);
                 timePickerDialog.show();
