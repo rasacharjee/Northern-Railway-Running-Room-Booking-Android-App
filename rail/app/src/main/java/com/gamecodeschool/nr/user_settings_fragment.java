@@ -41,12 +41,12 @@ public class user_settings_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Button button_upload,button_save;
-    ImageView image_view;
-    StorageReference mStorageRef;
-    TextView tvName,tvAdd;
-    private StorageTask uploadTask;
-    public Uri imguri;
+ //   Button button_upload,button_save;
+ //   ImageView image_view;
+ //   StorageReference mStorageRef;
+ //   TextView tvName,tvAdd;
+   // private StorageTask uploadTask;
+   // public Uri imguri;
     //  private   FirebaseAuth fAuth;
     Button btn_logout,btn_password;
 
@@ -80,20 +80,20 @@ public class user_settings_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_user_settings_fragment, container, false);
-        mStorageRef= FirebaseStorage.getInstance().getReference("Images");
-        button_upload=view.findViewById(R.id.button_upload);
-        button_save=view.findViewById(R.id.button_save);
-        image_view=view.findViewById(R.id.image_view);
+     //   mStorageRef= FirebaseStorage.getInstance().getReference("Images");
+      //  button_upload=view.findViewById(R.id.button_upload);
+     //   button_save=view.findViewById(R.id.button_save);
+     //   image_view=view.findViewById(R.id.image_view);
         btn_logout=view.findViewById(R.id.btn_logout);
-        tvAdd=view.findViewById(R.id.tvAdd);
+      //  tvAdd=view.findViewById(R.id.tvAdd);
         //   fAuth=FirebaseAuth.getInstance();
         btn_password=view.findViewById(R.id.btn_password);
 
         // loadUserInfo();
 
-        button_upload.setOnClickListener(new View.OnClickListener() {
+     /**  button_upload.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+           public void onClick(View view) {
                 Filechooser();
             }
         });
@@ -108,7 +108,7 @@ public class user_settings_fragment extends Fragment {
 
                 }
             }
-        });
+        });**/
         btn_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,14 +141,14 @@ public class user_settings_fragment extends Fragment {
      }
      }**/
 
-    private String getExtension(Uri uri)
+/**    private String getExtension(Uri uri)
     {
         ContentResolver cr= getContext().getContentResolver();
         MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
-    }
+    }**/
 
-    private void Fileuploader() {
+ /**   private void Fileuploader() {
         StorageReference Ref=mStorageRef.child(System.currentTimeMillis()+"."+getExtension(imguri));
         StorageReference imageFilePath= mStorageRef.child(imguri.getLastPathSegment());
         uploadTask=  Ref.putFile(imguri)
@@ -185,5 +185,5 @@ public class user_settings_fragment extends Fragment {
             imguri=data.getData();
             image_view.setImageURI(imguri);
         }
-    }
+    }**/
 }

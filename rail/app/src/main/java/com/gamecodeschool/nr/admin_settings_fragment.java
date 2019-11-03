@@ -1,13 +1,18 @@
 package com.gamecodeschool.nr;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -24,6 +29,7 @@ public class admin_settings_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Button button_logout,button_password;
 
 
     public admin_settings_fragment() {
@@ -61,7 +67,24 @@ public class admin_settings_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_settings_fragment, container, false);
+        View view= inflater.inflate(R.layout.fragment_user_settings_fragment, container, false);
+        button_logout=view.findViewById(R.id.btn_logout);
+        button_password=view.findViewById(R.id.btn_password);
+        button_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.change_password_fragment);
+            }
+        });
+        button_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent=new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 
 }
