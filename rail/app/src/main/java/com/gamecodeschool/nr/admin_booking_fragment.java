@@ -4,10 +4,15 @@ package com.gamecodeschool.nr;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -24,6 +29,10 @@ public class admin_booking_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    RecyclerView ArecyclerViewbook;
+    AdminAdapterBook  Abooking;
+    List<admin_book> AbookList;
+
 
 
     public admin_booking_fragment() {
@@ -61,7 +70,21 @@ public class admin_booking_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_booking_fragment, container, false);
+        final View view= inflater.inflate(R.layout.fragment_admin_booking_fragment, container, false);
+        AbookList=new ArrayList<>();
+        ArecyclerViewbook=view.findViewById(R.id.AdminrecyclerViewbook);
+        ArecyclerViewbook.setHasFixedSize(false);
+        ArecyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
+        AbookList.add(new admin_book("Ferozpur",
+                "2nd November",
+                "3rd November",
+                "12 pm",
+                "3 pm",
+                "123456"));
+        Abooking=new AdminAdapterBook(getActivity(),AbookList);
+        ArecyclerViewbook.setAdapter(Abooking);
+
+        return view;
     }
 
 }

@@ -34,14 +34,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull final CustomAdapter.MyViewHolder holder , int position) {
         holder.cityid.setText(list.get(position));
-        holder.btncity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                value=holder.enterval.getText().toString().trim();
-                Toast.makeText(context , "SUCCESSFULLY UPDATED" , Toast.LENGTH_SHORT).show();
+        String comparator=list.get(position);
+        if(comparator=="FEROZPUR"){
+            holder.btncity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    value=holder.enterval.getText().toString().trim();
+                    if(value!=null)
+                    {
+                       Toast.makeText(context,"hola",Toast.LENGTH_LONG).show(); //Update to the database
+                    }
+                    else
+                    {
+                      Toast.makeText(context,"Valid number of rooms required to update",Toast.LENGTH_LONG).show();
+                    }
 
-            }
-        });
+                }
+            });
+        }
     }
 
     @Override

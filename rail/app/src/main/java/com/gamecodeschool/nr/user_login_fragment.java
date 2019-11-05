@@ -100,6 +100,7 @@ public class user_login_fragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnLogin.setEnabled(false);
                 String email,password;
                 email=etEmail.getText().toString().trim();
                 password=etPassword.getText().toString().trim();
@@ -132,6 +133,7 @@ public class user_login_fragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnRegister.setEnabled(false);
                 Navigation.findNavController(view).navigate(R.id.user_register_fragment);
             }
         });

@@ -72,6 +72,8 @@ public class user_bookings_fragment extends Fragment {
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_user_bookings_fragment, container, false);
 
+        //String crisId=this.getArguments().getString("CrisID");
+
         bookList=new ArrayList<>();
         recyclerViewbook=view.findViewById(R.id.recyclerViewbook);
         recyclerViewbook.setHasFixedSize(false);

@@ -34,6 +34,7 @@ public class admin_login_main_activity extends AppCompatActivity {
         mbtnAlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mbtnAlogin.setEnabled(false);
                 if (metAemail.getText().toString().isEmpty()||metApass.getText().toString().isEmpty())
                 {
                     Toast.makeText(getApplicationContext(),"Please enter all fields",Toast.LENGTH_SHORT).show();

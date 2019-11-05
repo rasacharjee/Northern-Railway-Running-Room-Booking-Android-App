@@ -1,5 +1,6 @@
 package com.gamecodeschool.nr;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,11 +47,24 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
         cities_java_class cities= citiesList.get(position);
 
         holder.tv.setText(cities.getCity());
+        final String compare=cities.getCity();
         holder.iv.setImageDrawable(context.getResources().getDrawable(cities.getImage()));
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog=new Dialog(context);
+                if(compare=="FEROZPUR"){
+                   room_booking_fragment moor=new room_booking_fragment();
+                    ((FragmentActivity)v.getContext()).getSupportFragmentManager().
+
+                            beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
+
+
+
+                }
+                else {
+                    Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
+                }
+             /*  final Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialogbox);
                 dialog.setCancelable(false);
                 dialog.setTitle("Room Availability Status");
@@ -65,9 +82,14 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                     @Override
                     public void onClick(View v) {
 
+                       room_booking_fragment room= new room_booking_fragment();
+
+                       ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,room).commit();
+
+                        dialog.dismiss();
                     }
                 });
-                dialog.show();
+                dialog.show();*/
             }
         });
     }

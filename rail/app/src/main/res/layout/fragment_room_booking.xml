@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/RoomBooking"
     tools:context=".room_booking_fragment">
 
   <RelativeLayout
@@ -59,7 +61,7 @@
 
       </RelativeLayout>
 
-      <RelativeLayout
+      <androidx.constraintlayout.widget.ConstraintLayout
           android:layout_width="123dp"
           android:layout_height="wrap_content"
           android:layout_below="@id/relative"
@@ -76,48 +78,50 @@
 
           <Button
               android:id="@+id/submitval"
-              android:layout_width="92dp"
-              android:layout_height="68dp"
-              android:layout_below="@id/checkintime"
-              android:layout_alignParentBottom="true"
-              android:layout_marginStart="80dp"
-              android:layout_marginTop="80dp"
-              android:layout_marginBottom="5dp"
+              android:layout_width="139dp"
+              android:layout_height="66dp"
+              android:layout_marginStart="64dp"
+              android:layout_marginTop="12dp"
+              android:layout_marginEnd="80dp"
               android:background="#110084"
               android:text="SUBMIT"
-              android:textColor="#FFFFFF" />
+              android:textColor="#FFFFFF"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/etTime" />
 
           <EditText
               android:id="@+id/checkoutval"
               android:layout_width="123dp"
               android:layout_height="wrap_content"
-              android:layout_below="@id/checkinval"
               android:layout_marginStart="10dp"
-              android:layout_toEndOf="@id/checkout"
-              android:hint="Select Date" />
+              android:hint="Select Date"
+              app:layout_constraintStart_toEndOf="@id/checkout"
+              app:layout_constraintTop_toBottomOf="@id/checkinval" />
 
           <EditText
+              android:id="@+id/editText"
               android:layout_width="123dp"
               android:layout_height="wrap_content"
-              android:layout_below="@id/checkoutval"
               android:layout_marginStart="10dp"
-              android:layout_toEndOf="@id/checkout"
-              android:hint="Select Time" />
+              android:hint="Select Time"
+              app:layout_constraintStart_toEndOf="@id/checkout"
+              app:layout_constraintTop_toBottomOf="@id/checkoutval" />
 
           <EditText
               android:id="@+id/etTime"
               android:layout_width="123dp"
               android:layout_height="wrap_content"
-              android:layout_below="@+id/checkinval"
-              android:layout_alignParentBottom="true"
-              android:layout_marginStart="12dp"
-              android:layout_marginTop="87dp"
+              android:layout_marginStart="10dp"
               android:layout_marginBottom="82dp"
-              android:layout_toEndOf="@+id/checkouttime"
               android:ems="10"
               android:hint="Select Time"
               android:inputType="textPersonName"
-              android:textSize="18sp" />
+              android:textSize="18sp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toEndOf="@+id/checkouttime"
+              app:layout_constraintTop_toBottomOf="@+id/editText"
+              app:layout_constraintVertical_bias="0.0" />
 
           <EditText
               android:id="@+id/checkinval"
@@ -125,55 +129,61 @@
               android:layout_height="wrap_content"
               android:layout_marginStart="10dp"
               android:layout_marginTop="26dp"
-              android:layout_toEndOf="@id/checkout"
-              android:hint="Select Date" />
+              android:hint="Select Date"
+              app:layout_constraintStart_toEndOf="@id/checkout"
+              app:layout_constraintTop_toTopOf="parent" />
 
           <TextView
               android:id="@+id/checkout"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_below="@id/checkin"
               android:layout_marginTop="22dp"
               android:text="CHECK-OUT DATE:"
               android:textColor="#000000"
               android:textSize="15sp"
-              android:textStyle="bold" />
+              android:textStyle="bold"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/checkin" />
 
           <TextView
               android:id="@+id/checkouttime"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_below="@+id/checkintime"
               android:layout_marginTop="22dp"
-              android:layout_marginBottom="240dp"
               android:text="CHECK-OUT TIME:"
               android:textColor="#000000"
               android:textSize="15sp"
-              android:textStyle="bold" />
+              android:textStyle="bold"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/checkintime" />
 
           <TextView
               android:id="@+id/checkin"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="40dp"
+              android:layout_marginStart="12dp"
+              android:layout_marginTop="48dp"
               android:text="CHECK-IN DATE:"
               android:textColor="#000000"
               android:textSize="15sp"
-              android:textStyle="bold" />
+              android:textStyle="bold"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
 
           <TextView
               android:id="@+id/checkintime"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_below="@id/checkout"
               android:layout_marginTop="22dp"
               android:text="CHECK-IN TIME:"
               android:textColor="#000000"
               android:textSize="15sp"
-              android:textStyle="bold" />
+              android:textStyle="bold"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/checkout" />
 
 
-      </RelativeLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
 
   </RelativeLayout>
 

@@ -3,9 +3,11 @@ package com.gamecodeschool.nr;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -42,5 +44,13 @@ public class user_main_activity extends AppCompatActivity  {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "You are exiting the USER profile", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(user_main_activity.this,MainActivity.class);
+        startActivity(intent);
     }
 }
