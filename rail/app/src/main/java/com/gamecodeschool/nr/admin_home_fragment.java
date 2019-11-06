@@ -3,13 +3,19 @@ package com.gamecodeschool.nr;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -67,20 +73,18 @@ public class admin_home_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
-        input_recycler=view.findViewById(R.id.input_recycler);
+        input_recycler=view.findViewById(R.id.adminHomeFrag);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         input_recycler.setLayoutManager(linearLayoutManager);
+
         list=new ArrayList<>();
-        list.add("FEROZPUR");
-        list.add("AMRITSAR");
-        list.add("JALANDHAR");
-        list.add("PATHANKOT");
-        list.add("JAMMU");
-        list.add("BAIJNATH");
-        list.add("KATRA");
+
         CustomAdapter customAdapter=new CustomAdapter(getActivity(),list);
+        Log.d("error","returned from custom adapter");
         input_recycler.setAdapter(customAdapter);
+
+
+
         return view;
     }
-
 }
