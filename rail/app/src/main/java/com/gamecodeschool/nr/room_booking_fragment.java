@@ -33,8 +33,8 @@ public class room_booking_fragment extends Fragment {
     private int room;
     private EditText checkinval;
     private EditText checkoutval;
-    private EditText checkintime;
-    private EditText checkouttime;
+    private EditText checkintimeval;
+    private EditText checkouttimeval;
     private EditText crisidval;
     private EditText trainnoval;
     private Button submitval;
@@ -53,9 +53,9 @@ public class room_booking_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_booking, container, false);
         checkinval = view.findViewById(R.id.checkinval);
-        checkoutval = view.findViewById(R.id.checkout);
-        checkintime = view.findViewById(R.id.checkintime);
-        checkouttime = view.findViewById(R.id.checkouttime);
+        checkoutval = view.findViewById(R.id.checkoutval);
+        checkintimeval = view.findViewById(R.id.checkintimeval);
+        checkouttimeval = view.findViewById(R.id.checkouttimeval);
         crisidval = view.findViewById(R.id.crisidval);
         trainnoval = view.findViewById(R.id.trainnoval);
         submitval = view.findViewById(R.id.submitval);
@@ -71,7 +71,7 @@ public class room_booking_fragment extends Fragment {
         final int hour = c.get(Calendar.HOUR_OF_DAY);
         final int min = c.get(Calendar.MINUTE);
 
-        date = day + "-" + (month + 1) + "-" + year;
+        date = day+"-"+(month + 1)+"-"+year;
         checkinval.setText(date);
 
         checkinval.setOnClickListener(new View.OnClickListener() {
@@ -104,27 +104,41 @@ public class room_booking_fragment extends Fragment {
             }
         });
 
-        checkintime.setOnClickListener(new View.OnClickListener() {
+        checkintimeval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        inTime = hourOfDay + ":" + minute;
-                        checkintime.setText(inTime);
+                        String time;
+                        if(hourOfDay>12)
+                        {
+                            time=(hourOfDay-12)+":"+minute+" PM";
+                        }
+                        else {
+                            time = hourOfDay + ":" + minute + " AM";
+                        }
+                        checkintimeval.setText(time);
                     }
                 }, hour, min, false);
                 timePickerDialog.show();
             }
         });
-        checkouttime.setOnClickListener(new View.OnClickListener() {
+        checkouttimeval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        outTime = hourOfDay + ":" + minute;
-                        checkouttime.setText(outTime);
+                        String time;
+                        if(hourOfDay>12)
+                        {
+                            time=(hourOfDay-12)+":"+minute+" PM";
+                        }
+                        else {
+                            time = hourOfDay + ":" + minute + " AM";
+                        }
+                        checkouttimeval.setText(time);
                     }
                 }, hour, min, false);
                 timePickerDialog.show();
@@ -149,8 +163,8 @@ public class room_booking_fragment extends Fragment {
         databaseRoomsAvailable.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               room_available_java_class room_av= new room_available_java_class(dataSnapshot.getChildren().toString());
-               room=Integer.parseInt(room_av.getRoom_available());
+                room_available_java_class room_av= new room_available_java_class(dataSnapshot.getChildren().toString());
+                room=Integer.parseInt(room_av.getRoom_available());
             }
 
             @Override
@@ -171,15 +185,15 @@ public class room_booking_fragment extends Fragment {
             database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
             databaseCompletebookings.child(bId).setValue(book);
             room= room-1;
-           databaseRoomsAvailable.setValue("");
+            databaseRoomsAvailable.setValue("");
             //Add the database thing for booking rooms available node
 
 
             //user_bookings_fragment bookings = new user_bookings_fragment();
             //Bundle args = new Bundle();
-           // args.putString("CrisID", crisId);
-           // bookings.setArguments(args);
-           // getFragmentManager().beginTransaction().replace(R.id.RoomBooking, bookings).commit();
+            // args.putString("CrisID", crisId);
+            // bookings.setArguments(args);
+            // getFragmentManager().beginTransaction().replace(R.id.RoomBooking, bookings).commit();
 
         }
     }

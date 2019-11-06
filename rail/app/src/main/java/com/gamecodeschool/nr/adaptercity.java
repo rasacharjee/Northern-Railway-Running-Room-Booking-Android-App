@@ -52,19 +52,17 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(compare=="FEROZPUR"){
+              /*  if(compare=="FEROZPUR"){
                    room_booking_fragment moor=new room_booking_fragment();
-                    ((FragmentActivity)v.getContext()).getSupportFragmentManager().
-
-                            beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
+                    ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
 
 
 
                 }
                 else {
                     Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
-                }
-             /*  final Dialog dialog=new Dialog(context);
+                } */
+                final Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialogbox);
                 dialog.setCancelable(false);
                 dialog.setTitle("Room Availability Status");
@@ -89,7 +87,7 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                         dialog.dismiss();
                     }
                 });
-                dialog.show();*/
+                dialog.show();
             }
         });
     }
