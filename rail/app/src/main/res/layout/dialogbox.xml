@@ -18,12 +18,13 @@
         android:textSize="22sp" />
 
     <TextView
+        android:id="@+id/tvroomAvail"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:text="9"
-        android:textSize="22sp"
         android:layout_marginStart="8dp"
-        android:layout_toEndOf="@id/room"/>
+        android:layout_toEndOf="@id/room"
+        android:text="9"
+        android:textSize="22sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="396dp"
