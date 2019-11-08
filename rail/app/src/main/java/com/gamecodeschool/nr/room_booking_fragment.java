@@ -119,13 +119,7 @@ public class room_booking_fragment extends Fragment {
                         else {
                             time = hourOfDay + ":" + minute + " AM";
                         }
-                        if(hourOfDay-hour==0 && minute-min<30)
-                        {
-                            Toast.makeText(getActivity(),"Checkin time should be more than 30 minutes",Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            checkintimeval.setText(time);
-                        }
+                        checkintimeval.setText(time);
                     }
                 }, hour, min, false);
                 timePickerDialog.show();

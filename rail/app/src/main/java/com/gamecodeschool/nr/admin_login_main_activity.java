@@ -2,7 +2,10 @@ package com.gamecodeschool.nr;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +23,8 @@ public class admin_login_main_activity extends AppCompatActivity {
     Button mbtnAlogin;
     FirebaseAuth mfAuth;
     final String cAID="123456";
+    String CRISvalue;
+    ProgressDialog progressDialog1 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,18 @@ public class admin_login_main_activity extends AppCompatActivity {
         metCris=findViewById(R.id.etAcrisID);
         mbtnAlogin=findViewById(R.id.btnAlogin);
         mfAuth=FirebaseAuth.getInstance();
+        progressDialog1=new ProgressDialog(this);
 
         mbtnAlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog1.setTitle("WELCOME");
+                progressDialog1.setMessage("Please wait while logging in");
+                progressDialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog1.setProgress(0);
+                progressDialog1.setCanceledOnTouchOutside(true);
+                progressDialog1.show();
+
                 mbtnAlogin.setEnabled(false);
                 if (metAemail.getText().toString().isEmpty()||metApass.getText().toString().isEmpty())
                 {
@@ -53,7 +66,19 @@ public class admin_login_main_activity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
-                                Intent intent= new Intent(admin_login_main_activity.this,admin.class);
+                               /* CRISvalue=metCris.getText().toString();
+                                FragmentManager fragmentManager=getSupportFragmentManager();
+                                FragmentTransaction transaction= fragmentManager.beginTransaction();
+                                admin_home_fragment homeobj= new admin_home_fragment();
+                                if (CRISvalue!=null){
+
+                                    Bundle b= new Bundle();
+                                    b.putString("id",CRISvalue);
+                                    homeobj.setArguments(b);
+                                    transaction.add(R.id.admin_home_fragment,homeobj);
+                                    transaction.commit();}*/
+                                Intent intent= new Intent(getApplicationContext(),admin.class);
+                                intent.putExtra("key",cAID);
                                 startActivity(intent);
                             }
                             else

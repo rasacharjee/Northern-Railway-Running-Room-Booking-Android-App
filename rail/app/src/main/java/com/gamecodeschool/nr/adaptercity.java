@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -62,10 +63,13 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
             public void onClick(View v) {
               /*  if(compare=="FEROZPUR"){
                    room_booking_fragment moor=new room_booking_fragment();
+                   // ((FragmentActivity)v.getContext()).getSupportFragmentManager().
                     ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
 
+                           // beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
 
-
+                    FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                      manager.beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
                 }
                 else {
                     Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();

@@ -1,6 +1,7 @@
 package com.gamecodeschool.nr;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -41,6 +42,7 @@ public class user_login_fragment extends Fragment {
     Button btnLogin,btnRegister;
     TextView textView;
     FirebaseAuth fAuth;
+    ProgressDialog progressDialog ;
 
 
 
@@ -73,6 +75,7 @@ public class user_login_fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        progressDialog=new ProgressDialog(getActivity());
     }
 
     @Override
@@ -100,6 +103,14 @@ public class user_login_fragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog.setTitle("WELCOME");
+                progressDialog.setMessage("Please wait while logging in");
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.setProgress(0);
+                progressDialog.setCanceledOnTouchOutside(true);
+                progressDialog.show();
+                btnLogin.setEnabled(false);
+
                 btnLogin.setEnabled(false);
                 String email,password;
                 email=etEmail.getText().toString().trim();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,15 +17,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link admin_home_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class admin_home_fragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +32,8 @@ public class admin_home_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    String CrisIdObj;//This value will be used to show only selected update menus
     RecyclerView input_recycler;
     ArrayList<String> list;
 
@@ -41,14 +41,7 @@ public class admin_home_fragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment admin_home_fragment.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static admin_home_fragment newInstance(String param1, String param2) {
         admin_home_fragment fragment = new admin_home_fragment();
@@ -65,24 +58,51 @@ public class admin_home_fragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            //Bundle b=getArguments();
+          // CrisIdObj=b.getString("id");
+
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view= inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
-        input_recycler=view.findViewById(R.id.adminHomeFrag);
+
+
+        input_recycler=view.findViewById(R.id.input_recycler);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         input_recycler.setLayoutManager(linearLayoutManager);
-
         list=new ArrayList<>();
+        //list.add("FEROZPUR");
 
-        CustomAdapter customAdapter=new CustomAdapter(getActivity(),list);
-        Log.d("error","returned from custom adapter");
-        input_recycler.setAdapter(customAdapter);
+             if (CrisIdObj=="123456"){
+               list.add("FEROZPUR");
+             }
+             else if (CrisIdObj=="234567"){
+                 list.add("AMRITSAR");
+             }
+             else if (CrisIdObj=="345678"){
+                 list.add("PATHANKOT");
+             }
+             else if (CrisIdObj=="456789"){
+                 list.add("JAMMU");
+             }
+             else if (CrisIdObj=="567890"){
+                 list.add("JALANDHAR");
+             }
+             else if (CrisIdObj=="678901"){
+                 list.add("BAIJNATH");
+             }
+             else {
+                 list.add("KATRA");
+             }
 
+
+                CustomAdapter customAdapter=new CustomAdapter(getActivity(),list);
+                input_recycler.setAdapter(customAdapter);
 
 
         return view;
