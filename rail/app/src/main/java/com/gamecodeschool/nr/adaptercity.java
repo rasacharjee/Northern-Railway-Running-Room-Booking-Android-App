@@ -20,6 +20,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.List;
 
 
@@ -27,6 +33,8 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
     private Context context;
     private List<cities_java_class> citiesList;
+
+    private DatabaseReference databaseReference;
 
     public adaptercity(Context mCt, List<cities_java_class> citiesList) {
         this.context = mCt;
@@ -62,6 +70,23 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                 else {
                     Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
                 } */
+
+                databaseReference= FirebaseDatabase.getInstance().getReference("Rooms");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot rooms:dataSnapshot.getChildren())
+                        {
+                            room_available_java_class newclass= rooms.getValue(room_available_java_class.class);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 final Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialogbox);
                 dialog.setCancelable(false);

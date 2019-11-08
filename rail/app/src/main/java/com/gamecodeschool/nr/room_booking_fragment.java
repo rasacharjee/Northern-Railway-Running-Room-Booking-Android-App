@@ -42,6 +42,8 @@ public class room_booking_fragment extends Fragment {
     DatabaseReference databaseCompletebookings;
     DatabaseReference databaseRoomsAvailable;
 
+    DatabaseReference databasedetails;
+
     public room_booking_fragment() {
         // Required empty public constructor
     }
@@ -62,7 +64,6 @@ public class room_booking_fragment extends Fragment {
 
         databaseCompletebookings = FirebaseDatabase.getInstance().getReference("Complete_Bookings");
         databaseRoomsAvailable = FirebaseDatabase.getInstance().getReference("Rooms_available");
-
 
         Calendar c = Calendar.getInstance();
         final int day = c.get(Calendar.DAY_OF_MONTH);
