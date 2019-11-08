@@ -12,11 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList<String> list;
     private String value;
+    //private int mvalue;
+    DatabaseReference databaseReference;
 
     public CustomAdapter(Context context,ArrayList<String> list)
     {
@@ -28,30 +33,29 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public CustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent , int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.city,parent,false);
         MyViewHolder vh=new MyViewHolder(view);
+
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CustomAdapter.MyViewHolder holder , int position) {
+    public void onBindViewHolder(@NonNull final CustomAdapter.MyViewHolder holder , final int position) {
         holder.cityid.setText(list.get(position));
-        String comparator=list.get(position);
-        if(comparator=="FEROZPUR"){
+
             holder.btncity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     value=holder.enterval.getText().toString().trim();
-                    if(value!=null)
-                    {
-                       Toast.makeText(context,"hola",Toast.LENGTH_LONG).show(); //Update to the database
+                    if (value!=null){
+                        updateRooms(value,list.get(position));//updates rooms to specific station in database
+                        Toast.makeText(context,"The number of rooms has been updated",Toast.LENGTH_SHORT).show();
                     }
-                    else
-                    {
-                      Toast.makeText(context,"Valid number of rooms required to update",Toast.LENGTH_LONG).show();
+                    else {
+                        Toast.makeText(context,"Enter valid number of rooms",Toast.LENGTH_SHORT).show();
                     }
 
                 }
             });
-        }
+
     }
 
     @Override
@@ -71,5 +75,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             btncity=itemView.findViewById(R.id.btncity);
             cityid=itemView.findViewById(R.id.cityid);
         }
+    }
+    private void updateRooms(String value,String city){
+        String dvalue=city+"rooms";
+        databaseReference=FirebaseDatabase.getInstance().getReference("Rooms").child(dvalue);
+        databaseReference.setValue(value);
     }
 }

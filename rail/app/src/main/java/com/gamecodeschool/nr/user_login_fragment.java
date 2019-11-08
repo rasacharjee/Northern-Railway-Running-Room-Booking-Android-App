@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +42,7 @@ public class user_login_fragment extends Fragment {
     Button btnLogin,btnRegister;
     TextView textView;
     FirebaseAuth fAuth;
-     ProgressDialog progressDialog ;
+    ProgressDialog progressDialog ;
 
 
 
@@ -88,7 +87,6 @@ public class user_login_fragment extends Fragment {
         etPassword=view.findViewById(R.id.etULpassword);
         btnLogin=view.findViewById(R.id.btnUlogin);
         btnRegister=view.findViewById(R.id.btnRegister);
-
         fAuth=FirebaseAuth.getInstance();
         return view;
     }
@@ -101,14 +99,10 @@ public class user_login_fragment extends Fragment {
             Intent intent= new Intent(getActivity(),user_main_activity.class);
             startActivity(intent);
         }
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String email,password;
-                email=etEmail.getText().toString().trim();
-                password=etPassword.getText().toString().trim();
-
                 progressDialog.setTitle("WELCOME");
                 progressDialog.setMessage("Please wait while logging in");
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -117,10 +111,13 @@ public class user_login_fragment extends Fragment {
                 progressDialog.show();
                 btnLogin.setEnabled(false);
 
+                btnLogin.setEnabled(false);
+                String email,password;
+                email=etEmail.getText().toString().trim();
+                password=etPassword.getText().toString().trim();
                 if(email.isEmpty()||password.isEmpty())
                 {
                     Toast.makeText(getActivity(),"Valid email and password required",Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
                 }
                 else
                 {
@@ -131,16 +128,13 @@ public class user_login_fragment extends Fragment {
                             {
                                 Intent intent= new Intent(getActivity(),user_main_activity.class);
                                 startActivity(intent);
-
                             }
                             else
                             {
                                 Toast.makeText(getActivity(),"Valid credentials required and error retrieved is"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
                             }
                         }
                     });
-
                 }
 
             }

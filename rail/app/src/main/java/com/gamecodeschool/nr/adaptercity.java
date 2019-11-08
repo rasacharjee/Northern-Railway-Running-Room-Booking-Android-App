@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -54,47 +55,43 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
             public void onClick(View v) {
               /*  if(compare=="FEROZPUR"){
                    room_booking_fragment moor=new room_booking_fragment();
+                   // ((FragmentActivity)v.getContext()).getSupportFragmentManager().
                     ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
 
+                           // beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
 
-
+                    FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                      manager.beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
                 }
                 else {
                     Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
                 } */
-              if(compare!="FEROZPUR"){
-                  Toast.makeText(context,"NO ROOMS AVAILABLE",Toast.LENGTH_SHORT).show();
-              }
-              else {
-                  final Dialog dialog = new Dialog(context);
-                  dialog.setContentView(R.layout.dialogbox);
-                  dialog.setCancelable(false);
-                  dialog.setTitle("Room Availability Status");
+                final Dialog dialog=new Dialog(context);
+                dialog.setContentView(R.layout.dialogbox);
+                dialog.setCancelable(false);
+                dialog.setTitle("Room Availability Status");
 
-                  Button btn_Can = dialog.findViewById(R.id.btn_Can);
-                  Button btn_Book = dialog.findViewById(R.id.btn_Book);
-                  final TextView tvroomAvail = dialog.findViewById(R.id.tvroomAvail);
-                  btn_Can.setOnClickListener(new View.OnClickListener() {
-                      @Override
-                      public void onClick(View v) {
-                          Toast.makeText(context, "Booking Cancelled", Toast.LENGTH_SHORT).show();
-                          dialog.dismiss();
-                      }
-                  });
-                  btn_Book.setOnClickListener(new View.OnClickListener() {
-                      @Override
-                      public void onClick(View v) {
+                Button btn_Can=dialog.findViewById(R.id.btn_Can);
+                Button btn_Book=dialog.findViewById(R.id.btn_Book);
+                btn_Can.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context,"Booking Cancelled",Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                btn_Book.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                          room_booking_fragment room = new room_booking_fragment();
+                       room_booking_fragment room= new room_booking_fragment();
 
-                          ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout, room).commit();
+                       ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,room).commit();
 
-                          dialog.dismiss();
-
-                      }
-                  });
-                  dialog.show();
-              }
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
     }
