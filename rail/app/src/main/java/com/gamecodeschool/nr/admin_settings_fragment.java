@@ -7,12 +7,18 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import static androidx.navigation.Navigation.findNavController;
 
 
 /**
@@ -29,8 +35,9 @@ public class admin_settings_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button button_logout,button_password;
-
+    Button button_logout,button_password,button_about;
+    TextView set,ab,con,link;
+    ImageView pro;
 
     public admin_settings_fragment() {
         // Required empty public constructor
@@ -70,10 +77,17 @@ public class admin_settings_fragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_user_settings_fragment, container, false);
         button_logout=view.findViewById(R.id.btn_logout);
         button_password=view.findViewById(R.id.btn_password);
+        button_about=view.findViewById(R.id.btn_about);
+        set=view.findViewById(R.id.tvset);
+        ab=view.findViewById(R.id.tvab);
+        con=view.findViewById(R.id.tvcon);
+        link=view.findViewById(R.id.tvlink);
+        pro=view.findViewById(R.id.ivpro);
+
         button_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.change_password_fragment);
+                findNavController(view).navigate(R.id.change_password_fragment);
             }
         });
         button_logout.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +96,22 @@ public class admin_settings_fragment extends Fragment {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent=new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);
+            }
+        });
+        button_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                set.setVisibility(View.INVISIBLE);
+                pro.setVisibility(View.INVISIBLE);
+                button_about.setVisibility(View.INVISIBLE);
+                button_logout.setVisibility(View.INVISIBLE);
+                button_password.setVisibility(View.INVISIBLE);
+               ab.setVisibility(View.VISIBLE);
+                con.setVisibility(View.VISIBLE);
+                link.setVisibility(View.VISIBLE);
+
+                link.setText(Html.fromHtml("<a href=\"mailto:nr.bookings1@gmail.com\">Email: nr.bookings1@gmail.com</a>"));
+                link.setMovementMethod(LinkMovementMethod.getInstance());
             }
         });
         return view;
