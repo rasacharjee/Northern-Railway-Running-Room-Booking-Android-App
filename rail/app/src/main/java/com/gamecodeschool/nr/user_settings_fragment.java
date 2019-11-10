@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +50,9 @@ public class user_settings_fragment extends Fragment {
    // private StorageTask uploadTask;
    // public Uri imguri;
     //  private   FirebaseAuth fAuth;
-    Button btn_logout,btn_password;
+    Button btn_logout,btn_password,btn_about;
+    TextView tvset,tvab,tvcon,tvlink;
+    ImageView ivpro;
 
 
     public user_settings_fragment() {
@@ -88,6 +92,12 @@ public class user_settings_fragment extends Fragment {
       //  tvAdd=view.findViewById(R.id.tvAdd);
         //   fAuth=FirebaseAuth.getInstance();
         btn_password=view.findViewById(R.id.btn_password);
+        btn_about=view.findViewById(R.id.btn_about);
+        tvset=view.findViewById(R.id.tvset);
+        tvab=view.findViewById(R.id.tvab);
+        tvcon=view.findViewById(R.id.tvcon);
+        tvlink=view.findViewById(R.id.tvlink);
+        ivpro=view.findViewById(R.id.ivpro);
 
         // loadUserInfo();
 
@@ -122,6 +132,22 @@ public class user_settings_fragment extends Fragment {
                 Intent intent=new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);
             }
+        });
+        btn_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvset.setVisibility(View.INVISIBLE);
+                ivpro.setVisibility(View.INVISIBLE);
+                btn_about.setVisibility(View.INVISIBLE);
+                btn_logout.setVisibility(View.INVISIBLE);
+                btn_password.setVisibility(View.INVISIBLE);
+                tvab.setVisibility(View.VISIBLE);
+                tvcon.setVisibility(View.VISIBLE);
+                tvlink.setVisibility(View.VISIBLE);
+
+                tvlink.setText(Html.fromHtml("<a href=\"mailto:nr.bookings1@gmail.com\">Email: nr.bookings1@gmail.com</a>"));
+                tvlink.setMovementMethod(LinkMovementMethod.getInstance());
+             }
         });
         return view;
 
