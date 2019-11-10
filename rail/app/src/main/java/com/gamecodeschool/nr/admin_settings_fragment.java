@@ -74,20 +74,21 @@ public class admin_settings_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_user_settings_fragment, container, false);
-        button_logout=view.findViewById(R.id.btn_logout);
-        button_password=view.findViewById(R.id.btn_password);
-        button_about=view.findViewById(R.id.btn_about);
-        set=view.findViewById(R.id.tvset);
-        ab=view.findViewById(R.id.tvab);
-        con=view.findViewById(R.id.tvcon);
-        link=view.findViewById(R.id.tvlink);
-        pro=view.findViewById(R.id.ivpro);
+        final View vi= inflater.inflate(R.layout.fragment_user_settings_fragment, container, false);
+        button_logout=vi.findViewById(R.id.btn_logout);
+        button_password=vi.findViewById(R.id.btn_password);
+        button_about=vi.findViewById(R.id.btn_about);
+        set=vi.findViewById(R.id.tvset);
+        ab=vi.findViewById(R.id.tvab);
+        con=vi.findViewById(R.id.tvcon);
+        link=vi.findViewById(R.id.tvlink);
+        pro=vi.findViewById(R.id.ivpro);
 
         button_password.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                findNavController(view).navigate(R.id.change_password_fragment);
+            public void onClick(View v) {
+
+               Navigation.findNavController(vi).navigate(R.id.change_password_fragment);
             }
         });
         button_logout.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +115,7 @@ public class admin_settings_fragment extends Fragment {
                 link.setMovementMethod(LinkMovementMethod.getInstance());
             }
         });
-        return view;
+        return vi;
     }
 
 }

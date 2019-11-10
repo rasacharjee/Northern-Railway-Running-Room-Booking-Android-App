@@ -58,9 +58,10 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
         holder.tv.setText(cities.getCity());
         final String compare=cities.getCity();
         holder.iv.setImageDrawable(context.getResources().getDrawable(cities.getImage()));
-        holder.iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+            holder.iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
               /*  if(compare=="FEROZPUR"){
                    room_booking_fragment moor=new room_booking_fragment();
                    // ((FragmentActivity)v.getContext()).getSupportFragmentManager().
@@ -91,38 +92,47 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
                     }
                 });
-                final Dialog dialog=new Dialog(context);
-                dialog.setContentView(R.layout.dialogbox);
-                dialog.setCancelable(false);
-                dialog.setTitle("Room Availability Status");
+                if (compare=="FEROZPUR"){
+                    final Dialog dialog = new Dialog(context);
+                    dialog.setContentView(R.layout.dialogbox);
+                    dialog.setCancelable(false);
+                    dialog.setTitle("Room Availability Status");
 
-                Button btn_Can=dialog.findViewById(R.id.btn_Can);
-                Button btn_Book=dialog.findViewById(R.id.btn_Book);
-                btn_Can.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context,"Booking Cancelled",Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
+                    Button btn_Can = dialog.findViewById(R.id.btn_Can);
+                    Button btn_Book = dialog.findViewById(R.id.btn_Book);
+                    btn_Can.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(context, "Booking Cancelled", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+                    btn_Book.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            room_booking_fragment room = new room_booking_fragment();
+
+                            ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout, room).commit();
+
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                }
+                    else{
+                        Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
                     }
-                });
-                btn_Book.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                       room_booking_fragment room= new room_booking_fragment();
+                }
 
-                       ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,room).commit();
-
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
-        });
+            });
     }
 
+
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return citiesList.size();
     }
 
