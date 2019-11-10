@@ -39,8 +39,8 @@ public class room_booking_fragment extends Fragment {
     private EditText trainnoval;
     private Button submitval;
 
-    DatabaseReference databaseCompletebookings;
-    DatabaseReference databaseRoomsAvailable;
+    DatabaseReference databaseFerozpurbookings,databaseAmritsarbookings,databasePathankotbookings,databaseJalandharbookings,databaseJammubookings,databaseKatrabookings,databaseBaijnathbookings;
+    DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseJalandharRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
 
     public room_booking_fragment() {
         // Required empty public constructor
@@ -60,8 +60,21 @@ public class room_booking_fragment extends Fragment {
         trainnoval = view.findViewById(R.id.trainnoval);
         submitval = view.findViewById(R.id.submitval);
 
-        databaseCompletebookings = FirebaseDatabase.getInstance().getReference("Complete_Bookings");
-        databaseRoomsAvailable = FirebaseDatabase.getInstance().getReference("Rooms_available");
+        databaseFerozpurbookings=FirebaseDatabase.getInstance().getReference("FEROZPUR");
+        databaseAmritsarbookings=FirebaseDatabase.getInstance().getReference("AMRITSAR");
+        databaseBaijnathbookings=FirebaseDatabase.getInstance().getReference("BAIJNATH");
+        databaseJalandharbookings=FirebaseDatabase.getInstance().getReference("JALANDHAR");
+        databaseJammubookings=FirebaseDatabase.getInstance().getReference("JAMMU");
+        databaseKatrabookings=FirebaseDatabase.getInstance().getReference("KATRA");
+        databasePathankotbookings=FirebaseDatabase.getInstance().getReference("PATHANKOT");
+
+        databaseFerozpurRooms = FirebaseDatabase.getInstance().getReference("FEROZPURrooms");
+        databaseAmritsarRooms=FirebaseDatabase.getInstance().getReference("AMRITSARrooms");
+        databaseBaijnathRooms=FirebaseDatabase.getInstance().getReference("BAIJNATHrooms");
+        databaseJalandharbookings=FirebaseDatabase.getInstance().getReference("JALANDHARrooms");
+        databaseJammuRooms=FirebaseDatabase.getInstance().getReference("JAMMUrooms");
+        databaseKatraRooms=FirebaseDatabase.getInstance().getReference("KATRArooms");
+        databasePathankotRooms=FirebaseDatabase.getInstance().getReference("PATHANKOTrooms");
 
 
         Calendar c = Calendar.getInstance();
@@ -119,6 +132,7 @@ public class room_booking_fragment extends Fragment {
                             time = hourOfDay + ":" + minute + " AM";
                         }
                         checkintimeval.setText(time);
+                        inTime=time;
                     }
                 }, hour, min, false);
                 timePickerDialog.show();
@@ -139,6 +153,7 @@ public class room_booking_fragment extends Fragment {
                             time = hourOfDay + ":" + minute + " AM";
                         }
                         checkouttimeval.setText(time);
+                        outTime=time;
                     }
                 }, hour, min, false);
                 timePickerDialog.show();
@@ -157,7 +172,7 @@ public class room_booking_fragment extends Fragment {
         return view;
     }
 
-    @Override
+  /*  @Override
     public void onStart() {
         super.onStart();
         databaseRoomsAvailable.addValueEventListener(new ValueEventListener() {
@@ -173,28 +188,33 @@ public class room_booking_fragment extends Fragment {
             }
         });
 
-    }
+    }*/
 
     private void funbookdetails() {
         String crisId =crisidval.getText().toString().trim();
-        Integer trainNo = Integer.parseInt(trainnoval.getText().toString().trim());
-        if ( crisId==null||trainNo == null || date == null || checkout == null) {
-            Toast.makeText(getActivity(), "Please enter all fields", Toast.LENGTH_SHORT).show();
-        } else {
+        Integer trainNo = Integer.parseInt(trainnoval.getText().toString().trim());//Might cause null pointer expectation
+
+
+        if ( crisId!=null||trainNo != null || date != null || checkout != null || inTime!=null ||outTime!=null) {
             String bId = databaseCompletebookings.push().getKey();
             database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
             databaseCompletebookings.child(bId).setValue(book);
             room= room-1;
             databaseRoomsAvailable.setValue("");
             //Add the database thing for booking rooms available node
-
-
-            //user_bookings_fragment bookings = new user_bookings_fragment();
-            //Bundle args = new Bundle();
-            // args.putString("CrisID", crisId);
-            // bookings.setArguments(args);
-            // getFragmentManager().beginTransaction().replace(R.id.RoomBooking, bookings).commit();
-
+        } else if (crisId==null){
+            Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
+        }else if (trainNo==null){
+            Toast.makeText(getActivity(),"Please enter Train Number",Toast.LENGTH_SHORT).show();
+        }else if (date==null){
+            Toast.makeText(getActivity(),"Please enter Check in date",Toast.LENGTH_SHORT).show();
+        }else if (checkout==null){
+            Toast.makeText(getActivity(),"Please enter Check out date",Toast.LENGTH_SHORT).show();
+        }else if (inTime==null){
+            Toast.makeText(getActivity(),"Please enter Check in time",Toast.LENGTH_SHORT).show();
+        }else if (outTime==null){
+            Toast.makeText(getActivity(),"Please enter Check out time",Toast.LENGTH_SHORT).show();
         }
+
     }
 }
