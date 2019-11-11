@@ -11,15 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link user_bookings_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class user_bookings_fragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +32,8 @@ public class user_bookings_fragment extends Fragment {
     RecyclerView recyclerViewbook;
     adapterbook  booking;
     List<book>bookList;
-
+    String CrisId;
+    DatabaseReference databaseReference;
 
     public user_bookings_fragment() {
         // Required empty public constructor
@@ -72,6 +72,7 @@ public class user_bookings_fragment extends Fragment {
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_user_bookings_fragment, container, false);
 
+        databaseReference= FirebaseDatabase.getInstance().getReference();
         //String crisId=this.getArguments().getString("CrisID");
 
         bookList=new ArrayList<>();

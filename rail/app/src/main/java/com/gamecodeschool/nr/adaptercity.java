@@ -21,6 +21,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.List;
 
 
@@ -28,6 +34,8 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
     private Context context;
     private List<cities_java_class> citiesList;
+    DatabaseReference databaseFerozpurRooms;
+    int room;
 
     public adaptercity(Context mCt, List<cities_java_class> citiesList) {
         this.context = mCt;
@@ -45,6 +53,10 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final cityViewHolder holder, int position) {
+
+
+
+
         cities_java_class cities= citiesList.get(position);
 
         holder.tv.setText(cities.getCity());
@@ -53,27 +65,33 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
             holder.iv.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-              /*  if(compare=="FEROZPUR"){
-                   room_booking_fragment moor=new room_booking_fragment();
-                   // ((FragmentActivity)v.getContext()).getSupportFragmentManager().
-                    ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
-
-                           // beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
-
-                    FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-                      manager.beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
-                }
-                else {
-                    Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
-                } */if (compare=="FEROZPUR"){
+                public void onClick(final View v) {
                     final Dialog dialog = new Dialog(context);
                     dialog.setContentView(R.layout.dialogbox);
                     dialog.setCancelable(false);
                     dialog.setTitle("Room Availability Status");
 
-                    Button btn_Can = dialog.findViewById(R.id.btn_Can);
-                    Button btn_Book = dialog.findViewById(R.id.btn_Book);
+                    final Button btn_Can = dialog.findViewById(R.id.btn_Can);
+                    final Button btn_Book = dialog.findViewById(R.id.btn_Book);
+                    final TextView tvRoomsAvailable=dialog.findViewById(R.id.uRoomsAvailable);
+
+              if (compare=="FEROZPUR"){
+                  databaseFerozpurRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
+                  databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
+                      @Override
+                      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String vroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
+                            tvRoomsAvailable.setText(vroot);
+                            room=Integer.parseInt(vroot);
+                      }
+
+                      @Override
+                      public void onCancelled(@NonNull DatabaseError databaseError) {
+                          Toast.makeText(context, "Try again later", Toast.LENGTH_SHORT).show();
+                      }
+                  });
+
+                     //tvRoomsAvailable.setText("65");
                     btn_Can.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -81,21 +99,30 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                             dialog.dismiss();
                         }
                     });
-                    btn_Book.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
 
-                            room_booking_fragment room = new room_booking_fragment();
 
-                            ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout, room).commit();
+                      btn_Book.setOnClickListener(new View.OnClickListener() {
+                          @Override
+                          public void onClick(View v) {
 
-                            dialog.dismiss();
-                        }
-                    });
+                              room_booking_fragment room = new room_booking_fragment();
+
+                              ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout, room).commit();
+
+                              dialog.dismiss();
+                          }
+                      });
+
+
+                    /*else {
+                        Toast.makeText(context, "No rooms available thus book button disabled", Toast.LENGTH_SHORT).show();
+                    }*/
                     dialog.show();
                 }
                     else{
+                        tvRoomsAvailable.setText("0");
                         Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
+                        //migth require to disable the booking button
                     }
 
                 }
@@ -121,4 +148,6 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
         }
     }
+
+
 }

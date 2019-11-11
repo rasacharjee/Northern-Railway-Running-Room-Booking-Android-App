@@ -26,6 +26,8 @@ public class admin_login_main_activity extends AppCompatActivity {
     String CRISvalue;
     ProgressDialog progressDialog1 ;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,9 @@ public class admin_login_main_activity extends AppCompatActivity {
         mbtnAlogin=findViewById(R.id.btnAlogin);
         mfAuth=FirebaseAuth.getInstance();
         progressDialog1=new ProgressDialog(this);
+
+
+
 
         mbtnAlogin.setOnClickListener(new View.OnClickListener() {
             @Override
