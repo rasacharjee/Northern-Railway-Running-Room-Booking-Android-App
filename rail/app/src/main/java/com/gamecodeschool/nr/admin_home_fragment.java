@@ -36,6 +36,7 @@ public class admin_home_fragment extends Fragment {
     String CrisIdObj;//This value will be used to show only selected update menus
     RecyclerView input_recycler;
     ArrayList<String> list;
+    String crisid;
 
     public admin_home_fragment() {
         // Required empty public constructor
@@ -63,6 +64,7 @@ public class admin_home_fragment extends Fragment {
 
 
         }
+
     }
 
     @Override
@@ -71,11 +73,15 @@ public class admin_home_fragment extends Fragment {
 
         View view= inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
 
-
+        Bundle extras =getActivity().getIntent().getExtras();
+        crisid=extras.getString("crisid");
+      //  Toast.makeText(getActivity(),"CRISID"+crisid,Toast.LENGTH_SHORT).show();
         input_recycler=view.findViewById(R.id.input_recycler);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         input_recycler.setLayoutManager(linearLayoutManager);
         list=new ArrayList<>();
+
+
         //list.add("FEROZPUR");
 
              if (CrisIdObj=="123456"){

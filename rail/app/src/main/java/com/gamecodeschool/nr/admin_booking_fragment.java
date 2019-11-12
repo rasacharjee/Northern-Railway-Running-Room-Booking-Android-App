@@ -36,6 +36,7 @@ public class admin_booking_fragment extends Fragment {
     RecyclerView ArecyclerViewbook;
     AdminAdapterBook  Abooking;
     List<admin_book> AbookList;
+    String crisid;
 
     DatabaseReference databaseFerozpur,databaseAmritsar,databasePathankot,databaseJammu,databaseKatra,databaseJalandhar,databaseBaijnath;
 
@@ -79,6 +80,10 @@ public class admin_booking_fragment extends Fragment {
         databaseJalandhar= FirebaseDatabase.getInstance().getReference("JALANDHAR");
         databaseJammu= FirebaseDatabase.getInstance().getReference("JAMMU");
         databaseKatra= FirebaseDatabase.getInstance().getReference("KATRA");
+
+        Bundle extras =getActivity().getIntent().getExtras();
+        crisid=extras.getString("crisid");
+      //  Toast.makeText(getActivity(),"CRISID"+crisid,Toast.LENGTH_SHORT).show();
 
         AbookList=new ArrayList<>();
         ArecyclerViewbook=view.findViewById(R.id.AdminrecyclerViewbook);
