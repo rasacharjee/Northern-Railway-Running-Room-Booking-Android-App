@@ -34,6 +34,8 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
     private Context context;
     private List<cities_java_class> citiesList;
+    DatabaseReference databaseFerozpurRooms;
+    int room;
 
     private DatabaseReference databaseReference;
 
@@ -53,76 +55,87 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final cityViewHolder holder, int position) {
+
+
+
+
         cities_java_class cities= citiesList.get(position);
 
         holder.tv.setText(cities.getCity());
         final String compare=cities.getCity();
         holder.iv.setImageDrawable(context.getResources().getDrawable(cities.getImage()));
-        holder.iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              /*  if(compare=="FEROZPUR"){
-                   room_booking_fragment moor=new room_booking_fragment();
-                   // ((FragmentActivity)v.getContext()).getSupportFragmentManager().
-                    ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
 
-                           // beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
+            holder.iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    final Dialog dialog = new Dialog(context);
+                    dialog.setContentView(R.layout.dialogbox);
+                    dialog.setCancelable(false);
+                    dialog.setTitle("Room Availability Status");
 
-                    FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-                      manager.beginTransaction().replace(R.id.ReplaceLayout,moor).commit();
-                }
-                else {
-                    Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
-                } */
+                    final Button btn_Can = dialog.findViewById(R.id.btn_Can);
+                    final Button btn_Book = dialog.findViewById(R.id.btn_Book);
+                    final TextView tvRoomsAvailable=dialog.findViewById(R.id.uRoomsAvailable);
 
-                databaseReference= FirebaseDatabase.getInstance().getReference("Rooms");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot rooms:dataSnapshot.getChildren())
-                        {
-                            room_available_java_class newclass= rooms.getValue(room_available_java_class.class);
+              if (compare=="FEROZPUR"){
+                  databaseFerozpurRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
+                  databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
+                      @Override
+                      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String vroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
+                            tvRoomsAvailable.setText(vroot);
+                            room=Integer.parseInt(vroot);
+                      }
 
+                      @Override
+                      public void onCancelled(@NonNull DatabaseError databaseError) {
+                          Toast.makeText(context, "Try again later", Toast.LENGTH_SHORT).show();
+                      }
+                  });
+
+                     //tvRoomsAvailable.setText("65");
+                    btn_Can.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(context, "Booking Cancelled", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
+                    });
+
+
+                      btn_Book.setOnClickListener(new View.OnClickListener() {
+                          @Override
+                          public void onClick(View v) {
+
+                              room_booking_fragment room = new room_booking_fragment();
+
+                              ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout, room).commit();
+
+                              dialog.dismiss();
+                          }
+                      });
+
+
+                    /*else {
+                        Toast.makeText(context, "No rooms available thus book button disabled", Toast.LENGTH_SHORT).show();
+                    }*/
+                    dialog.show();
+                }
+                    else{
+                        tvRoomsAvailable.setText("0");
+                        Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();
+                        //migth require to disable the booking button
                     }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
 
-                    }
-                });
-                final Dialog dialog=new Dialog(context);
-                dialog.setContentView(R.layout.dialogbox);
-                dialog.setCancelable(false);
-                dialog.setTitle("Room Availability Status");
-
-                Button btn_Can=dialog.findViewById(R.id.btn_Can);
-                Button btn_Book=dialog.findViewById(R.id.btn_Book);
-                btn_Can.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context,"Booking Cancelled",Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-                btn_Book.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                       room_booking_fragment room= new room_booking_fragment();
-
-                       ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout,room).commit();
-
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
-        });
+            });
     }
 
+
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return citiesList.size();
     }
 
@@ -138,4 +151,6 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
         }
     }
+
+
 }

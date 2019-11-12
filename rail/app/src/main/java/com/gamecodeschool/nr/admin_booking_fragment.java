@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,12 +34,15 @@ public class admin_booking_fragment extends Fragment {
     private String mParam2;
     private String valueReceived;
     String CrisIdObj;
+
     RecyclerView ArecyclerViewbook;
     AdminAdapterBook  Abooking;
     List<admin_book> AbookList;
+    String crisid;
+
 
     DatabaseReference databaseFerozpur,databaseAmritsar,databasePathankot,databaseJammu,databaseKatra,databaseJalandhar,databaseBaijnath;
-
+    DatabaseReference databaseReference;
 
     public admin_booking_fragment() {
         // Required empty public constructor
@@ -80,6 +84,10 @@ public class admin_booking_fragment extends Fragment {
         databaseJammu= FirebaseDatabase.getInstance().getReference("JAMMU");
         databaseKatra= FirebaseDatabase.getInstance().getReference("KATRA");
 
+        Bundle extras =getActivity().getIntent().getExtras();
+        crisid=extras.getString("crisid");
+      //  Toast.makeText(getActivity(),"CRISID"+crisid,Toast.LENGTH_SHORT).show();
+
         AbookList=new ArrayList<>();
         ArecyclerViewbook=view.findViewById(R.id.AdminrecyclerViewbook);
         ArecyclerViewbook.setHasFixedSize(false);
@@ -100,6 +108,8 @@ public class admin_booking_fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+
         if (CrisIdObj=="123456"){
             databaseFerozpur.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -210,6 +220,7 @@ public class admin_booking_fragment extends Fragment {
                     for (DataSnapshot bookSnapshot: dataSnapshot.getChildren()){
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
+
                     }
                 }
 

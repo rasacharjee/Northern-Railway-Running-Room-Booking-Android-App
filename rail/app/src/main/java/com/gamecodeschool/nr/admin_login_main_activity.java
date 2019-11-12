@@ -26,6 +26,8 @@ public class admin_login_main_activity extends AppCompatActivity {
     String CRISvalue;
     ProgressDialog progressDialog1 ;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,9 @@ public class admin_login_main_activity extends AppCompatActivity {
         mfAuth=FirebaseAuth.getInstance();
         progressDialog1=new ProgressDialog(this);
 
+
+
+
         mbtnAlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,20 +50,25 @@ public class admin_login_main_activity extends AppCompatActivity {
                 progressDialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog1.setProgress(0);
                 progressDialog1.setCanceledOnTouchOutside(true);
-                progressDialog1.show();
+                //progressDialog1.show();
 
-                mbtnAlogin.setEnabled(false);
+              //  mbtnAlogin.setEnabled(false);
                 if (metAemail.getText().toString().isEmpty()||metApass.getText().toString().isEmpty())
                 {
                     Toast.makeText(getApplicationContext(),"Please enter all fields",Toast.LENGTH_SHORT).show();
+                    mbtnAlogin.setEnabled(true);
                 }
                 else if (!(metCris.getText().toString().equals(cAID)))
                 {
+                    progressDialog1.show();
                     Toast.makeText(getApplicationContext(),"Invalid credentials and access denied",Toast.LENGTH_LONG).show();
+                    progressDialog1.dismiss();
+                    mbtnAlogin.setEnabled(true);
                 }
                 else
                 {
-                    String Aemail,Apassword;
+                    progressDialog1.show();
+                    final String Aemail,Apassword;
                     Aemail=metAemail.getText().toString().trim();
                     Apassword=metApass.getText().toString().trim();
                     mfAuth.signInWithEmailAndPassword(Aemail,Apassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -66,8 +76,9 @@ public class admin_login_main_activity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
-                               /* CRISvalue=metCris.getText().toString();
-                                FragmentManager fragmentManager=getSupportFragmentManager();
+                                CRISvalue=metCris.getText().toString();
+
+                               /* FragmentManager fragmentManager=getSupportFragmentManager();
                                 FragmentTransaction transaction= fragmentManager.beginTransaction();
                                 admin_home_fragment homeobj= new admin_home_fragment();
                                 if (CRISvalue!=null){
@@ -79,10 +90,13 @@ public class admin_login_main_activity extends AppCompatActivity {
                                     transaction.commit();}*/
                                 Intent intent= new Intent(getApplicationContext(),admin.class);
                                 intent.putExtra("key",cAID);
+                                intent.putExtra("email",Aemail);
+                                intent.putExtra("crisid",CRISvalue);
                                 startActivity(intent);
                             }
                             else
                                 Toast.makeText(getApplicationContext(),"Invalid credentials",Toast.LENGTH_LONG).show();
+                                progressDialog1.dismiss();
 
                         }
                     });

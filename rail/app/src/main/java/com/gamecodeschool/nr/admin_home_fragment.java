@@ -19,6 +19,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 
@@ -33,9 +40,13 @@ public class admin_home_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    String CrisIdObj;//This value will be used to show only selected update menus
+    String CrisIdObj;
+    //This value will be used to show only selected update menus
     RecyclerView input_recycler;
     ArrayList<String> list;
+    String crisid;
+
+      //FirebaseAuth firebaseAuth;
 
     public admin_home_fragment() {
         // Required empty public constructor
@@ -63,6 +74,7 @@ public class admin_home_fragment extends Fragment {
 
 
         }
+
     }
 
     @Override
@@ -70,15 +82,23 @@ public class admin_home_fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view= inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
+        //firebaseAuth=FirebaseAuth.getInstance();
 
-
+        Bundle extras =getActivity().getIntent().getExtras();
+        crisid=extras.getString("crisid");
+      //  Toast.makeText(getActivity(),"CRISID"+crisid,Toast.LENGTH_SHORT).show();
         input_recycler=view.findViewById(R.id.input_recycler);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         input_recycler.setLayoutManager(linearLayoutManager);
         list=new ArrayList<>();
-        //list.add("FEROZPUR");
 
-             if (CrisIdObj=="123456"){
+
+        //list.add("FEROZPUR");
+        // CrisIdObj=firebaseAuth.getCurrentUser().getUid();
+        // Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
+
+
+             if (CrisIdObj=="M3xqhpKnHUges7XZxoASr6x3VMw2"){
                list.add("FEROZPUR");
              }
              else if (CrisIdObj=="234567"){
@@ -107,4 +127,6 @@ public class admin_home_fragment extends Fragment {
 
         return view;
     }
+
+
 }
