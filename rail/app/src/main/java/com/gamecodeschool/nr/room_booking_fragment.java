@@ -168,6 +168,12 @@ public class room_booking_fragment extends Fragment {
 
                 funbookdetails();
                 //DO OPERATIONS
+                checkoutval.getText().clear();
+                checkouttimeval.getText().clear();
+                checkinval.getText().clear();
+                checkintimeval.getText().clear();
+                crisidval.getText().clear();
+                trainnoval.getText().clear();
             }
         });
 

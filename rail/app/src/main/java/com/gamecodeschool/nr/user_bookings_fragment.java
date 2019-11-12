@@ -1,6 +1,9 @@
 package com.gamecodeschool.nr;
 
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,6 +54,7 @@ public class user_bookings_fragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,6 +75,7 @@ public class user_bookings_fragment extends Fragment {
         recyclerViewbook=view.findViewById(R.id.recyclerViewbook);
         recyclerViewbook.setHasFixedSize(false);
         recyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
         bookList.clear();
         ValueEventListener valueEventListener=new ValueEventListener() {
@@ -96,13 +105,14 @@ public class user_bookings_fragment extends Fragment {
         dbbooksjammu.addListenerForSingleValueEvent(valueEventListener);
         dbbookskatra.addListenerForSingleValueEvent(valueEventListener);
 
+
         bookList.add(
                 new book(
                         "FEROZPUR",
                         "2 November",
-                        "1 pm",
-                        "12 pm",
-                        "3 november" ));
+                        "2 pm",
+                        "3pm",
+                        "3 pm" ));
 
         booking=new adapterbook(getActivity(),bookList);
         recyclerViewbook.setAdapter(booking);

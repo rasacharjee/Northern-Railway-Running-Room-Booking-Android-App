@@ -42,15 +42,14 @@ public class user_main_activity extends AppCompatActivity  {
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
 
-
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Toast.makeText(this, "You are exiting the USER profile", Toast.LENGTH_SHORT).show();
-        finishAffinity();
-        System.exit(0);
+        Intent intent=new Intent(user_main_activity.this,MainActivity.class);
+        startActivity(intent);
+
     }
 }
