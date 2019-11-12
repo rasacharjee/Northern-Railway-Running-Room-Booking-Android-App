@@ -46,7 +46,7 @@ public class admin_home_fragment extends Fragment {
     ArrayList<String> list;
     String crisid;
 
-      //FirebaseAuth firebaseAuth;
+      FirebaseAuth firebaseAuth;
 
     public admin_home_fragment() {
         // Required empty public constructor
@@ -93,13 +93,15 @@ public class admin_home_fragment extends Fragment {
         list=new ArrayList<>();
 
 
-        //list.add("FEROZPUR");
-        // CrisIdObj=firebaseAuth.getCurrentUser().getUid();
-        // Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
+         list.add("FEROZPUR");
+         // CrisIdObj=firebaseAuth.getCurrentUser().getUid().toString();
+         // Log.d("LOG","OnResponse"+CrisIdObj);
+         // Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
 
 
-             if (CrisIdObj=="M3xqhpKnHUges7XZxoASr6x3VMw2"){
-               list.add("FEROZPUR");
+             if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
+                 list.clear();
+                 list.add("FEROZPUR");
              }
              else if (CrisIdObj=="234567"){
                  list.add("AMRITSAR");

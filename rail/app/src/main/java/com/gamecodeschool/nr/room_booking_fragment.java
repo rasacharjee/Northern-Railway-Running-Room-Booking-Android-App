@@ -194,10 +194,10 @@ public class room_booking_fragment extends Fragment {
 
     private void funbookdetails() {
         String crisId =crisidval.getText().toString().trim();
-        Integer trainNo = Integer.parseInt(trainnoval.getText().toString().trim());//Might cause null pointer expectation
+        int trainNo = Integer.parseInt(trainnoval.getText().toString().trim());//Might cause null pointer expectation
 
 
-        if ( crisId!=null||trainNo != null || date != null || checkout != null || inTime!=null ||outTime!=null) {
+        if ( crisId!=null||trainNo!= 0 || date != null || checkout != null || inTime!=null ||outTime!=null) {
             /*if (compare=="FEROZPUR"){
                 String bId=databaseFerozpurbookings.push().getKey();
                 database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
@@ -267,7 +267,7 @@ public class room_booking_fragment extends Fragment {
             //Add the database thing for booking rooms available node
         } else if (crisId==null){
             Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
-        }else if (trainNo==null){
+        }else if (trainNo==0){
             Toast.makeText(getActivity(),"Please enter Train Number",Toast.LENGTH_SHORT).show();
         }else if (date==null){
             Toast.makeText(getActivity(),"Please enter Check in date",Toast.LENGTH_SHORT).show();

@@ -1,14 +1,23 @@
 package com.gamecodeschool.nr;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -18,6 +27,11 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
 
     private Context mctx;
     private List<book>bookList;
+    int room;
+    int val;
+    int roomtemp;
+    DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseJalandharRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
+
 
     public adapterbook(Context mctx, List<book> bookList) {
         this.mctx = mctx;
@@ -27,16 +41,15 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater=LayoutInflater.from(mctx);
-        View view=inflater.inflate(card_book_previous,null);
+        View view=LayoutInflater.from(mctx).inflate(card_book_previous,parent,false);
         BookViewHolder holder=new BookViewHolder(view);
         return holder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-         book booked= bookList.get(position);
+    public void onBindViewHolder(@NonNull final BookViewHolder holder, int position) {
+         final book booked= bookList.get(position);
 
          holder.cityidBook.setText(booked.getCityName());
          holder.entervalin.setText(booked.getDate());
@@ -44,6 +57,44 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
          holder.tvtime1.setText(booked.getCheckInTime());
          holder.tvtime2.setText(booked.getCheckOutTime());
 
+        databaseFerozpurRooms = FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
+        databaseAmritsarRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("AMRITSARrooms");
+        databaseBaijnathRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("BAIJNATHrooms");
+        databaseJalandharRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JALANDHARrooms");
+        databaseJammuRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JAMMUrooms");
+        databaseKatraRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("KATRArooms");
+        databasePathankotRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("PATHANKOTrooms");
+
+         holder.btnCheckout.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 if(booked.getCityName().equals("FEROZPUR")) {
+                     val = 1;
+                     databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
+                         @Override
+                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                             while (val > 0) {
+                                 String vroot = dataSnapshot.getValue().toString();
+                                 room = Integer.parseInt(vroot);
+                                 Log.d("LOG" , "ROOM:-" + room);
+                                 room = room + 1;//if rooms can be accessed here
+                                 Log.d("LOGR" , "Room updated:-" + room);
+                                 databaseFerozpurRooms.setValue(room);
+                                 Toast.makeText(mctx , "Checkout successful" , Toast.LENGTH_LONG).show();
+                                 holder.btnCheckout.setEnabled(false);
+                                 val--;
+                             }
+                         }
+
+                         @Override
+                         public void onCancelled(@NonNull DatabaseError databaseError) {
+                         }
+                     });
+                 }
+
+
+             }
+         });
     }
 
     @Override
@@ -57,6 +108,8 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
         TextView entervalout;
         TextView tvtime1;
         TextView tvtime2;
+        Button btnCheckout;
+        Button btncomplaint;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +119,8 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
             entervalout=itemView.findViewById(R.id.entervalout);
             tvtime1=itemView.findViewById(R.id.tvtime1);
             tvtime2=itemView.findViewById(R.id.tvtime2);
+            btnCheckout=itemView.findViewById(R.id.btnCheckout);
+            btncomplaint=itemView.findViewById(R.id.btncomplaint);
         }
     }
 
