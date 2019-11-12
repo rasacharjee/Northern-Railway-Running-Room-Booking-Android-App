@@ -1,6 +1,9 @@
 package com.gamecodeschool.nr;
 
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,6 +41,7 @@ public class user_bookings_fragment extends Fragment {
     List<book>bookList;
     String CrisId;
     DatabaseReference databaseReference;
+
 
     public user_bookings_fragment() {
         // Required empty public constructor
@@ -64,7 +72,9 @@ public class user_bookings_fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,13 +90,14 @@ public class user_bookings_fragment extends Fragment {
         recyclerViewbook.setHasFixedSize(false);
         recyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
         bookList.add(
                 new book(
                         "Ferozpur",
                         "2 November",
-                        "1 pm",
-                        "12 pm",
-                        "3 november" ));
+                        "2 pm",
+                        "3pm",
+                        "3 pm" ));
 
         booking=new adapterbook(getActivity(),bookList);
         recyclerViewbook.setAdapter(booking);
