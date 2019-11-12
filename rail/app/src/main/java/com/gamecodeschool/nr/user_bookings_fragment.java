@@ -93,7 +93,7 @@ public class user_bookings_fragment extends Fragment {
 
         bookList.add(
                 new book(
-                        "Ferozpur",
+                        "FEROZPUR",
                         "2 November",
                         "2 pm",
                         "3pm",
