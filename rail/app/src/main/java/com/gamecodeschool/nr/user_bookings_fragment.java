@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,9 @@ public class user_bookings_fragment extends Fragment {
     Query dbbooksjammu;
     Query dbbookskatra;
     Query dbbookspathan;
+    
+    String CrisId;
+    DatabaseReference databaseReference;
 
 
     public user_bookings_fragment() {
@@ -48,6 +53,7 @@ public class user_bookings_fragment extends Fragment {
         // Inflate the layout for this fragment
          View view= inflater.inflate(R.layout.fragment_user_bookings_fragment, container, false);
 
+        databaseReference= FirebaseDatabase.getInstance().getReference();
         //String crisId=this.getArguments().getString("CrisID");
         dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("id").equalTo(crisid);
         dbbooksbaij= FirebaseDatabase.getInstance().getReference("BAIJNATH").orderByChild("id").equalTo(crisid);

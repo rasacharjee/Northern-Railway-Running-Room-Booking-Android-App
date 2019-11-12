@@ -3,6 +3,7 @@ package com.gamecodeschool.nr;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -29,7 +30,7 @@ import java.util.Calendar;
 
 public class room_booking_fragment extends Fragment {
 
-    private String date, checkout, inTime, outTime;
+    private String date, checkout, inTime, outTime,compare;
     private int room;
     private EditText checkinval;
     private EditText checkoutval;
@@ -39,8 +40,8 @@ public class room_booking_fragment extends Fragment {
     private EditText trainnoval;
     private Button submitval;
 
-    DatabaseReference databaseCompletebookings;
-    DatabaseReference databaseRoomsAvailable;
+    DatabaseReference databaseFerozpurbookings,databaseAmritsarbookings,databasePathankotbookings,databaseJalandharbookings,databaseJammubookings,databaseKatrabookings,databaseBaijnathbookings;
+    DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseJalandharRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
 
     DatabaseReference databasedetails;
 
@@ -62,8 +63,21 @@ public class room_booking_fragment extends Fragment {
         trainnoval = view.findViewById(R.id.trainnoval);
         submitval = view.findViewById(R.id.submitval);
 
-        databaseCompletebookings = FirebaseDatabase.getInstance().getReference("Complete_Bookings");
-        databaseRoomsAvailable = FirebaseDatabase.getInstance().getReference("Rooms_available");
+        databaseFerozpurbookings=FirebaseDatabase.getInstance().getReference("FEROZPUR");
+        databaseAmritsarbookings=FirebaseDatabase.getInstance().getReference("AMRITSAR");
+        databaseBaijnathbookings=FirebaseDatabase.getInstance().getReference("BAIJNATH");
+        databaseJalandharbookings=FirebaseDatabase.getInstance().getReference("JALANDHAR");
+        databaseJammubookings=FirebaseDatabase.getInstance().getReference("JAMMU");
+        databaseKatrabookings=FirebaseDatabase.getInstance().getReference("KATRA");
+        databasePathankotbookings=FirebaseDatabase.getInstance().getReference("PATHANKOT");
+
+        databaseFerozpurRooms = FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
+        databaseAmritsarRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("AMRITSARrooms");
+        databaseBaijnathRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("BAIJNATHrooms");
+        databaseJalandharRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JALANDHARrooms");
+        databaseJammuRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JAMMUrooms");
+        databaseKatraRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("KATRArooms");
+        databasePathankotRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("PATHANKOTrooms");
 
         Calendar c = Calendar.getInstance();
         final int day = c.get(Calendar.DAY_OF_MONTH);
@@ -120,6 +134,7 @@ public class room_booking_fragment extends Fragment {
                             time = hourOfDay + ":" + minute + " AM";
                         }
                         checkintimeval.setText(time);
+                        inTime=time;
                     }
                 }, hour, min, false);
                 timePickerDialog.show();
@@ -140,6 +155,7 @@ public class room_booking_fragment extends Fragment {
                             time = hourOfDay + ":" + minute + " AM";
                         }
                         checkouttimeval.setText(time);
+                        outTime=time;
                     }
                 }, hour, min, false);
                 timePickerDialog.show();
@@ -161,11 +177,11 @@ public class room_booking_fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        databaseRoomsAvailable.addValueEventListener(new ValueEventListener() {
+        databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                room_available_java_class room_av= new room_available_java_class(dataSnapshot.getChildren().toString());
-                room=Integer.parseInt(room_av.getRoom_available());
+                String vroot=dataSnapshot.getValue().toString();
+                room=Integer.parseInt(vroot);
             }
 
             @Override
@@ -178,24 +194,90 @@ public class room_booking_fragment extends Fragment {
 
     private void funbookdetails() {
         String crisId =crisidval.getText().toString().trim();
-        Integer trainNo = Integer.parseInt(trainnoval.getText().toString().trim());
-        if ( crisId==null||trainNo == null || date == null || checkout == null) {
-            Toast.makeText(getActivity(), "Please enter all fields", Toast.LENGTH_SHORT).show();
-        } else {
-            String bId = databaseCompletebookings.push().getKey();
+        Integer trainNo = Integer.parseInt(trainnoval.getText().toString().trim());//Might cause null pointer expectation
+
+
+        if ( crisId!=null||trainNo != null || date != null || checkout != null || inTime!=null ||outTime!=null) {
+            /*if (compare=="FEROZPUR"){
+                String bId=databaseFerozpurbookings.push().getKey();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                databaseFerozpurbookings.child(bId).setValue(book);
+                //if rooms information can be accessed here
+                room=room-1;
+                databaseFerozpurRooms.setValue(room);
+            }
+            else if (compare=="AMRITSAR"){
+                String bId=databaseAmritsarbookings.push().getKey();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                databaseAmritsarbookings.child(bId).setValue(book);
+                //if rooms information can be accessed here
+                room=room-1;
+                databaseAmritsarRooms.setValue(room);
+            }
+            else if (compare=="JALANDHAR"){
+                String bId=databaseJalandharbookings.push().getKey();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                databaseJalandharbookings.child(bId).setValue(book);
+                //if rooms information can be accessed here
+                room=room-1;
+                databaseJalandharRooms.setValue(room);
+            }
+            else if (compare=="JAMMU"){
+                String bId=databaseJammubookings.push().getKey();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                databaseJammubookings.child(bId).setValue(book);
+                //if rooms information can be accessed here
+                room=room-1;
+                databaseJammuRooms.setValue(room);
+            }
+            else if (compare=="PATHANKOT"){
+                String bId=databasePathankotbookings.push().getKey();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                databasePathankotbookings.child(bId).setValue(book);
+                //if rooms information can be accessed here
+                room=room-1;
+                databasePathankotRooms.setValue(room);
+            }
+            else if (compare=="KATRA"){
+                String bId=databaseKatrabookings.push().getKey();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                databaseKatrabookings.child(bId).setValue(book);
+                //if rooms information can be accessed here
+                room=room-1;
+                databaseKatrabookings.setValue(room);
+            }
+            else if (compare=="BAIJNATH"){
+                String bId=databaseBaijnathbookings.push().getKey();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                databaseBaijnathbookings.child(bId).setValue(book);
+                //if rooms information can be accessed here
+                room=room-1;
+                databaseBaijnathRooms.setValue(room);
+
+            }*/
+            //future provision
+
+            String bId = databaseFerozpurbookings.push().getKey();
             database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
-            databaseCompletebookings.child(bId).setValue(book);
-            room= room-1;
-            databaseRoomsAvailable.setValue("");
+            databaseFerozpurbookings.child(bId).setValue(book);
+            room= room-1;//if rooms can be accessed here
+            databaseFerozpurRooms.setValue(room);
+            Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
+            //only added for the Ferozpur section in database
             //Add the database thing for booking rooms available node
-
-
-            //user_bookings_fragment bookings = new user_bookings_fragment();
-            //Bundle args = new Bundle();
-            // args.putString("CrisID", crisId);
-            // bookings.setArguments(args);
-            // getFragmentManager().beginTransaction().replace(R.id.RoomBooking, bookings).commit();
-
+        } else if (crisId==null){
+            Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
+        }else if (trainNo==null){
+            Toast.makeText(getActivity(),"Please enter Train Number",Toast.LENGTH_SHORT).show();
+        }else if (date==null){
+            Toast.makeText(getActivity(),"Please enter Check in date",Toast.LENGTH_SHORT).show();
+        }else if (checkout==null){
+            Toast.makeText(getActivity(),"Please enter Check out date",Toast.LENGTH_SHORT).show();
+        }else if (inTime==null){
+            Toast.makeText(getActivity(),"Please enter Check in time",Toast.LENGTH_SHORT).show();
+        }else if (outTime==null){
+            Toast.makeText(getActivity(),"Please enter Check out time",Toast.LENGTH_SHORT).show();
         }
+
     }
 }
