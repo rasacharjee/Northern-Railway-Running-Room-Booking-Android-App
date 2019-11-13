@@ -4,10 +4,11 @@ public class database_book_java_class {
 
         String bId,crisId,checkinTime,checkoutTime,checkinDate,checkoutDate;
         int trainNo;
+        String status;
         public database_book_java_class() {
         }
 
-        public database_book_java_class(String bId, String crisId, int trainNo, String checkinTime, String checkoutTime, String checkinDate, String checkoutDate) {
+        public database_book_java_class(String bId, String crisId, int trainNo, String checkinTime, String checkoutTime, String checkinDate, String checkoutDate, String status) {
             this.bId = bId;
             this.crisId = crisId;
             this.trainNo = trainNo;
@@ -15,6 +16,7 @@ public class database_book_java_class {
             this.checkoutTime = checkoutTime;
             this.checkinDate = checkinDate;
             this.checkoutDate = checkoutDate;
+            this.status=status;
         }
 
         public String getbId() {
@@ -43,6 +45,9 @@ public class database_book_java_class {
 
         public String getCheckoutDate() {
             return checkoutDate;
+        }
+        public String getStatus(){
+            return status;
         }
 
 

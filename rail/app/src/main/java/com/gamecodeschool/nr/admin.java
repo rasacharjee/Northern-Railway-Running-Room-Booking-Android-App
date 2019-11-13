@@ -7,6 +7,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -15,23 +16,35 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class admin extends AppCompatActivity {
     BottomNavigationView admin_bottomNavigation;
     NavController admin_navController;
-    String CRISvalue;
+    public String CRISvalue;
+    public String email;
+    String Key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         admin_bottomNavigation=findViewById(R.id.admin_btmNav);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Key = extras.getString("key");
+            CRISvalue= extras.getString("crisid");
+            email=extras.getString("email");
+
+            //Toast.makeText(getApplicationContext(),CRISvalue,Toast.LENGTH_LONG).show();
+        }
+        if(!(email.equals("nr.bookings1@gmail.com")))
+        {
+            Toast.makeText(admin.this,"YOU DO NOT HAVE ADMIN ACCESS",Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(admin.this,MainActivity.class);
+            startActivity(intent);
+        }
         admin_navController= Navigation.findNavController(this,R.id.admin_nav_host);
         NavigationUI.setupWithNavController(admin_bottomNavigation,admin_navController);
 
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            CRISvalue = extras.getString("key");
 
-            //Toast.makeText(getApplicationContext(),CRISvalue,Toast.LENGTH_LONG).show();
-        }
 
       /*  if (CRISvalue!=null){
             FragmentManager fragmentManager=getSupportFragmentManager();

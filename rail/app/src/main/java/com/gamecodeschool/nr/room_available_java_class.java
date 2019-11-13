@@ -2,6 +2,7 @@ package com.gamecodeschool.nr;
 
 public class room_available_java_class {
     String room_available;
+
     public room_available_java_class() {
     }
 

@@ -37,6 +37,8 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
     DatabaseReference databaseFerozpurRooms;
     int room;
 
+    private DatabaseReference databaseReference;
+
     public adaptercity(Context mCt, List<cities_java_class> citiesList) {
         this.context = mCt;
         this.citiesList = citiesList;
@@ -132,7 +134,8 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return citiesList.size();
     }
 

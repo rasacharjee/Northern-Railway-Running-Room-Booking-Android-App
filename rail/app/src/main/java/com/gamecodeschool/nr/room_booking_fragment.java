@@ -43,6 +43,8 @@ public class room_booking_fragment extends Fragment {
     DatabaseReference databaseFerozpurbookings,databaseAmritsarbookings,databasePathankotbookings,databaseJalandharbookings,databaseJammubookings,databaseKatrabookings,databaseBaijnathbookings;
     DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseJalandharRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
 
+    DatabaseReference databasedetails;
+
     public room_booking_fragment() {
         // Required empty public constructor
     }
@@ -76,7 +78,6 @@ public class room_booking_fragment extends Fragment {
         databaseJammuRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JAMMUrooms");
         databaseKatraRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("KATRArooms");
         databasePathankotRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("PATHANKOTrooms");
-
 
         Calendar c = Calendar.getInstance();
         final int day = c.get(Calendar.DAY_OF_MONTH);
@@ -199,10 +200,10 @@ public class room_booking_fragment extends Fragment {
 
     private void funbookdetails() {
         String crisId =crisidval.getText().toString().trim();
-        Integer trainNo = Integer.parseInt(trainnoval.getText().toString().trim());//Might cause null pointer expectation
+        int trainNo = Integer.parseInt(trainnoval.getText().toString().trim());//Might cause null pointer expectation
 
 
-        if ( crisId!=null||trainNo != null || date != null || checkout != null || inTime!=null ||outTime!=null) {
+        if ( crisId!=null||trainNo!= 0 || date != null || checkout != null || inTime!=null ||outTime!=null) {
             /*if (compare=="FEROZPUR"){
                 String bId=databaseFerozpurbookings.push().getKey();
                 database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
@@ -263,7 +264,8 @@ public class room_booking_fragment extends Fragment {
             //future provision
 
             String bId = databaseFerozpurbookings.push().getKey();
-            database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+            String status="true";
+            database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
             databaseFerozpurbookings.child(bId).setValue(book);
             room= room-1;//if rooms can be accessed here
             databaseFerozpurRooms.setValue(room);
@@ -272,7 +274,7 @@ public class room_booking_fragment extends Fragment {
             //Add the database thing for booking rooms available node
         } else if (crisId==null){
             Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
-        }else if (trainNo==null){
+        }else if (trainNo==0){
             Toast.makeText(getActivity(),"Please enter Train Number",Toast.LENGTH_SHORT).show();
         }else if (date==null){
             Toast.makeText(getActivity(),"Please enter Check in date",Toast.LENGTH_SHORT).show();

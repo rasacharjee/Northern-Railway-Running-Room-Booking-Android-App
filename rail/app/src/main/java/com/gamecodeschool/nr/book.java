@@ -7,14 +7,16 @@ public class book {
     private String outdate;
     private String checkInTime;
     private String checkOutTime;
+    private String status;
 
-    public book(String cityName, String date, String checkInTime, String checkOutTime,String outdate) {
+    public book(String cityName, String date, String checkInTime, String checkOutTime,String outdate, String status) {
 
         this.cityName = cityName;
         this.indate = date;
         this.outdate=outdate;
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
+        this.status=status;
 
     }
 
@@ -35,5 +37,9 @@ public class book {
 
     public String getCheckOutTime() {
         return checkOutTime;
+    }
+
+    public String getStatus(){
+        return status;
     }
 }
