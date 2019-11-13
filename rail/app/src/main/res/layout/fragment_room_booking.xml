@@ -15,72 +15,84 @@
             android:id="@+id/relative"
             android:background="#110084">
 
-            <TextView
-                android:id="@+id/crisid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="104dp"
-                android:text="CRIS ID:"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/crisidval"
-                android:layout_width="160dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="37dp"
-                android:layout_marginTop="95dp"
-                android:layout_toEndOf="@id/crisid"
-                android:hint="Enter your CRIS ID"
-                android:textColorHint="#FFFFFF" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TRAIN NO:"
-                android:layout_below="@id/crisid"
-                android:layout_marginStart="78dp"
-                android:layout_marginTop="10dp"
-                android:textSize="20sp"
-                android:id="@+id/trainno"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
-            <EditText
-                android:layout_width="160dp"
-                android:layout_height="43dp"
-                android:layout_below="@id/crisid"
-                android:hint="Enter the Train No."
-                android:textColorHint="#FFFFFF"
-                android:layout_marginStart="20dp"
-                android:id="@+id/trainnoval"
-                android:layout_toEndOf="@id/trainno"/>
-
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="510dp"
+            android:layout_height="513dp"
             android:layout_below="@id/relative"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="52dp"
-            android:layout_marginTop="-68dp"
+            android:layout_marginTop="-200dp"
             android:layout_marginEnd="53dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/box"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <Button
-                android:id="@+id/submitval"
+            <TextView
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/times_new_roman"
+                android:text="BOOK A ROOM"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/crisid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="70dp"
+                android:text="CRIS ID:"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/crisidval"
+                android:layout_width="160dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="55dp"
+                android:layout_toEndOf="@+id/crisid"
+                android:hint="Enter your CRIS ID" />
+
+            <TextView
+                android:id="@+id/trainno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="110dp"
+                android:text="TRAIN NO:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/trainnoval"
+                android:layout_width="160dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="95dp"
+                android:layout_toEndOf="@+id/trainno"
+                android:hint="Enter the Train No." />
+
+            <Button
+                android:id="@+id/submitval"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/checkouttime"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="58dp"
+                android:layout_marginEnd="108dp"
                 android:background="#110084"
                 android:text="SUBMIT"
                 android:textColor="#FFFFFF" />
@@ -120,7 +132,7 @@
                 android:layout_width="123dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="132dp"
                 android:layout_toEndOf="@id/checkout"
                 android:focusableInTouchMode="false"
                 android:hint="Select Date" />
@@ -151,7 +163,7 @@
                 android:id="@+id/checkin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="155dp"
                 android:text="CHECK-IN DATE:"
                 android:textColor="#000000"
                 android:textSize="15sp"
