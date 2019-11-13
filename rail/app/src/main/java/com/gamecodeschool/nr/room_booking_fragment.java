@@ -264,7 +264,8 @@ public class room_booking_fragment extends Fragment {
             //future provision
 
             String bId = databaseFerozpurbookings.push().getKey();
-            database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+            String status="true";
+            database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
             databaseFerozpurbookings.child(bId).setValue(book);
             room= room-1;//if rooms can be accessed here
             databaseFerozpurRooms.setValue(room);

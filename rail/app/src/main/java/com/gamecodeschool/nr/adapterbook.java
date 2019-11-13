@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
@@ -37,6 +38,8 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
     private List<book>bookList;
     int room;
     int val;
+    String CrisId;
+    Query dbbooksferoz;
     DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseJalandharRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
 
 
@@ -58,7 +61,13 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
     @Override
     public void onBindViewHolder(@NonNull final BookViewHolder holder, int position) {
          final book booked= bookList.get(position);
-
+         holder.btnCheckout.setVisibility(View.GONE);
+         holder.btncomplaint.setVisibility(View.GONE);
+         if(booked.getStatus()=="true")
+         {
+             holder.btnCheckout.setVisibility(View.VISIBLE);
+             holder.btncomplaint.setVisibility(View.VISIBLE);
+         }
          holder.cityidBook.setText(booked.getCityName());
          holder.entervalin.setText(booked.getDate());
          holder.entervalout.setText(booked.getOutdate());
@@ -103,6 +112,8 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
         databaseJammuRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JAMMUrooms");
         databaseKatraRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("KATRArooms");
         databasePathankotRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("PATHANKOTrooms");
+
+        dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("id").equalTo(CrisId);
 
          holder.btnCheckout.setOnClickListener(new View.OnClickListener() {
              @Override

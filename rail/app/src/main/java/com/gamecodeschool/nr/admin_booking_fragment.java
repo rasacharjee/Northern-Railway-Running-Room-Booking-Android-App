@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class admin_booking_fragment extends Fragment {
     private String mParam2;
     private String valueReceived;
     String CrisIdObj;
+    FirebaseAuth firebaseAuth;
 
     RecyclerView ArecyclerViewbook;
     AdminAdapterBook  Abooking;
@@ -77,6 +79,9 @@ public class admin_booking_fragment extends Fragment {
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_admin_booking_fragment, container, false);
 
+
+        CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         databaseAmritsar= FirebaseDatabase.getInstance().getReference("AMRITSAR");
         databaseBaijnath= FirebaseDatabase.getInstance().getReference("BAIJNATH");
         databaseFerozpur= FirebaseDatabase.getInstance().getReference("FEROZPUR");
@@ -110,7 +115,7 @@ public class admin_booking_fragment extends Fragment {
         super.onStart();
 
 
-        if (CrisIdObj=="123456"){
+        if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
             databaseFerozpur.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

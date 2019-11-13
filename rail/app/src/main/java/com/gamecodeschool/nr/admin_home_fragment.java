@@ -46,7 +46,6 @@ public class admin_home_fragment extends Fragment {
     ArrayList<String> list;
     String crisid;
 
-      FirebaseAuth firebaseAuth;
 
     public admin_home_fragment() {
         // Required empty public constructor
@@ -82,7 +81,7 @@ public class admin_home_fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view= inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
-        //firebaseAuth=FirebaseAuth.getInstance();
+
 
         Bundle extras =getActivity().getIntent().getExtras();
         crisid=extras.getString("crisid");
@@ -93,14 +92,14 @@ public class admin_home_fragment extends Fragment {
         list=new ArrayList<>();
 
 
-         list.add("FEROZPUR");
-         // CrisIdObj=firebaseAuth.getCurrentUser().getUid().toString();
-         // Log.d("LOG","OnResponse"+CrisIdObj);
-         // Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
+         //list.add("FEROZPUR");
+         CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
+         Log.d("LOG","OnResponse"+CrisIdObj);
+         Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
 
 
-             if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
-                 list.clear();
+            if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
+                list.clear();
                  list.add("FEROZPUR");
              }
              else if (CrisIdObj=="234567"){

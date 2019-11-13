@@ -112,7 +112,8 @@ public class user_bookings_fragment extends Fragment {
                         "2 November",
                         "2 pm",
                         "3pm",
-                        "3 pm" ));
+                        "3 pm" ,
+                        "true"));
 
         booking=new adapterbook(getActivity(),bookList);
         recyclerViewbook.setAdapter(booking);
