@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,7 +80,9 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
              public void onClick(View v) {
                   final Dialog comdialog=new Dialog(mctx);
                 comdialog.setContentView(R.layout.complaint_dialog);
-                comdialog.setCancelable(false);
+                comdialog.setCancelable(true);
+                comdialog.setCanceledOnTouchOutside(false);
+                comdialog.onBackPressed();
                 comdialog.setTitle("LODGE COMPLAINT");
 
                 final TextView tvmail=comdialog.findViewById(R.id.tvmail);

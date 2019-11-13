@@ -126,15 +126,25 @@ public class room_booking_fragment extends Fragment {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         String time;
-                        if(hourOfDay>12)
+                        int present=Integer.valueOf(String.valueOf(hour)+String.valueOf(min));
+                        int checkout=Integer.valueOf(String.valueOf(hourOfDay)+String.valueOf(minute));
+                        if(hourOfDay-hour<=0 && checkout-present<30)
                         {
-                            time=(hourOfDay-12)+":"+minute+" PM";
+                            Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (hourOfDay-hour==1 && checkout-present<70)
+                        {
+                            Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            time = hourOfDay + ":" + minute + " AM";
+                            if (hourOfDay > 12) {
+                                time = (hourOfDay - 12) + ":" + minute + " PM";
+                            } else {
+                                time = hourOfDay + ":" + minute + " AM";
+                            }
+                            checkintimeval.setText(time);
+                            inTime = time;
                         }
-                        checkintimeval.setText(time);
-                        inTime=time;
                     }
                 }, hour, min, false);
                 timePickerDialog.show();
