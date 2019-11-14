@@ -112,7 +112,7 @@ public class admin_home_fragment extends Fragment {
                  list.add("JAMMU");
              }
              else if (CrisIdObj=="567890"){
-                 list.add("JALANDHAR");
+                 list.add("LUDHIANA");
              }
              else if (CrisIdObj=="678901"){
                  list.add("BAIJNATH");

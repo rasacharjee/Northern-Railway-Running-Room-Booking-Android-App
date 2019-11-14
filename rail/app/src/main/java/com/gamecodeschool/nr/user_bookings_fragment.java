@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,11 +38,10 @@ public class user_bookings_fragment extends Fragment {
     private RecyclerView recyclerViewbook;
     private adapterbook  booking;
     private List<book> bookList;
-    private int crisid;
     Query dbbooksferoz;
     Query dbbooksamrit;
     Query dbbooksbaij;
-    Query dbbooksjal;
+    Query dbbookslud;
     Query dbbooksjammu;
     Query dbbookskatra;
     Query dbbookspathan;
@@ -61,15 +61,17 @@ public class user_bookings_fragment extends Fragment {
         // Inflate the layout for this fragment
          View view= inflater.inflate(R.layout.fragment_user_bookings_fragment, container, false);
 
+         CrisId= FirebaseAuth.getInstance().getCurrentUser().getUid();
+         Toast.makeText(getActivity(),CrisId,Toast.LENGTH_SHORT).show();
         databaseReference= FirebaseDatabase.getInstance().getReference();
         //String crisId=this.getArguments().getString("CrisID");
-        dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("id").equalTo(crisid);
-        dbbooksbaij= FirebaseDatabase.getInstance().getReference("BAIJNATH").orderByChild("id").equalTo(crisid);
-        dbbooksamrit= FirebaseDatabase.getInstance().getReference("AMRITSAR").orderByChild("id").equalTo(crisid);
-        dbbooksjal= FirebaseDatabase.getInstance().getReference("JALANDAR").orderByChild("id").equalTo(crisid);
-        dbbooksjammu= FirebaseDatabase.getInstance().getReference("JAMMU").orderByChild("id").equalTo(crisid);
-        dbbookskatra= FirebaseDatabase.getInstance().getReference("KATRA").orderByChild("id").equalTo(crisid);
-        dbbookspathan= FirebaseDatabase.getInstance().getReference("PATHANKOT").orderByChild("id").equalTo(crisid);
+        dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("uid").equalTo(CrisId);
+        dbbooksbaij= FirebaseDatabase.getInstance().getReference("BAIJNATH").orderByChild("uid").equalTo(CrisId);
+        dbbooksamrit= FirebaseDatabase.getInstance().getReference("AMRITSAR").orderByChild("uid").equalTo(CrisId);
+        dbbookslud= FirebaseDatabase.getInstance().getReference("LUDHIANA").orderByChild("uid").equalTo(CrisId);
+        dbbooksjammu= FirebaseDatabase.getInstance().getReference("JAMMU").orderByChild("uid").equalTo(CrisId);
+        dbbookskatra= FirebaseDatabase.getInstance().getReference("KATRA").orderByChild("uid").equalTo(CrisId);
+        dbbookspathan= FirebaseDatabase.getInstance().getReference("PATHANKOT").orderByChild("uid").equalTo(CrisId);
 
         bookList=new ArrayList<>();
         recyclerViewbook=view.findViewById(R.id.recyclerViewbook);
@@ -101,7 +103,7 @@ public class user_bookings_fragment extends Fragment {
         dbbooksamrit.addListenerForSingleValueEvent(valueEventListener);
         dbbooksbaij.addListenerForSingleValueEvent(valueEventListener);
         dbbooksferoz.addListenerForSingleValueEvent(valueEventListener);
-        dbbooksjal.addListenerForSingleValueEvent(valueEventListener);
+        dbbookslud.addListenerForSingleValueEvent(valueEventListener);
         dbbooksjammu.addListenerForSingleValueEvent(valueEventListener);
         dbbookskatra.addListenerForSingleValueEvent(valueEventListener);
 
