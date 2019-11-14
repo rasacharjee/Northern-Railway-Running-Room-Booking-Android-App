@@ -116,6 +116,8 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
         databaseKatraRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("KATRArooms");
         databasePathankotRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("PATHANKOTrooms");
 
+
+
         dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("id").equalTo(CrisId);
 
          holder.btnCheckout.setOnClickListener(new View.OnClickListener() {

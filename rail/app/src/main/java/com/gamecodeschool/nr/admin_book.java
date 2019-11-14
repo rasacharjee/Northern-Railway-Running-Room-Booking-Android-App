@@ -1,16 +1,16 @@
 package com.gamecodeschool.nr;
 
 public class admin_book {
-    String nameCity,dateIn,dateOut,timeIn,timeOut,crisId;
+    String nameCity,checkinDate,checkoutDate,checkinTime,checkoutTime,crisId;
     public admin_book() {
     }
 
     public admin_book(String nameCity, String dateIn, String dateOut, String timeIn, String timeOut, String crisId) {
         this.nameCity = nameCity;
-        this.dateIn = dateIn;
-        this.dateOut = dateOut;
-        this.timeIn = timeIn;
-        this.timeOut = timeOut;
+        this.checkinDate = checkinDate;
+        this.checkoutDate = checkoutDate;
+        this.checkinTime = checkinTime;
+        this.checkoutTime = checkoutTime;
         this.crisId = crisId;
     }
 
@@ -18,20 +18,20 @@ public class admin_book {
         return nameCity;
     }
 
-    public String getDateIn() {
-        return dateIn;
+    public String getCheckinDate() {
+        return checkinDate;
     }
 
-    public String getDateOut() {
-        return dateOut;
+    public String getCheckoutDate() {
+        return checkoutDate;
     }
 
-    public String getTimeIn() {
-        return timeIn;
+    public String getCheckinTime() {
+        return checkinTime;
     }
 
-    public String getTimeOut() {
-        return timeOut;
+    public String getCheckoutTime() {
+        return checkoutTime;
     }
 
     public String getCrisId() {

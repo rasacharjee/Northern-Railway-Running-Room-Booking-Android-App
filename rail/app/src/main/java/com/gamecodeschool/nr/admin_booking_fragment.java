@@ -116,14 +116,19 @@ public class admin_booking_fragment extends Fragment {
 
 
         if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
+            AbookList.clear();
             databaseFerozpur.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    AbookList.clear();
                    for (DataSnapshot bookSnapshot: dataSnapshot.getChildren()){
-                       AbookList.clear();
+
                       admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                       AbookList.add(admin_book);
                    }
+
+                    Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    ArecyclerViewbook.setAdapter(Abooking);
                 }
 
                 @Override
@@ -133,14 +138,18 @@ public class admin_booking_fragment extends Fragment {
             });
         }
         else if (CrisIdObj=="234567"){
+            AbookList.clear();
             databaseAmritsar.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    AbookList.clear();
                     for (DataSnapshot bookSnapshot: dataSnapshot.getChildren()){
-                        AbookList.clear();
+
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    ArecyclerViewbook.setAdapter(Abooking);
                 }
 
                 @Override
@@ -150,6 +159,7 @@ public class admin_booking_fragment extends Fragment {
             });
         }
         else if (CrisIdObj=="345678"){
+            AbookList.clear();
             databasePathankot.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -158,6 +168,8 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    ArecyclerViewbook.setAdapter(Abooking);
                 }
 
                 @Override
@@ -167,6 +179,7 @@ public class admin_booking_fragment extends Fragment {
             });
         }
         else if (CrisIdObj=="456789"){
+            AbookList.clear();
             databaseJammu.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -175,6 +188,8 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    ArecyclerViewbook.setAdapter(Abooking);
                 }
 
                 @Override
@@ -184,6 +199,7 @@ public class admin_booking_fragment extends Fragment {
             });
         }
         else if (CrisIdObj=="567890"){
+            AbookList.clear();
             databaseJalandhar.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -192,6 +208,8 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    ArecyclerViewbook.setAdapter(Abooking);
                 }
 
                 @Override
@@ -201,6 +219,7 @@ public class admin_booking_fragment extends Fragment {
             });
         }
         else if (CrisIdObj=="678901"){
+            AbookList.clear();
             databaseBaijnath.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -209,6 +228,8 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    ArecyclerViewbook.setAdapter(Abooking);
                 }
 
                 @Override
@@ -218,7 +239,9 @@ public class admin_booking_fragment extends Fragment {
             });
         }
         else if (CrisIdObj=="789012"){
+            AbookList.clear();
             databaseKatra.addValueEventListener(new ValueEventListener() {
+
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     AbookList.clear();
@@ -227,6 +250,8 @@ public class admin_booking_fragment extends Fragment {
                         AbookList.add(admin_book);
 
                     }
+                    Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    ArecyclerViewbook.setAdapter(Abooking);
                 }
 
                 @Override

@@ -95,7 +95,7 @@ public class admin_home_fragment extends Fragment {
          //list.add("FEROZPUR");
          CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
          Log.d("LOG","OnResponse"+CrisIdObj);
-         Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
+         //Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
 
 
             if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){

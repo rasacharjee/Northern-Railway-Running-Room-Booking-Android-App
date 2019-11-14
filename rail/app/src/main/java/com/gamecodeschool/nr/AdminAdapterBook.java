@@ -38,11 +38,11 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         admin_book abooked= AbookList.get(position);
         holder.nameCity.setText(abooked.getNameCity());
-        holder.dateIn.setText(abooked.getDateIn());
-        holder.dateOut.setText(abooked.getDateOut());
-        holder.timeIn.setText(abooked.getTimeIn());
+        holder.dateIn.setText(abooked.getCheckinDate());
+        holder.dateOut.setText(abooked.getCheckoutDate());
+        holder.timeIn.setText(abooked.getCheckinTime());
 
-        holder.timeOut.setText(abooked.getTimeOut());
+        holder.timeOut.setText(abooked.getCheckoutTime());
 
 
         holder.crisId.setText(abooked.getCrisId());

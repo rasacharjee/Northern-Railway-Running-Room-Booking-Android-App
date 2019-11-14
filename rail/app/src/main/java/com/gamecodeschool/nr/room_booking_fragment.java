@@ -128,11 +128,11 @@ public class room_booking_fragment extends Fragment {
                         String time;
                         int present=Integer.valueOf(String.valueOf(hour)+String.valueOf(min));
                         int checkout=Integer.valueOf(String.valueOf(hourOfDay)+String.valueOf(minute));
-                        if(hourOfDay-hour<=0 && checkout-present<30)
+                        if(hourOfDay-hour<=0 && checkout-present>=30)
                         {
                             Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
                         }
-                        else if (hourOfDay-hour==1 && checkout-present<70)
+                        else if (hourOfDay-hour==1 && checkout-present>=70)
                         {
                             Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
                         }
