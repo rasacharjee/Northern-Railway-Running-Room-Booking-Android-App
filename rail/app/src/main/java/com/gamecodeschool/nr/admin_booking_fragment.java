@@ -43,7 +43,7 @@ public class admin_booking_fragment extends Fragment {
     String crisid;
 
 
-    DatabaseReference databaseFerozpur,databaseAmritsar,databasePathankot,databaseJammu,databaseKatra,databaseJalandhar,databaseBaijnath;
+    DatabaseReference databaseFerozpur,databaseAmritsar,databasePathankot,databaseJammu,databaseKatra,databaseLudhiana,databaseBaijnath;
     DatabaseReference databaseReference;
 
     public admin_booking_fragment() {
@@ -85,7 +85,7 @@ public class admin_booking_fragment extends Fragment {
         databaseAmritsar= FirebaseDatabase.getInstance().getReference("AMRITSAR");
         databaseBaijnath= FirebaseDatabase.getInstance().getReference("BAIJNATH");
         databaseFerozpur= FirebaseDatabase.getInstance().getReference("FEROZPUR");
-        databaseJalandhar= FirebaseDatabase.getInstance().getReference("JALANDHAR");
+        databaseLudhiana= FirebaseDatabase.getInstance().getReference("LUDHIANA");
         databaseJammu= FirebaseDatabase.getInstance().getReference("JAMMU");
         databaseKatra= FirebaseDatabase.getInstance().getReference("KATRA");
 
@@ -200,7 +200,7 @@ public class admin_booking_fragment extends Fragment {
         }
         else if (CrisIdObj=="567890"){
             AbookList.clear();
-            databaseJalandhar.addValueEventListener(new ValueEventListener() {
+            databaseLudhiana.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     AbookList.clear();

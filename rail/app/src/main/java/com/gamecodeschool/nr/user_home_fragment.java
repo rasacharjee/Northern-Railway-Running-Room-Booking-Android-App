@@ -82,8 +82,8 @@ public class user_home_fragment extends Fragment {
                         R.drawable.amritsar));
         citiesList.add(
                 new cities_java_class(
-                        "JALANDHAR",
-                        R.drawable.jalandhar));
+                        "LUDHIANA",
+                        R.drawable.ludhiana));
         citiesList.add(
                 new cities_java_class(
                         "PATHANKOT",

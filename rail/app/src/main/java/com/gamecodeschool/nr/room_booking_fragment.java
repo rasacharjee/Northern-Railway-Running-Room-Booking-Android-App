@@ -40,8 +40,8 @@ public class room_booking_fragment extends Fragment {
     private EditText trainnoval;
     private Button submitval;
 
-    DatabaseReference databaseFerozpurbookings,databaseAmritsarbookings,databasePathankotbookings,databaseJalandharbookings,databaseJammubookings,databaseKatrabookings,databaseBaijnathbookings;
-    DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseJalandharRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
+    DatabaseReference databaseFerozpurbookings,databaseAmritsarbookings,databasePathankotbookings,databaseLudhianabookings,databaseJammubookings,databaseKatrabookings,databaseBaijnathbookings;
+    DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseLudhianaRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
 
     DatabaseReference databasedetails;
 
@@ -66,7 +66,7 @@ public class room_booking_fragment extends Fragment {
         databaseFerozpurbookings=FirebaseDatabase.getInstance().getReference("FEROZPUR");
         databaseAmritsarbookings=FirebaseDatabase.getInstance().getReference("AMRITSAR");
         databaseBaijnathbookings=FirebaseDatabase.getInstance().getReference("BAIJNATH");
-        databaseJalandharbookings=FirebaseDatabase.getInstance().getReference("JALANDHAR");
+        databaseLudhianabookings=FirebaseDatabase.getInstance().getReference("LUDHIANA");
         databaseJammubookings=FirebaseDatabase.getInstance().getReference("JAMMU");
         databaseKatrabookings=FirebaseDatabase.getInstance().getReference("KATRA");
         databasePathankotbookings=FirebaseDatabase.getInstance().getReference("PATHANKOT");
@@ -74,7 +74,7 @@ public class room_booking_fragment extends Fragment {
         databaseFerozpurRooms = FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
         databaseAmritsarRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("AMRITSARrooms");
         databaseBaijnathRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("BAIJNATHrooms");
-        databaseJalandharRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JALANDHARrooms");
+        databaseLudhianaRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("LUDHIANArooms");
         databaseJammuRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("JAMMUrooms");
         databaseKatraRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("KATRArooms");
         databasePathankotRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("PATHANKOTrooms");
