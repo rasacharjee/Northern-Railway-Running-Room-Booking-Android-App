@@ -23,6 +23,8 @@ public class admin_login_main_activity extends AppCompatActivity {
     Button mbtnAlogin;
     FirebaseAuth mfAuth;
     final String cAID="123456";
+    final String cf="0077";
+    final String cl="0006";
     String CRISvalue;
     ProgressDialog progressDialog1 ;
 
@@ -58,7 +60,7 @@ public class admin_login_main_activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please enter all fields",Toast.LENGTH_SHORT).show();
                     mbtnAlogin.setEnabled(true);
                 }
-                else if (!(metCris.getText().toString().equals(cAID)))
+                else if (!(metCris.getText().toString().equals(cAID)||metCris.getText().toString().equals(cf)||metCris.getText().toString().equals(cl)))
                 {
                     progressDialog1.show();
                     Toast.makeText(getApplicationContext(),"Invalid credentials and access denied",Toast.LENGTH_LONG).show();

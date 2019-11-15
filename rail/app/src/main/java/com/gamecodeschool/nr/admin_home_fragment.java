@@ -98,11 +98,11 @@ public class admin_home_fragment extends Fragment {
          //Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
 
 
-            if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
+            if (CrisIdObj.equals("Lm8FOLC8qjVkrg3Po78VIozLU7F3")){
                 list.clear();
                  list.add("FEROZPUR");
              }
-             else if (CrisIdObj=="234567"){
+             else if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
                  list.add("AMRITSAR");
              }
              else if (CrisIdObj=="345678"){
@@ -111,7 +111,7 @@ public class admin_home_fragment extends Fragment {
              else if (CrisIdObj=="456789"){
                  list.add("JAMMU");
              }
-             else if (CrisIdObj=="567890"){
+             else if (CrisIdObj.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")){
                  list.add("LUDHIANA");
              }
              else if (CrisIdObj=="678901"){

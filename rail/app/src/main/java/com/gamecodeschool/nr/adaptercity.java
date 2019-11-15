@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,8 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
 
     private Context context;
     private List<cities_java_class> citiesList;
-    DatabaseReference databaseFerozpurRooms;
-    int room;
+    DatabaseReference databaseFerozpurRooms,databaseLudhianaRooms;
+    int room,lroom;
 
     private DatabaseReference databaseReference;
 
@@ -77,7 +78,7 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                     final Button btn_Book = dialog.findViewById(R.id.btn_Book);
                     final TextView tvRoomsAvailable=dialog.findViewById(R.id.uRoomsAvailable);
 
-              if (compare=="FEROZPUR"){
+              if (compare.equals("FEROZPUR")){
                   databaseFerozpurRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
                   databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
                       @Override
@@ -108,7 +109,9 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                           public void onClick(View v) {
 
                               room_booking_fragment room = new room_booking_fragment();
-
+                                Bundle bundle=new Bundle();
+                                bundle.putString("cities",compare);
+                                room.setArguments(bundle);
                               ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout, room).commit();
 
                               dialog.dismiss();
@@ -121,6 +124,53 @@ public class adaptercity extends RecyclerView.Adapter<adaptercity.cityViewHolder
                     }*/
                     dialog.show();
                 }
+
+                else if (compare.equals("LUDHIANA")){
+                  databaseLudhianaRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("LUDHIANArooms");
+                  databaseLudhianaRooms.addValueEventListener(new ValueEventListener() {
+                      @Override
+                      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                          String lroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
+                          tvRoomsAvailable.setText(lroot);
+                          room=Integer.parseInt(lroot);
+                      }
+
+                      @Override
+                      public void onCancelled(@NonNull DatabaseError databaseError) {
+                          Toast.makeText(context, "Try again later", Toast.LENGTH_SHORT).show();
+                      }
+                  });
+
+                  //tvRoomsAvailable.setText("65");
+                  btn_Can.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                          Toast.makeText(context, "Booking Cancelled", Toast.LENGTH_SHORT).show();
+                          dialog.dismiss();
+                      }
+                  });
+
+
+                  btn_Book.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+
+                          room_booking_fragment room = new room_booking_fragment();
+                          Bundle bundle=new Bundle();
+                          bundle.putString("cities",compare);
+                          room.setArguments(bundle);
+                          ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.ReplaceLayout, room).commit();
+
+                          dialog.dismiss();
+                      }
+                  });
+
+
+                    /*else {
+                        Toast.makeText(context, "No rooms available thus book button disabled", Toast.LENGTH_SHORT).show();
+                    }*/
+                  dialog.show();
+              }
                     else{
                         tvRoomsAvailable.setText("0");
                         Toast.makeText(context,"No Rooms available",Toast.LENGTH_LONG).show();

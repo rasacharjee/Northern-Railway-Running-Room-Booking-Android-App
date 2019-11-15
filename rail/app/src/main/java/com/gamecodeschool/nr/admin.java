@@ -34,7 +34,7 @@ public class admin extends AppCompatActivity {
 
             //Toast.makeText(getApplicationContext(),CRISvalue,Toast.LENGTH_LONG).show();
         }
-        if(!(email.equals("nr.bookings1@gmail.com")))
+        if(!(email.equals("nr.bookings1@gmail.com")||email.equals("sanjeev.1jan1975@gmail.com")||email.equals("opvij1969@gmail.com")))
         {
             Toast.makeText(admin.this,"YOU DO NOT HAVE ADMIN ACCESS",Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(admin.this,MainActivity.class);

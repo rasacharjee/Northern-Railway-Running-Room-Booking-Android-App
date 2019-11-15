@@ -31,7 +31,7 @@ import java.util.Calendar;
 public class room_booking_fragment extends Fragment {
 
     private String date, checkout, inTime, outTime,compare;
-    private int room;
+    private int room,roomL;
     private EditText checkinval;
     private EditText checkoutval;
     private EditText checkintimeval;
@@ -62,6 +62,10 @@ public class room_booking_fragment extends Fragment {
         crisidval = view.findViewById(R.id.crisidval);
         trainnoval = view.findViewById(R.id.trainnoval);
         submitval = view.findViewById(R.id.submitval);
+
+        Bundle bundle=getArguments();
+        compare=bundle.getString("cities");
+        Toast.makeText(getActivity(),compare,Toast.LENGTH_SHORT).show();
 
         databaseFerozpurbookings=FirebaseDatabase.getInstance().getReference("FEROZPUR");
         databaseAmritsarbookings=FirebaseDatabase.getInstance().getReference("AMRITSAR");
@@ -205,6 +209,18 @@ public class room_booking_fragment extends Fragment {
                 Toast.makeText(getActivity(), "Bookings cannot be completed", Toast.LENGTH_SHORT).show();
             }
         });
+        databaseLudhianaRooms.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String lroot=dataSnapshot.getValue().toString();
+                roomL=Integer.parseInt(lroot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+               Toast.makeText(getActivity(),"Bookings cannot be completed",Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -214,74 +230,74 @@ public class room_booking_fragment extends Fragment {
 
 
         if ( crisId!=null||trainNo!= 0 || date != null || checkout != null || inTime!=null ||outTime!=null) {
-            /*if (compare=="FEROZPUR"){
-                String bId=databaseFerozpurbookings.push().getKey();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+            if (compare.equals("FEROZPUR")){
+                String bId = databaseFerozpurbookings.push().getKey();
+                String status="true";
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
                 databaseFerozpurbookings.child(bId).setValue(book);
-                //if rooms information can be accessed here
-                room=room-1;
+                room= room-1;//if rooms can be accessed here
                 databaseFerozpurRooms.setValue(room);
+                Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
-            else if (compare=="AMRITSAR"){
-                String bId=databaseAmritsarbookings.push().getKey();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+            else if (compare.equals("AMRITSAR")){
+                String bId = databaseAmritsarbookings.push().getKey();
+                String status="true";
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
                 databaseAmritsarbookings.child(bId).setValue(book);
-                //if rooms information can be accessed here
-                room=room-1;
+                room= room-1;//if rooms can be accessed here
                 databaseAmritsarRooms.setValue(room);
+                Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
-            else if (compare=="JALANDHAR"){
-                String bId=databaseJalandharbookings.push().getKey();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
-                databaseJalandharbookings.child(bId).setValue(book);
-                //if rooms information can be accessed here
-                room=room-1;
-                databaseJalandharRooms.setValue(room);
+            else if (compare.equals("LUDHIANA")){
+                String bId = databaseLudhianabookings.push().getKey();
+                String status="true";
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                databaseLudhianabookings.child(bId).setValue(book);
+                roomL= roomL-1;//if rooms can be accessed here
+                databaseLudhianaRooms.setValue(roomL);
+                Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
             else if (compare=="JAMMU"){
-                String bId=databaseJammubookings.push().getKey();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                String bId = databaseJammubookings.push().getKey();
+                String status="true";
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
                 databaseJammubookings.child(bId).setValue(book);
-                //if rooms information can be accessed here
-                room=room-1;
+                room= room-1;//if rooms can be accessed here
                 databaseJammuRooms.setValue(room);
+                Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
             else if (compare=="PATHANKOT"){
-                String bId=databasePathankotbookings.push().getKey();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                String bId = databasePathankotbookings.push().getKey();
+                String status="true";
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
                 databasePathankotbookings.child(bId).setValue(book);
-                //if rooms information can be accessed here
-                room=room-1;
+                room= room-1;//if rooms can be accessed here
                 databasePathankotRooms.setValue(room);
+                Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
             else if (compare=="KATRA"){
-                String bId=databaseKatrabookings.push().getKey();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                String bId = databaseKatrabookings.push().getKey();
+                String status="true";
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
                 databaseKatrabookings.child(bId).setValue(book);
-                //if rooms information can be accessed here
-                room=room-1;
-                databaseKatrabookings.setValue(room);
+                room= room-1;//if rooms can be accessed here
+                databaseKatraRooms.setValue(room);
+                Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
             else if (compare=="BAIJNATH"){
-                String bId=databaseBaijnathbookings.push().getKey();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout);
+                String bId = databaseBaijnathbookings.push().getKey();
+                String status="true";
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
                 databaseBaijnathbookings.child(bId).setValue(book);
-                //if rooms information can be accessed here
-                room=room-1;
+                room= room-1;//if rooms can be accessed here
                 databaseBaijnathRooms.setValue(room);
+                Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
 
-            }*/
+            }
             //future provision
 
-            String bId = databaseFerozpurbookings.push().getKey();
-            String status="true";
-            database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
-            databaseFerozpurbookings.child(bId).setValue(book);
-            room= room-1;//if rooms can be accessed here
-            databaseFerozpurRooms.setValue(room);
-            Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
-            //only added for the Ferozpur section in database
-            //Add the database thing for booking rooms available node
+
+            //only added for the Ferozpur section in database//Add the database thing for booking rooms available node
         } else if (crisId==null){
             Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
         }else if (trainNo==0){

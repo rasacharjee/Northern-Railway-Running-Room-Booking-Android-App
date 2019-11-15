@@ -115,7 +115,7 @@ public class admin_booking_fragment extends Fragment {
         super.onStart();
 
 
-        if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
+        if (CrisIdObj.equals("Lm8FOLC8qjVkrg3Po78VIozLU7F3")){
             AbookList.clear();
             databaseFerozpur.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -137,7 +137,7 @@ public class admin_booking_fragment extends Fragment {
                 }
             });
         }
-        else if (CrisIdObj=="234567"){
+        else if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
             AbookList.clear();
             databaseAmritsar.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -198,7 +198,7 @@ public class admin_booking_fragment extends Fragment {
                 }
             });
         }
-        else if (CrisIdObj=="567890"){
+        else if (CrisIdObj.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")){
             AbookList.clear();
             databaseLudhiana.addValueEventListener(new ValueEventListener() {
                 @Override
