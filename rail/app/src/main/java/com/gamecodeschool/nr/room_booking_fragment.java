@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +40,7 @@ public class room_booking_fragment extends Fragment {
     private EditText crisidval;
     private EditText trainnoval;
     private Button submitval;
+    private String CrisIdObj;
 
     DatabaseReference databaseFerozpurbookings,databaseAmritsarbookings,databasePathankotbookings,databaseLudhianabookings,databaseJammubookings,databaseKatrabookings,databaseBaijnathbookings;
     DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseLudhianaRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
@@ -62,6 +64,7 @@ public class room_booking_fragment extends Fragment {
         crisidval = view.findViewById(R.id.crisidval);
         trainnoval = view.findViewById(R.id.trainnoval);
         submitval = view.findViewById(R.id.submitval);
+
 
         Bundle bundle=getArguments();
         compare=bundle.getString("cities");
@@ -232,8 +235,9 @@ public class room_booking_fragment extends Fragment {
         if ( crisId!=null||trainNo!= 0 || date != null || checkout != null || inTime!=null ||outTime!=null) {
             if (compare.equals("FEROZPUR")){
                 String bId = databaseFerozpurbookings.push().getKey();
-                String status="true";
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                String status="booked";
+                String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
                 databaseFerozpurbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseFerozpurRooms.setValue(room);
@@ -241,8 +245,9 @@ public class room_booking_fragment extends Fragment {
             }
             else if (compare.equals("AMRITSAR")){
                 String bId = databaseAmritsarbookings.push().getKey();
-                String status="true";
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                String status="booked";
+                String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
                 databaseAmritsarbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseAmritsarRooms.setValue(room);
@@ -250,8 +255,9 @@ public class room_booking_fragment extends Fragment {
             }
             else if (compare.equals("LUDHIANA")){
                 String bId = databaseLudhianabookings.push().getKey();
-                String status="true";
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                String status="booked";
+                String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
                 databaseLudhianabookings.child(bId).setValue(book);
                 roomL= roomL-1;//if rooms can be accessed here
                 databaseLudhianaRooms.setValue(roomL);
@@ -259,8 +265,9 @@ public class room_booking_fragment extends Fragment {
             }
             else if (compare=="JAMMU"){
                 String bId = databaseJammubookings.push().getKey();
-                String status="true";
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                String status="booked";
+                String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
                 databaseJammubookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseJammuRooms.setValue(room);
@@ -268,8 +275,9 @@ public class room_booking_fragment extends Fragment {
             }
             else if (compare=="PATHANKOT"){
                 String bId = databasePathankotbookings.push().getKey();
-                String status="true";
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                String status="booked";
+                String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
                 databasePathankotbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databasePathankotRooms.setValue(room);
@@ -277,8 +285,9 @@ public class room_booking_fragment extends Fragment {
             }
             else if (compare=="KATRA"){
                 String bId = databaseKatrabookings.push().getKey();
-                String status="true";
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                String status="booked";
+                String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
                 databaseKatrabookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseKatraRooms.setValue(room);
@@ -286,8 +295,9 @@ public class room_booking_fragment extends Fragment {
             }
             else if (compare=="BAIJNATH"){
                 String bId = databaseBaijnathbookings.push().getKey();
-                String status="true";
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status);
+                String status="booked";
+                String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
                 databaseBaijnathbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseBaijnathRooms.setValue(room);
@@ -296,8 +306,6 @@ public class room_booking_fragment extends Fragment {
             }
             //future provision
 
-
-            //only added for the Ferozpur section in database//Add the database thing for booking rooms available node
         } else if (crisId==null){
             Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
         }else if (trainNo==0){

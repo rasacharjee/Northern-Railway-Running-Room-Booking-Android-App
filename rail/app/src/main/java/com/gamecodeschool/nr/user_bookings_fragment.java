@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,24 @@ public class user_bookings_fragment extends Fragment {
 
 
         bookList.clear();
+        dbbooksferoz.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                {
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren())
+                    {
+                        book obj=snapshot.getValue(book.class);
+                        bookList.add(obj);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         ValueEventListener valueEventListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -102,20 +121,22 @@ public class user_bookings_fragment extends Fragment {
         dbbookspathan.addListenerForSingleValueEvent(valueEventListener);
         dbbooksamrit.addListenerForSingleValueEvent(valueEventListener);
         dbbooksbaij.addListenerForSingleValueEvent(valueEventListener);
-        dbbooksferoz.addListenerForSingleValueEvent(valueEventListener);
+       // dbbooksferoz.addListenerForSingleValueEvent(valueEventListener);
         dbbookslud.addListenerForSingleValueEvent(valueEventListener);
         dbbooksjammu.addListenerForSingleValueEvent(valueEventListener);
         dbbookskatra.addListenerForSingleValueEvent(valueEventListener);
 
 
-        bookList.add(
+       /* bookList.add(
                 new book(
                         "FEROZPUR",
                         "2 November",
                         "2 pm",
                         "3pm",
                         "3 pm" ,
-                        "true"));
+                        "true",
+                        "temp")); */
+        Log.d("LOG","value"+bookList);
 
         booking=new adapterbook(getActivity(),bookList);
         recyclerViewbook.setAdapter(booking);
