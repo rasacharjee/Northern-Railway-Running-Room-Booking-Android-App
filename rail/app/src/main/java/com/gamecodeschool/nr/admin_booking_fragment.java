@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class admin_booking_fragment extends Fragment {
@@ -126,7 +127,7 @@ public class admin_booking_fragment extends Fragment {
                       admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                       AbookList.add(admin_book);
                    }
-
+                    Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
@@ -148,6 +149,7 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
@@ -168,6 +170,7 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
@@ -188,6 +191,7 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
@@ -208,6 +212,7 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
@@ -228,6 +233,7 @@ public class admin_booking_fragment extends Fragment {
                         admin_book admin_book= bookSnapshot.getValue(com.gamecodeschool.nr.admin_book.class);
                         AbookList.add(admin_book);
                     }
+                    Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
@@ -250,6 +256,7 @@ public class admin_booking_fragment extends Fragment {
                         AbookList.add(admin_book);
 
                     }
+                    Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
@@ -260,7 +267,7 @@ public class admin_booking_fragment extends Fragment {
                 }
             });
         }
-
+        Collections.reverse(AbookList);
         Abooking=new AdminAdapterBook(getActivity(),AbookList);
         ArecyclerViewbook.setAdapter(Abooking);
 
