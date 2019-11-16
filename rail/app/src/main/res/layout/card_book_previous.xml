@@ -6,6 +6,8 @@
     android:layout_weight="1"
     android:orientation="vertical"
     android:layout_marginTop="70dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginBottom="5dp"
     app:cardCornerRadius="30dp"
     android:layout_marginStart="5dp"
     android:layout_marginEnd="10dp">
