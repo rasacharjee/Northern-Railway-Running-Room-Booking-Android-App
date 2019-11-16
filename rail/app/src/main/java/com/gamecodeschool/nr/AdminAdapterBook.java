@@ -37,7 +37,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         admin_book abooked= AbookList.get(position);
-        holder.nameCity.setText(abooked.getNameCity());
+        holder.nameCity.setText(abooked.getCityname());
         holder.dateIn.setText(abooked.getCheckinDate());
         holder.dateOut.setText(abooked.getCheckoutDate());
         holder.timeIn.setText(abooked.getCheckinTime());
