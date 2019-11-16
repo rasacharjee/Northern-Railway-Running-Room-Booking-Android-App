@@ -126,9 +126,12 @@ public class room_booking_fragment extends Fragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
                         month = month + 1;
                         checkout = dayOfMonth + "-" + month + "-" + year;
-                        checkoutval.setText(checkout);
+
+                            checkoutval.setText(checkout);
+
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -147,10 +150,12 @@ public class room_booking_fragment extends Fragment {
                         if(hourOfDay-hour<=0 && checkout-present>=30)
                         {
                             Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
+                            submitval.setEnabled(false);
                         }
                         else if (hourOfDay-hour==1 && checkout-present>=70)
                         {
                             Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
+                            submitval.setEnabled(false);
                         }
                         else {
                             if (hourOfDay > 12) {
@@ -160,6 +165,7 @@ public class room_booking_fragment extends Fragment {
                             }
                             checkintimeval.setText(time);
                             inTime = time;
+                            submitval.setEnabled(true);
                         }
                     }
                 }, hour, min, false);
