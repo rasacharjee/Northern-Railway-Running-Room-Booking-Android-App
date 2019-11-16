@@ -93,7 +93,6 @@ public class user_bookings_fragment extends Fragment {
       dbbookslud.addListenerForSingleValueEvent(valueEventListener);
 
         Log.d("LOG","value"+bookList);
-
         return view;
 
     }

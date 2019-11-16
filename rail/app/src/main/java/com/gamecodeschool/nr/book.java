@@ -57,32 +57,4 @@ public class book {
 
     public String getUid(){ return uid;}
 
-  /*  public void setcityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public void setcheckinDate(String checkinDate) {
-        this.checkinDate = checkinDate;
-    }
-
-    public void setcheckoutDate(String checkoutDate) {
-        this.checkoutDate = checkoutDate;
-    }
-
-    public void setcheckinTime(String checkinTime) {
-        this.checkinTime = checkinTime;
-    }
-
-    public void setcheckoutTime(String checkoutTime) {
-        this.checkoutTime = checkoutTime;
-    }
-
-    public void setstatus(String status) {
-        this.status = status;
-    }
-
-    public void setbId(String bId) {
-        this.bId = bId;
-    } */
-
 }

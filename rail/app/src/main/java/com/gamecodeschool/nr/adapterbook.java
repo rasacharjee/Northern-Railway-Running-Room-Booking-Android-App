@@ -71,7 +71,7 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
              holder.btnCheckout.setVisibility(View.VISIBLE);
              holder.btncomplaint.setVisibility(View.VISIBLE);
          }
-        // holder.cityidBook.setText(booked.getCityName());
+         holder.cityidBook.setText(booked.getCityName());
          holder.entervalin.setText(booked.getDate());
          holder.entervalout.setText(booked.getOutdate());
          holder.tvtime1.setText(booked.getCheckInTime());
