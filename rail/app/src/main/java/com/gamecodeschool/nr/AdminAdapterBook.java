@@ -37,7 +37,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         admin_book abooked= AbookList.get(position);
-        holder.nameCity.setText(abooked.getNameCity());
+        holder.username.setText(abooked.getName());
         holder.dateIn.setText(abooked.getCheckinDate());
         holder.dateOut.setText(abooked.getCheckoutDate());
         holder.timeIn.setText(abooked.getCheckinTime());
@@ -55,7 +55,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder{
-        TextView nameCity;
+        TextView username;
         TextView dateIn;
         TextView dateOut;
         TextView timeIn;
@@ -65,7 +65,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nameCity=itemView.findViewById(R.id.tvCityname);
+            username=itemView.findViewById(R.id.tvUserName);
             dateIn=itemView.findViewById(R.id.tvInDateRight);
             dateOut=itemView.findViewById(R.id.tvOutDateRight);
             timeIn=itemView.findViewById(R.id.tvInTimeRight);
