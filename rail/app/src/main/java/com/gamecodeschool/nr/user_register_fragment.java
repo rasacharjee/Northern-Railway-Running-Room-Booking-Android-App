@@ -146,7 +146,8 @@ public class user_register_fragment extends Fragment {
         dvEmail=etEmail.getText().toString().trim();
         dvPhn=etPhn.getText().toString().trim();
         dvName=etName.getText().toString().trim();
-        driver_credentials dCredentials= new driver_credentials(dvid,dvEmail,dvPhn,dvName);
+        String duid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        driver_credentials dCredentials= new driver_credentials(dvid,dvEmail,dvPhn,dvName,duid);
         databaseDrivers.child(dvid).setValue(dCredentials);
     }
 }

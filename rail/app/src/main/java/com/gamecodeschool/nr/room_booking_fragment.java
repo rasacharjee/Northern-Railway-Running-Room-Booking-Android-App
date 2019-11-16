@@ -241,7 +241,7 @@ public class room_booking_fragment extends Fragment {
                 String bId = databaseFerozpurbookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID,compare);
                 databaseFerozpurbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseFerozpurRooms.setValue(room);
@@ -251,7 +251,7 @@ public class room_booking_fragment extends Fragment {
                 String bId = databaseAmritsarbookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID,compare);
                 databaseAmritsarbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseAmritsarRooms.setValue(room);
@@ -261,7 +261,7 @@ public class room_booking_fragment extends Fragment {
                 String bId = databaseLudhianabookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID,compare);
                 databaseLudhianabookings.child(bId).setValue(book);
                 roomL= roomL-1;//if rooms can be accessed here
                 databaseLudhianaRooms.setValue(roomL);
@@ -271,7 +271,7 @@ public class room_booking_fragment extends Fragment {
                 String bId = databaseJammubookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID,compare);
                 databaseJammubookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseJammuRooms.setValue(room);
@@ -281,7 +281,7 @@ public class room_booking_fragment extends Fragment {
                 String bId = databasePathankotbookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID,compare);
                 databasePathankotbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databasePathankotRooms.setValue(room);
@@ -291,7 +291,7 @@ public class room_booking_fragment extends Fragment {
                 String bId = databaseKatrabookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID,compare);
                 databaseKatrabookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseKatraRooms.setValue(room);
@@ -301,7 +301,7 @@ public class room_booking_fragment extends Fragment {
                 String bId = databaseBaijnathbookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID);
+                database_book_java_class book = new database_book_java_class(bId, crisId, trainNo, inTime, outTime, date, checkout,status,UID,compare);
                 databaseBaijnathbookings.child(bId).setValue(book);
                 room= room-1;//if rooms can be accessed here
                 databaseBaijnathRooms.setValue(room);
