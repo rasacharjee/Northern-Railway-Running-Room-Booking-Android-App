@@ -5,7 +5,7 @@ public class admin_book {
     public admin_book() {
     }
 
-    public admin_book(String nameCity, String dateIn, String dateOut, String timeIn, String timeOut, String crisId) {
+    public admin_book(String nameCity, String checkinDate, String checkoutDate, String checkinTime, String checkoutTime, String crisId) {
         this.nameCity = nameCity;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;

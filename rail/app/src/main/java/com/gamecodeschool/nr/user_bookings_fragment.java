@@ -79,54 +79,6 @@ public class user_bookings_fragment extends Fragment {
         recyclerViewbook.setHasFixedSize(false);
         recyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-        bookList.clear();
-        dbbooksferoz.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                {
-                    for(DataSnapshot snapshot:dataSnapshot.getChildren())
-                    {
-                        book obj=snapshot.getValue(book.class);
-                        bookList.add(obj);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        ValueEventListener valueEventListener=new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                {
-                   for(DataSnapshot snapshot:dataSnapshot.getChildren())
-                   {
-                       book obj=snapshot.getValue(book.class);
-                       bookList.add(obj);
-                   }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-
-        dbbookspathan.addListenerForSingleValueEvent(valueEventListener);
-        dbbooksamrit.addListenerForSingleValueEvent(valueEventListener);
-        dbbooksbaij.addListenerForSingleValueEvent(valueEventListener);
-       // dbbooksferoz.addListenerForSingleValueEvent(valueEventListener);
-        dbbookslud.addListenerForSingleValueEvent(valueEventListener);
-        dbbooksjammu.addListenerForSingleValueEvent(valueEventListener);
-        dbbookskatra.addListenerForSingleValueEvent(valueEventListener);
-
-
        /* bookList.add(
                 new book(
                         "FEROZPUR",
@@ -136,12 +88,32 @@ public class user_bookings_fragment extends Fragment {
                         "3 pm" ,
                         "true",
                         "temp")); */
+      bookList.clear();
+      dbbooksferoz.addListenerForSingleValueEvent(valueEventListener);
+      dbbookslud.addListenerForSingleValueEvent(valueEventListener);
+
         Log.d("LOG","value"+bookList);
 
-        booking=new adapterbook(getActivity(),bookList);
-        recyclerViewbook.setAdapter(booking);
         return view;
 
     }
+    ValueEventListener valueEventListener= new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+           if (dataSnapshot.exists()){
+               for (DataSnapshot data:dataSnapshot.getChildren()){
+                   book obj=data.getValue(book.class);
+                   bookList.add(obj);
+               }
+               booking=new adapterbook(getActivity(),bookList);
+               recyclerViewbook.setAdapter(booking);
+           }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
 
 }

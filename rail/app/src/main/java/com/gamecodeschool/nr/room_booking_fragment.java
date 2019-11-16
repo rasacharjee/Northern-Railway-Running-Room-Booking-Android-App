@@ -263,7 +263,7 @@ public class room_booking_fragment extends Fragment {
                 databaseLudhianaRooms.setValue(roomL);
                 Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
-            else if (compare=="JAMMU"){
+            else if (compare.equals("JAMMU")){
                 String bId = databaseJammubookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -273,7 +273,7 @@ public class room_booking_fragment extends Fragment {
                 databaseJammuRooms.setValue(room);
                 Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
-            else if (compare=="PATHANKOT"){
+            else if (compare.equals("PATHANKOT")){
                 String bId = databasePathankotbookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -283,7 +283,7 @@ public class room_booking_fragment extends Fragment {
                 databasePathankotRooms.setValue(room);
                 Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
-            else if (compare=="KATRA"){
+            else if (compare.equals("KATRA")){
                 String bId = databaseKatrabookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -293,7 +293,7 @@ public class room_booking_fragment extends Fragment {
                 databaseKatraRooms.setValue(room);
                 Toast.makeText(getActivity(),"Booking successful",Toast.LENGTH_LONG).show();
             }
-            else if (compare=="BAIJNATH"){
+            else if (compare.equals("BAIJNATH")){
                 String bId = databaseBaijnathbookings.push().getKey();
                 String status="booked";
                 String UID=FirebaseAuth.getInstance().getCurrentUser().getUid();

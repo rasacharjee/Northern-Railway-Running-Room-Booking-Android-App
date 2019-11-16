@@ -2,9 +2,10 @@ package com.gamecodeschool.nr;
 
 public class database_book_java_class {
 
-        String bId,crisId,checkinTime,checkoutTime,checkinDate,checkoutDate, uid;
+        String bId,crisId,checkinTime,checkoutTime,checkinDate,checkoutDate;
         int trainNo;
         String status;
+        String uid;
         public database_book_java_class() {
         }
 

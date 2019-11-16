@@ -9,20 +9,22 @@ public class book {
     private String checkoutTime;
     private String status;
     private String bId;
+    private String uid;
 
     public book(){
 
     }
 
-    public book(String cityName, String date, String checkInTime, String checkOutTime, String outdate, String status, String bId) {
+    public book(String cityName, String checkinDate, String checkInTime, String checkOutTime, String checkoutDate, String status, String bId,String uid) {
 
         this.cityName = cityName;
-        this.checkinDate = date;
-        this.checkoutDate=outdate;
+        this.checkinDate = checkinDate;
+        this.checkoutDate=checkoutDate;
         this.checkinTime = checkInTime;
         this.checkoutTime = checkOutTime;
         this.status=status;
         this.bId=bId;
+        this.uid=uid;
 
     }
 
@@ -52,6 +54,8 @@ public class book {
     public String getKey() {
         return bId;
     }
+
+    public String getUid(){ return uid;}
 
   /*  public void setcityName(String cityName) {
         this.cityName = cityName;
