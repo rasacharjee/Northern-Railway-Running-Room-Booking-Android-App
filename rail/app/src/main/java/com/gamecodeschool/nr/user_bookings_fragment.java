@@ -39,6 +39,7 @@ public class user_bookings_fragment extends Fragment {
     private RecyclerView recyclerViewbook;
     private adapterbook  booking;
     private List<book> bookList;
+    private String cname;
     Query dbbooksferoz;
     Query dbbooksamrit;
     Query dbbooksbaij;
@@ -79,6 +80,8 @@ public class user_bookings_fragment extends Fragment {
         recyclerViewbook.setHasFixedSize(false);
         recyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+       TextView cityidBook=(TextView) view.findViewById(R.id.cityidBook);
+        cityidBook.setText(cname);
        /* bookList.add(
                 new book(
                         "FEROZPUR",
@@ -93,6 +96,8 @@ public class user_bookings_fragment extends Fragment {
       dbbookslud.addListenerForSingleValueEvent(valueEventListener);
 
         Log.d("LOG","value"+bookList);
+
+
         return view;
 
     }

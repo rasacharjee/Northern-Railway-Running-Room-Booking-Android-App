@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="190dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="50dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
     android:layout_weight="1"
     android:orientation="vertical"
-    android:layout_marginTop="70dp"
-    app:cardUseCompatPadding="true"
-    android:layout_marginBottom="5dp"
     app:cardCornerRadius="30dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="10dp">
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="411dp"
@@ -18,7 +18,9 @@
         android:layout_marginStart="1dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp">
+        android:layout_marginRight="50dp"
+        android:id="@+id/layout_cont">
+
 
         <Button
             android:id="@+id/btncomplaint"
@@ -35,13 +37,28 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/btnCheckout"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="198dp"
+            android:layout_marginTop="107dp"
+            android:layout_marginEnd="55dp"
+            android:background="#110084"
+            android:text="check out"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/entervalin"
             android:layout_width="96dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/cityidBook"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="141dp"
+            android:layout_marginStart="138dp"
             android:layout_marginTop="16dp"
             android:inputType="number" />
 
@@ -49,7 +66,8 @@
             android:id="@+id/cityidBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="130dp"
             android:layout_marginTop="10dp"
             android:text="PATHANKOT"
             android:textColor="#000000"
@@ -74,7 +92,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="241dp"
+            android:layout_marginStart="230dp"
             android:layout_marginTop="52dp"
             android:layout_marginBottom="109dp"
             android:text="Check In: " />
@@ -86,11 +104,9 @@
             android:layout_alignStart="@+id/tvCheckin"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="77dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="111dp" />
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="32dp" />
 
         <TextView
             android:id="@+id/tvCheckout"
@@ -100,7 +116,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="237dp"
+            android:layout_marginStart="222dp"
             android:layout_marginTop="77dp"
             android:layout_marginEnd="101dp"
             android:layout_marginBottom="82dp"
@@ -114,7 +130,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="315dp"
+            android:layout_marginStart="294dp"
             android:layout_marginTop="78dp"
             android:layout_marginEnd="27dp"
             android:layout_marginBottom="80dp" />
@@ -139,21 +155,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="140dp"
             android:layout_marginTop="80dp" />
-
-        <Button
-            android:id="@+id/btnCheckout"
-            android:layout_width="wrap_content"
-            android:layout_height="59dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="198dp"
-            android:layout_marginTop="107dp"
-            android:layout_marginEnd="55dp"
-            android:background="#110084"
-            android:text="check out"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
 
 
     </RelativeLayout>
