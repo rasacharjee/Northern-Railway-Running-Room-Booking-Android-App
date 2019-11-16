@@ -7,9 +7,11 @@
     android:layout_marginStart="5dp"
     android:layout_marginTop="70dp"
     android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
     android:layout_weight="2"
     android:orientation="vertical"
     android:paddingTop="20dp"
+    app:cardUseCompatPadding="true"
     app:cardCornerRadius="40dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +46,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="48dp"
             android:fontFamily="@font/times_new_roman"
-            android:text="CRIS ID:"
+            android:text="CMS ID:"
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,8 +104,8 @@
             android:id="@+id/tvInTimeRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="95dp"
             android:fontFamily="@font/times_new_roman"
             android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/tvInTimeLeft"
@@ -154,13 +156,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="141dp"
-            android:layout_marginEnd="110dp"
+            android:layout_marginEnd="114dp"
             android:layout_marginBottom="19dp"
             android:fontFamily="@font/times_new_roman"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

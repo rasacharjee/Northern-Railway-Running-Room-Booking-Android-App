@@ -44,7 +44,7 @@
         android:background="@drawable/qw"
         android:ems="10"
         android:fontFamily="@font/times_new_roman"
-        android:hint="  CRIS ID"
+        android:hint="  CMS ID"
         android:inputType="textPersonName"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"

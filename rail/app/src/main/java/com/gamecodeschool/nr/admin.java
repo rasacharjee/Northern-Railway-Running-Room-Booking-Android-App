@@ -79,8 +79,8 @@ public class admin extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Toast.makeText(getApplicationContext(),"You are leaving ADMIN profile",Toast.LENGTH_SHORT).show();
-        finishAffinity();
-        System.exit(0);
+        Toast.makeText(this, "You are exiting the Admin Profile", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(admin.this,MainActivity.class);
+        startActivity(intent);
     }
 }
