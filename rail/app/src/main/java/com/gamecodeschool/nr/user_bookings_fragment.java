@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class user_bookings_fragment extends Fragment {
@@ -39,7 +40,6 @@ public class user_bookings_fragment extends Fragment {
     private RecyclerView recyclerViewbook;
     private adapterbook  booking;
     private List<book> bookList;
-    private String cname;
     Query dbbooksferoz;
     Query dbbooksamrit;
     Query dbbooksbaij;
@@ -77,11 +77,9 @@ public class user_bookings_fragment extends Fragment {
 
         bookList=new ArrayList<>();
         recyclerViewbook=view.findViewById(R.id.recyclerViewbook);
-        recyclerViewbook.setHasFixedSize(false);
-        recyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerViewbook.setHasFixedSize(false);
+//        booking.notifyDataSetChanged();
 
-       TextView cityidBook=(TextView) view.findViewById(R.id.cityidBook);
-        cityidBook.setText(cname);
        /* bookList.add(
                 new book(
                         "FEROZPUR",
@@ -107,10 +105,14 @@ public class user_bookings_fragment extends Fragment {
            if (dataSnapshot.exists()){
                for (DataSnapshot data:dataSnapshot.getChildren()){
                    book obj=data.getValue(book.class);
+                   Log.d("bookdata","data"+obj.getCheckOutdate());
                    bookList.add(obj);
                }
+               Collections.reverse(bookList);
                booking=new adapterbook(getActivity(),bookList);
+               recyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
                recyclerViewbook.setAdapter(booking);
+               booking.notifyDataSetChanged();
            }
         }
 

@@ -41,9 +41,10 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
     int room;
     int val;
     String CrisId;
-    Query dbbooksferoz;
+    Query dbbooksferoz,dbbookslud;
     DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseLudhianaRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
     DatabaseReference update;
+    String key;
 
 
     public adapterbook(Context mctx, List<book> bookList) {
@@ -54,7 +55,7 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(mctx).inflate(card_book_previous,parent,false);
+        View view=LayoutInflater.from(mctx).inflate(R.layout.card_book_previous,parent,false);
         BookViewHolder holder=new BookViewHolder(view);
         return holder;
 
@@ -64,6 +65,11 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
     public void onBindViewHolder(@NonNull final BookViewHolder holder, int position) {
         Log.d("LOG","adapter"+bookList);
          final book booked= bookList.get(position);
+         Log.d("key","KEY"+booked.getbId());
+        Log.d("key","indate"+booked.getCheckOutdate());
+        Log.d("key","outdate"+booked.getCheckInDate());
+        Log.d("key","status"+booked.getStatus());
+        Log.d("key","UID"+booked.getUid());
          holder.btnCheckout.setVisibility(View.GONE);
          holder.btncomplaint.setVisibility(View.GONE);
          if(booked.getStatus().equals("booked"))
@@ -72,8 +78,8 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
              holder.btncomplaint.setVisibility(View.VISIBLE);
          }
          holder.cityidBook.setText(booked.getCityName());
-         holder.entervalin.setText(booked.getDate());
-         holder.entervalout.setText(booked.getOutdate());
+         holder.entervalin.setText(booked.getCheckOutdate());
+         holder.entervalout.setText(booked.getCheckInDate());
          holder.tvtime1.setText(booked.getCheckInTime());
          holder.tvtime2.setText(booked.getCheckOutTime());
 
@@ -121,27 +127,30 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
 
 
         dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("uid").equalTo(CrisId);
+        dbbooksferoz= FirebaseDatabase.getInstance().getReference("LUDHIANA").orderByChild("uid").equalTo(CrisId);
 
          holder.btnCheckout.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  if(booked.getCityName().equals("FEROZPUR")) {
                      val = 1;
-                     update=FirebaseDatabase.getInstance().getReference("FEROZPUR").child(booked.getKey());
-                     final DatabaseReference statusstring=update.child("status");
+                     key=booked.getbId();
+                     update=FirebaseDatabase.getInstance().getReference("FEROZPUR").child(key).child("status");
+                     // DatabaseReference statusstring=update.child("status");
                      databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
                          @Override
                          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                              while (val > 0) {
                                  String vroot = dataSnapshot.getValue().toString();
                                  room = Integer.parseInt(vroot);
-                                 Log.d("LOG" , "ROOM:-" + room);
+                                // Log.d("LOG" , "ROOM:-" + room);
                                  room = room + 1;//if rooms can be accessed here
-                                 Log.d("LOGR" , "Room updated:-" + room);
+                                 Log.d("LOGR" , "Key:-" + key);
                                  databaseFerozpurRooms.setValue(room);
-                                 statusstring.setValue("free");
+                                 String status="free";
+                                 update.setValue(status);
                                  Toast.makeText(mctx , "Checkout successful" , Toast.LENGTH_LONG).show();
-                                 holder.btnCheckout.setEnabled(false);
+                                 holder.btnCheckout.setVisibility(View.GONE);
                                  val--;
                              }
                          }
@@ -151,6 +160,35 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
                          }
                      });
                  }
+                 else if(booked.getCityName().equals("LUDHIANA")) {
+                     val = 1;
+                     key=booked.getbId();
+                     update=FirebaseDatabase.getInstance().getReference("LUDHIANA").child(key).child("status");
+                     // DatabaseReference statusstring=update.child("status");
+                     databaseLudhianaRooms.addValueEventListener(new ValueEventListener() {
+                         @Override
+                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                             while (val > 0) {
+                                 String vroot = dataSnapshot.getValue().toString();
+                                 room = Integer.parseInt(vroot);
+                                 // Log.d("LOG" , "ROOM:-" + room);
+                                 room = room + 1;//if rooms can be accessed here
+                                 Log.d("LOGR" , "Key:-" + key);
+                                 databaseLudhianaRooms.setValue(room);
+                                 String status="free";
+                                 update.setValue(status);
+                                 Toast.makeText(mctx , "Checkout successful" , Toast.LENGTH_LONG).show();
+                                 holder.btnCheckout.setVisibility(View.GONE);
+                                 val--;
+                             }
+                         }
+
+                         @Override
+                         public void onCancelled(@NonNull DatabaseError databaseError) {
+                         }
+                     });
+                 }
+
 
 
 
