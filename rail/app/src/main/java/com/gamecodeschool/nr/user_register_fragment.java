@@ -142,7 +142,7 @@ public class user_register_fragment extends Fragment {
     public void addCredentials()
     {
         String dvid= databaseDrivers.push().getKey();
-        String dvEmail,dvPhn,dvName;
+        String dvEmail,dvPhn,dvName,dUid = new String();
         dvEmail=etEmail.getText().toString().trim();
         dvPhn=etPhn.getText().toString().trim();
         dvName=etName.getText().toString().trim();
