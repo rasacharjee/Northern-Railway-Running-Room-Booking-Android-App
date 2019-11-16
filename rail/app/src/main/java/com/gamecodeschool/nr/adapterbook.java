@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +43,7 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
     String CrisId;
     Query dbbooksferoz;
     DatabaseReference databaseFerozpurRooms,databaseAmritsarRooms,databasePathankotRooms,databaseLudhianaRooms,databaseJammuRooms,databaseKatraRooms,databaseBaijnathRooms;
-
+    DatabaseReference update;
 
 
     public adapterbook(Context mctx, List<book> bookList) {
@@ -61,15 +62,16 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final BookViewHolder holder, int position) {
+        Log.d("LOG","adapter"+bookList);
          final book booked= bookList.get(position);
          holder.btnCheckout.setVisibility(View.GONE);
          holder.btncomplaint.setVisibility(View.GONE);
-         if(booked.getStatus()=="true")
+         if(booked.getStatus().equals("booked"))
          {
              holder.btnCheckout.setVisibility(View.VISIBLE);
              holder.btncomplaint.setVisibility(View.VISIBLE);
          }
-         holder.cityidBook.setText(booked.getCityName());
+        // holder.cityidBook.setText(booked.getCityName());
          holder.entervalin.setText(booked.getDate());
          holder.entervalout.setText(booked.getOutdate());
          holder.tvtime1.setText(booked.getCheckInTime());
@@ -118,13 +120,15 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
 
 
 
-        dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("id").equalTo(CrisId);
+        dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("uid").equalTo(CrisId);
 
          holder.btnCheckout.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  if(booked.getCityName().equals("FEROZPUR")) {
                      val = 1;
+                     update=FirebaseDatabase.getInstance().getReference("FEROZPUR").child(booked.getKey());
+                     final DatabaseReference statusstring=update.child("status");
                      databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
                          @Override
                          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -135,6 +139,7 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
                                  room = room + 1;//if rooms can be accessed here
                                  Log.d("LOGR" , "Room updated:-" + room);
                                  databaseFerozpurRooms.setValue(room);
+                                 statusstring.setValue("free");
                                  Toast.makeText(mctx , "Checkout successful" , Toast.LENGTH_LONG).show();
                                  holder.btnCheckout.setEnabled(false);
                                  val--;

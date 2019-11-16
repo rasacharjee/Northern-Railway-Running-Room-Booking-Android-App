@@ -103,6 +103,7 @@ public class admin_home_fragment extends Fragment {
                  list.add("FEROZPUR");
              }
              else if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
+                 list.clear();
                  list.add("AMRITSAR");
              }
              else if (CrisIdObj=="345678"){
@@ -112,6 +113,7 @@ public class admin_home_fragment extends Fragment {
                  list.add("JAMMU");
              }
              else if (CrisIdObj.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")){
+                 list.clear();
                  list.add("LUDHIANA");
              }
              else if (CrisIdObj=="678901"){
