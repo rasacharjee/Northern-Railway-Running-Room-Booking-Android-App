@@ -2,8 +2,6 @@ package com.gamecodeschool.nr;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -61,7 +59,7 @@ public class admin_login_main_activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please enter all fields",Toast.LENGTH_SHORT).show();
                     mbtnAlogin.setEnabled(true);
                 }
-                else if (!(metCris.getText().toString().equals(cAID)||metCris.getText().toString().equals(cf)||metCris.getText().toString().equals(cl)))
+                else if (!(metCris.getText().toString().trim().equals(cAID)||metCris.getText().toString().trim().equals(cf)||metCris.getText().toString().trim().equals(cl)))
                 {
                     progressDialog1.show();
                     Toast.makeText(getApplicationContext(),"Invalid credentials and access denied",Toast.LENGTH_LONG).show();

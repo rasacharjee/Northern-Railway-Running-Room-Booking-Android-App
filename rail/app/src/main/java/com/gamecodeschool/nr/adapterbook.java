@@ -97,18 +97,37 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
                 final EditText etSub=comdialog.findViewById(R.id.etSub);
                 final EditText etmess=comdialog.findViewById(R.id.etmess);
                 final Button button_snd=comdialog.findViewById(R.id.button_snd);
-                final String[] MAIL={"nr.bookings1@gmail.com"};
+                final String[] MAILF={"sanjeev.1jan1975@gmail.com"};
+                final String[] MAILLUD={"opvij1969@gmail.com"};
+                if (booked.getCityName().equals("FEROZPUR")){
+                    tvmail.setText("sanjeev.1jan1975@gmail.com");
+                }
+                else if(booked.getCityName().equals("LUDHIANA")){
+                    tvmail.setText("opvij1969@gmail.com");
+                }
                 button_snd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (booked.getCityName().equals("FEROZPUR")){
+
                         Intent intent=new Intent(Intent.ACTION_SEND);
                         intent.setData(Uri.parse("mail to: "));
-                        intent.putExtra(Intent.EXTRA_EMAIL,MAIL);
+                        intent.putExtra(Intent.EXTRA_EMAIL,MAILF);
                         intent.putExtra(Intent.EXTRA_SUBJECT,etSub.getText().toString());
                         intent.putExtra(Intent.EXTRA_TEXT,etmess.getText().toString());
                         intent.setType("message/rfc822");
                         mctx.startActivity(Intent.createChooser(intent,"Choose an email client"));
-                        comdialog.dismiss();
+                        comdialog.dismiss();}
+                        else if (booked.getCityName().equals("LUDHIANA")){
+                            Intent intent=new Intent(Intent.ACTION_SEND);
+                            intent.setData(Uri.parse("mail to: "));
+                            intent.putExtra(Intent.EXTRA_EMAIL,MAILLUD);
+                            intent.putExtra(Intent.EXTRA_SUBJECT,etSub.getText().toString());
+                            intent.putExtra(Intent.EXTRA_TEXT,etmess.getText().toString());
+                            intent.setType("message/rfc822");
+                            mctx.startActivity(Intent.createChooser(intent,"Choose an email client"));
+                            comdialog.dismiss();
+                        }
                     }
                  });
                  comdialog.show();

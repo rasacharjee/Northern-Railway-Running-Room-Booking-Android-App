@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="190dp"
+    android:layout_height="220dp"
     android:layout_marginStart="5dp"
-    android:layout_marginTop="70dp"
+    android:layout_marginTop="50dp"
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="5dp"
     android:layout_weight="2"
     android:orientation="vertical"
     android:paddingTop="20dp"
-    app:cardUseCompatPadding="true"
-    app:cardCornerRadius="40dp">
+    app:cardCornerRadius="40dp"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="411dp"
-        android:layout_height="179dp"
-        android:layout_marginStart="1dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:layout_marginRight="50dp">
 
 
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/times_new_roman"
             android:text="CMS ID:"
             android:textColor="#000000"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="152dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/times_new_roman"
             android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/tvCrisLeft"
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="84dp"
-            android:layout_marginTop="54dp"
+            android:layout_marginTop="74dp"
             android:fontFamily="@font/times_new_roman"
             android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/tvInDateLeft"
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="88dp"
-            android:layout_marginTop="79dp"
+            android:layout_marginTop="99dp"
             android:fontFamily="@font/times_new_roman"
             android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/tvInTimeLeft"
@@ -141,13 +141,10 @@
             android:id="@+id/tvOutDateRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="103dp"
-            android:layout_marginEnd="110dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="123dp"
             android:fontFamily="@font/times_new_roman"
             android:textColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/tvOutDateLeft"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -156,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="74dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="150dp"
             android:layout_marginBottom="19dp"
             android:fontFamily="@font/times_new_roman"
             android:textColor="#000000"
@@ -170,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/times_new_roman"
             android:text=" NAME:"
             android:textColor="#000000"
@@ -184,9 +181,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="154dp"
-            android:layout_marginTop="6dp"
-            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/times_new_roman"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/tvUname"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/times_new_roman"
+            android:text="STATUS:"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/times_new_roman"
+            android:text="ONGOING"
+            android:textColor="#FF0000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tvSt"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_pdf"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/download"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

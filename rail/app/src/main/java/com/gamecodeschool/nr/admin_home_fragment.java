@@ -105,21 +105,30 @@ public class admin_home_fragment extends Fragment {
          Log.d("LOG","OnResponse"+CrisIdObj);
          //Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
 
+        progressDialog.setTitle("WAIT");
+        progressDialog.setMessage("Please wait while we are getting current room available");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setProgress(0);
+        progressDialog.setCancelable(false);
+
 
             if (CrisIdObj.equals("Lm8FOLC8qjVkrg3Po78VIozLU7F3")){
                 list.clear();
                  list.add("FEROZPUR");
+                 progressDialog.show();
                 databaseRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
                 databaseRooms.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String vroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
                         roomval.setText(vroot);
+                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
                  cityid2.setText("FEROZPUR");
@@ -127,11 +136,6 @@ public class admin_home_fragment extends Fragment {
              else if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
                  list.clear();
                  list.add("AMRITSAR");
-                progressDialog.setTitle("WAIT");
-                progressDialog.setMessage("Please wait while we are getting current room available");
-                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progressDialog.setProgress(0);
-                progressDialog.setCancelable(false);
                 progressDialog.show();
                 databaseRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("AMRITSARrooms");
                 databaseRooms.addValueEventListener(new ValueEventListener() {
@@ -145,6 +149,7 @@ public class admin_home_fragment extends Fragment {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
                 cityid2.setText("AMRITSAR");
@@ -160,19 +165,23 @@ public class admin_home_fragment extends Fragment {
              else if (CrisIdObj.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")){
                  list.clear();
                  list.add("LUDHIANA");
+                 progressDialog.show();
                 databaseRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("LUDHIANArooms");
                 databaseRooms.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String vroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
                         roomval.setText(vroot);
+                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
+                progressDialog.dismiss();
                 cityid2.setText("LUDHIANA");
              }
              else if (CrisIdObj=="678901"){
