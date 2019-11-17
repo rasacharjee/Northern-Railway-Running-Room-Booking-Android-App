@@ -283,20 +283,7 @@ public class room_booking_fragment extends Fragment {
         String crisId =crisidval.getText().toString().trim();
         int trainNo = Integer.parseInt(trainnoval.getText().toString().trim());//Might cause null pointer expectation
 
-         if (crisId==null){
-            Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
-        }else if (trainNo==0){
-            Toast.makeText(getActivity(),"Please enter Train Number",Toast.LENGTH_SHORT).show();
-        }else if (date==null){
-            Toast.makeText(getActivity(),"Please enter Check in date",Toast.LENGTH_SHORT).show();
-        }else if (checkout==null){
-            Toast.makeText(getActivity(),"Please enter Check out date",Toast.LENGTH_SHORT).show();
-        }else if (inTime==null){
-            Toast.makeText(getActivity(),"Please enter Check in time",Toast.LENGTH_SHORT).show();
-        }else if (outTime==null){
-            Toast.makeText(getActivity(),"Please enter Check out time",Toast.LENGTH_SHORT).show();
-        }
-         else if( crisId!=null||trainNo!= 0 || date != null || checkout != null || inTime!=null ||outTime!=null) {
+          if( crisId!=null||trainNo!= 0 || date != null || checkout != null || inTime!=null ||outTime!=null) {
             if (compare.equals("FEROZPUR")){
                 String bId = databaseFerozpurbookings.push().getKey();
                 String status="booked";
@@ -368,17 +355,15 @@ public class room_booking_fragment extends Fragment {
 
             }
             //future provision
-
-<<<<<<< HEAD
         }
-=======
-        }else {
+
+        else {
              Toast.makeText(getActivity(),"Unfortunately bookings cannot be completed",Toast.LENGTH_SHORT).show();
          }
 
 
 
->>>>>>> b370cbe1b91ec9ee9b87ddd8e4dbbd7b7c81fca7
+
 
     }
     ValueEventListener valueEventListener=new ValueEventListener() {
