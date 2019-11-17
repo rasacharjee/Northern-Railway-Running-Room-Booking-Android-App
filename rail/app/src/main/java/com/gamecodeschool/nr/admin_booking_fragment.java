@@ -1,6 +1,7 @@
 package com.gamecodeschool.nr;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class admin_booking_fragment extends Fragment {
 
     DatabaseReference databaseFerozpur,databaseAmritsar,databasePathankot,databaseJammu,databaseKatra,databaseLudhiana,databaseBaijnath;
     DatabaseReference databaseReference;
+    ProgressDialog progressDialog;
 
     public admin_booking_fragment() {
         // Required empty public constructor
@@ -80,7 +82,14 @@ public class admin_booking_fragment extends Fragment {
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_admin_booking_fragment, container, false);
 
-
+        progressDialog=new ProgressDialog(getActivity());
+        progressDialog.setTitle("WAIT");
+        progressDialog.setMessage("Please wait while we are getting booking record");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setProgress(0);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         databaseAmritsar= FirebaseDatabase.getInstance().getReference("AMRITSAR");
@@ -129,6 +138,7 @@ public class admin_booking_fragment extends Fragment {
                    }
                     Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    progressDialog.dismiss();
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
 
@@ -151,6 +161,7 @@ public class admin_booking_fragment extends Fragment {
                     }
                     Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    progressDialog.dismiss();
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
 
@@ -172,6 +183,7 @@ public class admin_booking_fragment extends Fragment {
                     }
                     Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    progressDialog.dismiss();
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
 
@@ -193,6 +205,7 @@ public class admin_booking_fragment extends Fragment {
                     }
                     Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    progressDialog.dismiss();
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
 
@@ -214,6 +227,7 @@ public class admin_booking_fragment extends Fragment {
                     }
                     Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    progressDialog.dismiss();
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
 
@@ -235,6 +249,7 @@ public class admin_booking_fragment extends Fragment {
                     }
                     Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    progressDialog.dismiss();
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
 
@@ -258,6 +273,7 @@ public class admin_booking_fragment extends Fragment {
                     }
                     Collections.reverse(AbookList);
                     Abooking=new AdminAdapterBook(getActivity(),AbookList);
+                    progressDialog.dismiss();
                     ArecyclerViewbook.setAdapter(Abooking);
                 }
 
