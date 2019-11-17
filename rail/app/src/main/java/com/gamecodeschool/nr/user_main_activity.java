@@ -50,6 +50,5 @@ public class user_main_activity extends AppCompatActivity  {
         Toast.makeText(this, "You are exiting the USER profile", Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(user_main_activity.this,MainActivity.class);
         startActivity(intent);
-
     }
 }

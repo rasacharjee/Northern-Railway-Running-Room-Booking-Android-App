@@ -75,7 +75,6 @@ public class user_login_fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        progressDialog=new ProgressDialog(getActivity());
     }
 
     @Override
@@ -94,6 +93,13 @@ public class user_login_fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        progressDialog=new ProgressDialog(getActivity());
+        progressDialog.setTitle("WELCOME");
+        progressDialog.setMessage("Please wait while logging in");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setProgress(0);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
         if (fAuth.getCurrentUser()!=null)
         {
             Intent intent= new Intent(getActivity(),user_main_activity.class);
@@ -103,24 +109,19 @@ public class user_login_fragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog.setTitle("WELCOME");
-                progressDialog.setMessage("Please wait while logging in");
-                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progressDialog.setProgress(0);
-                progressDialog.setCanceledOnTouchOutside(true);
-                progressDialog.show();
-                btnLogin.setEnabled(false);
 
-                btnLogin.setEnabled(false);
                 String email,password;
                 email=etEmail.getText().toString().trim();
                 password=etPassword.getText().toString().trim();
                 if(email.isEmpty()||password.isEmpty())
                 {
                     Toast.makeText(getActivity(),"Valid email and password required",Toast.LENGTH_LONG).show();
+
                 }
                 else
                 {
+                    progressDialog.show();
+                    btnLogin.setEnabled(false);
                     fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -132,6 +133,7 @@ public class user_login_fragment extends Fragment {
                             else
                             {
                                 Toast.makeText(getActivity(),"Valid credentials required and error retrieved is"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
                             }
                         }
                     });
