@@ -1,6 +1,9 @@
 package com.gamecodeschool.nr;
 import java.util.ArrayList;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +49,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 public void onClick(View v) {
                     value=holder.enterval.getText().toString().trim();
                     if (value!=null){
-                        updateRooms(value,list.get(position));//updates rooms to specific station in database
-                        Toast.makeText(context,"The number of rooms has been updated",Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder dialog =new AlertDialog.Builder(context);
+                        dialog.setTitle("Do you want to update?").setPositiveButton("Confirm" , new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog , int which) {
+                                updateRooms(value,list.get(position));//updates rooms to specific station in database
+                                Toast.makeText(context,"The number of rooms has been updated",Toast.LENGTH_SHORT).show();
+                                holder.enterval.setText("");
+                            }
+                        }).setNegativeButton("Cancel" , new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog , int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        AlertDialog alert=dialog.create();
+                        alert.show();
                     }
                     else {
                         Toast.makeText(context,"Enter valid number of rooms",Toast.LENGTH_SHORT).show();

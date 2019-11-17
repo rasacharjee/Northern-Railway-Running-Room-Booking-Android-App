@@ -51,7 +51,8 @@ public class admin_login_main_activity extends AppCompatActivity {
                 progressDialog1.setMessage("Please wait while logging in");
                 progressDialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog1.setProgress(0);
-                progressDialog1.setCanceledOnTouchOutside(true);
+                progressDialog1.setCanceledOnTouchOutside(false);
+                progressDialog1.setCancelable(false);
                 //progressDialog1.show();
 
               //  mbtnAlogin.setEnabled(false);

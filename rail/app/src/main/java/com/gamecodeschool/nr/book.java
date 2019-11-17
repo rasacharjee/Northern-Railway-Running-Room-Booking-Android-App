@@ -2,7 +2,7 @@ package com.gamecodeschool.nr;
 
 public class book {
 
-    private String cityName;
+    private String cityname;
     private String checkinDate;
     private String checkoutDate;
     private String checkinTime;
@@ -15,9 +15,9 @@ public class book {
 
     }
 
-    public book(String cityName, String checkinDate, String checkInTime, String checkOutTime, String checkoutDate, String status, String bId,String uid) {
+    public book(String cityname, String checkinDate, String checkInTime, String checkOutTime, String checkoutDate, String status, String bId,String uid) {
 
-        this.cityName = cityName;
+        this.cityname = cityname;
         this.checkinDate = checkinDate;
         this.checkoutDate=checkoutDate;
         this.checkinTime = checkInTime;
@@ -29,13 +29,13 @@ public class book {
     }
 
     public String getCityName() {
-        return cityName;
+        return cityname;
     }
 
-    public String getDate() {
+    public String getCheckInDate() {
         return checkinDate;
     }
-    public String getOutdate(){
+    public String getCheckOutdate(){
         return checkoutDate;
     }
 
@@ -51,7 +51,7 @@ public class book {
         return status;
     }
 
-    public String getKey() {
+    public String getbId() {
         return bId;
     }
 

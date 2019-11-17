@@ -19,10 +19,10 @@
 
         <Button
             android:id="@+id/btncity"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
             android:layout_below="@id/cityid"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_toEndOf="@id/enterval"
             android:background="@drawable/back"
             android:text="UPDATE"
@@ -56,7 +56,7 @@
             android:layout_below="@id/cityid"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="No. of Rooms Available:"
+            android:text="Update Rooms:"
             android:textSize="18sp" />
 
 

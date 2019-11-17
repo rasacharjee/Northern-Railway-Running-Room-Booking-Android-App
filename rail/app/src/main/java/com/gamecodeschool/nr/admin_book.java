@@ -1,11 +1,11 @@
 package com.gamecodeschool.nr;
 
 public class admin_book {
-    String cityname,checkinDate,checkoutDate,checkinTime,checkoutTime,crisId,name;
+    String cityname,checkinDate,checkoutDate,checkinTime,checkoutTime,crisId,name,status;
     public admin_book() {
     }
 
-    public admin_book(String nameCity, String checkinDate, String checkoutDate, String checkinTime, String checkoutTime, String crisId, String name) {
+    public admin_book(String nameCity, String checkinDate, String checkoutDate, String checkinTime, String checkoutTime, String crisId, String name, String status) {
         this.cityname = cityname;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
@@ -13,6 +13,7 @@ public class admin_book {
         this.checkoutTime = checkoutTime;
         this.crisId = crisId;
         this.name=name;
+        this.status=status;
     }
 
     public String getCityname() {
@@ -41,5 +42,9 @@ public class admin_book {
 
     public String getName(){
         return name;
+    }
+
+    public String getStatus(){
+        return status;
     }
 }

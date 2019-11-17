@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -97,6 +98,7 @@ public class admin_settings_fragment extends Fragment {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent=new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(getActivity(),"LOGOUT SUCCESSFUL",Toast.LENGTH_SHORT).show();
             }
         });
         button_about.setOnClickListener(new View.OnClickListener() {

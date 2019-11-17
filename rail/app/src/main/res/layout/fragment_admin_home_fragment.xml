@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/admin_home_fragment"
@@ -7,6 +7,61 @@
     android:layout_height="match_parent"
     android:background="@drawable/back"
     tools:context=".admin_home_fragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardroom"
+        app:cardCornerRadius="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="362dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="50dp">
+
+            <TextView
+                android:id="@+id/roomval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cityid2"
+                android:layout_marginStart="15dp"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/room"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/cityid2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="PATHANKOT"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cityid2"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="No. of Rooms Available:"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
 
@@ -17,9 +72,6 @@
         android:layout_marginTop="16dp"
 
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+       android:layout_below="@id/cardroom" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
