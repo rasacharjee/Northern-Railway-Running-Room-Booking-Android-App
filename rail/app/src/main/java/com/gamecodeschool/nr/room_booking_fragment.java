@@ -29,7 +29,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class room_booking_fragment extends Fragment {
@@ -113,6 +116,7 @@ public class room_booking_fragment extends Fragment {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month + 1;
                         date = dayOfMonth + "-" + month + "-" + year;
+
                         checkinval.setText(date);
                     }
                 }, year, month, day);
@@ -127,10 +131,12 @@ public class room_booking_fragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
+
+
                         month = month + 1;
                         checkout = dayOfMonth + "-" + month + "-" + year;
 
-                            checkoutval.setText(checkout);
+                        checkoutval.setText(checkout);
 
                     }
                 }, year, month, day);
