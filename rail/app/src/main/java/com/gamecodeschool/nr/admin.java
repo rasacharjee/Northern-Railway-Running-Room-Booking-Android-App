@@ -1,13 +1,19 @@
 package com.gamecodeschool.nr;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -21,11 +27,15 @@ public class admin extends AppCompatActivity {
     public String email;
     String Key;
 
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
+    FirebaseAuth fauth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         admin_bottomNavigation=findViewById(R.id.admin_btmNav);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -40,6 +50,23 @@ public class admin extends AppCompatActivity {
             Toast.makeText(admin.this,"YOU DO NOT HAVE ADMIN ACCESS",Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(admin.this,MainActivity.class);
             startActivity(intent);
+        }
+        int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
+
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
+                    showMessageOKCancel("You need to allow access to Storage",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                REQUEST_CODE_ASK_PERMISSIONS);
+                                }
+                            });
+                }
+
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_CODE_ASK_PERMISSIONS);
         }
         admin_navController= Navigation.findNavController(this,R.id.admin_nav_host);
         NavigationUI.setupWithNavController(admin_bottomNavigation,admin_navController);
@@ -75,6 +102,8 @@ public class admin extends AppCompatActivity {
                 adminobj.setArguments(bundle);
 
             }*/
+
+
     }
 
     @Override
@@ -85,4 +114,31 @@ public class admin extends AppCompatActivity {
         Intent intent=new Intent(admin.this,MainActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_PERMISSIONS:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission Granted
+                   // Toast.makeText(this,"PERMISSION GRANTED",Toast.LENGTH_SHORT).show();
+                } else {
+                    // Permission Denied
+                    Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
+                            .show();
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
 }

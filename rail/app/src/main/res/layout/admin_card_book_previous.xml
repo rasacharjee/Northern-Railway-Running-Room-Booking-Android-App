@@ -218,7 +218,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btn_pdf"
+            android:id="@+id/btnpdf"
             android:layout_width="20dp"
             android:layout_height="30dp"
             android:layout_marginStart="320dp"
