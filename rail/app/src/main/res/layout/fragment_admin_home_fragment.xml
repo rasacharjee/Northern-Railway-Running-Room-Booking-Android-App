@@ -5,17 +5,17 @@
     android:id="@+id/admin_home_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
+    android:background="@drawable/finalback1"
     tools:context=".admin_home_fragment">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardroom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cardroom"
-        app:cardCornerRadius="20dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp">
+        app:cardCornerRadius="20dp">
 
         <RelativeLayout
             android:layout_width="362dp"
@@ -31,10 +31,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cityid2"
                 android:layout_marginStart="15dp"
-                android:textSize="18sp"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/room"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/cityid2"
@@ -68,10 +68,10 @@
         android:id="@+id/input_recycler"
         android:layout_width="391dp"
         android:layout_height="194dp"
+        android:layout_below="@id/cardroom"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
 
-        android:layout_marginEnd="8dp"
-       android:layout_below="@id/cardroom" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp" />
 
 </RelativeLayout>

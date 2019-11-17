@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/finalback3"
     tools:context=".room_booking_fragment">
 
     <RelativeLayout
@@ -10,17 +11,8 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="259dp"
-            android:id="@+id/relative"
-            android:background="#110084">
-
-        </RelativeLayout>
-
-        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="513dp"
-            android:layout_below="@id/relative"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -31,57 +23,6 @@
             android:background="@drawable/box"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:fontFamily="@font/times_new_roman"
-                android:text="BOOK A ROOM"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/crisid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="70dp"
-                android:text="CMS ID:"
-                android:textColor="#000000"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/crisidval"
-                android:layout_width="160dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="55dp"
-                android:layout_toEndOf="@+id/crisid"
-                android:hint="Enter your CMS ID" />
-
-            <TextView
-                android:id="@+id/trainno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="110dp"
-                android:text="TRAIN NO:"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/trainnoval"
-                android:layout_width="160dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="95dp"
-                android:layout_toEndOf="@+id/trainno"
-                android:hint="Enter the Train No." />
 
             <Button
                 android:id="@+id/submitval"
@@ -96,6 +37,24 @@
                 android:background="#110084"
                 android:text="SUBMIT"
                 android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/crisidval"
+                android:layout_width="160dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="55dp"
+                android:layout_toEndOf="@+id/crisid"
+                android:hint="Enter your CMS ID" />
+
+            <EditText
+                android:id="@+id/trainnoval"
+                android:layout_width="160dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="95dp"
+                android:layout_toEndOf="@+id/trainno"
+                android:hint="Enter the Train No." />
 
             <EditText
                 android:id="@+id/checkoutval"
@@ -136,6 +95,39 @@
                 android:layout_toEndOf="@id/checkout"
                 android:focusableInTouchMode="false"
                 android:hint="Select Date" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/times_new_roman"
+                android:text="BOOK A ROOM"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/crisid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="70dp"
+                android:text="CMS ID:"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/trainno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="110dp"
+                android:text="TRAIN NO:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/checkout"
