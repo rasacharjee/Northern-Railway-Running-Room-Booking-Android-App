@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="220dp"
     android:layout_marginStart="5dp"
-    android:layout_marginTop="70dp"
+    android:layout_marginTop="50dp"
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="5dp"
     android:layout_weight="2"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:layout_marginRight="50dp">
 
 
@@ -215,6 +215,16 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/tvSt"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_pdf"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/download"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
