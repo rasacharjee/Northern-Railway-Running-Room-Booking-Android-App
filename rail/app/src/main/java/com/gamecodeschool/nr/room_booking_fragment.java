@@ -209,9 +209,25 @@ public class room_booking_fragment extends Fragment {
         submitval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-        if (crisidval.getText().toString().isEmpty()||date != null || checkout != null || inTime!=null ||outTime!=null||trainnoval.getText().toString().isEmpty())
+
+        if (crisidval.getText().toString().isEmpty()&&checkout==null&&inTime==null&&outTime==null&&trainnoval.getText().toString().isEmpty()){
+            Toast.makeText(getActivity(),"Please enter all fields",Toast.LENGTH_SHORT).show();
+        }
+        else if (crisidval.getText().toString().isEmpty())
         {
-            Toast.makeText(getActivity(),"Enter all fields",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Please enter your CMS ID",Toast.LENGTH_SHORT).show();
+        }
+        else if (trainnoval.getText().toString().isEmpty()){
+            Toast.makeText(getActivity(),"Please enter Train number",Toast.LENGTH_SHORT).show();
+        }else if (checkout==null){
+            Toast.makeText(getActivity(),"Please enter check out date",Toast.LENGTH_SHORT).show();
+        }
+        else if (inTime==null){
+            Toast.makeText(getActivity(),"Please enter check in time",Toast.LENGTH_SHORT).show();
+        }else if (outTime==null){
+            Toast.makeText(getActivity(),"Please enter check out time",Toast.LENGTH_SHORT).show();
+        }else if (date==null){
+            Toast.makeText(getActivity(),"Please enter check in date",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -340,18 +356,6 @@ public class room_booking_fragment extends Fragment {
             }
             //future provision
 
-        } else if (crisId==null){
-            Toast.makeText(getActivity(),"Please enter CRIS ID",Toast.LENGTH_SHORT).show();
-        }else if (trainNo==0){
-            Toast.makeText(getActivity(),"Please enter Train Number",Toast.LENGTH_SHORT).show();
-        }else if (date==null){
-            Toast.makeText(getActivity(),"Please enter Check in date",Toast.LENGTH_SHORT).show();
-        }else if (checkout==null){
-            Toast.makeText(getActivity(),"Please enter Check out date",Toast.LENGTH_SHORT).show();
-        }else if (inTime==null){
-            Toast.makeText(getActivity(),"Please enter Check in time",Toast.LENGTH_SHORT).show();
-        }else if (outTime==null){
-            Toast.makeText(getActivity(),"Please enter Check out time",Toast.LENGTH_SHORT).show();
         }
 
     }

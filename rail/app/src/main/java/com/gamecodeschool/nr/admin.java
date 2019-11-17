@@ -20,12 +20,14 @@ public class admin extends AppCompatActivity {
     public String CRISvalue;
     public String email;
     String Key;
+    FirebaseAuth fauth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         admin_bottomNavigation=findViewById(R.id.admin_btmNav);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
