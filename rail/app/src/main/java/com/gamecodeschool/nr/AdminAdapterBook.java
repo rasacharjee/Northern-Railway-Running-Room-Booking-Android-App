@@ -44,6 +44,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     String timeoutpdf;
     String idpdf;
     String citynamepdf;
+    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     public AdminAdapterBook(Context mctx, List<admin_book> AbookList) {
         this.mctx = mctx;
@@ -61,7 +62,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookViewHolder holder, final int position) {
         final admin_book abooked= AbookList.get(position);
         if(abooked.getStatus().equals("booked"))
         {
@@ -87,7 +88,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
             @Override
             public void onClick(View v) {
                 try {
-                    filename=abooked.getName()+" "+abooked.getCityname()+abooked.getCrisId();
+                    filename=abooked.getName()+abooked.getCityname()+abooked.getCrisId()+position;
                     name="NAME:   "+abooked.getName();
                     dateinpdf="CHECK-IN DATE:   "+abooked.getCheckinDate();
                     dateoutpdf="CHECK-OUT DATE:   "+abooked.getCheckoutDate();
@@ -144,7 +145,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
             Log.i(TAG, "Created a new directory for PDF");
         }
 
-        pdffile = new File(docsFolder.getAbsolutePath(),filename+".pdf");
+        pdffile = new File(docsFolder.getAbsolutePath(),randomAlphaNumeric(7)+".pdf");
         OutputStream output = new FileOutputStream(pdffile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
@@ -178,5 +179,20 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
         }else{
             Toast.makeText(mctx,"Download a PDF Viewer to see the generated PDF",Toast.LENGTH_SHORT).show();
         }
+    }
+    public static String randomAlphaNumeric(int count) {
+
+        StringBuilder builder = new StringBuilder();
+
+        while (count-- != 0) {
+
+            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+
+        }
+
+        return builder.toString();
+
     }
 }
