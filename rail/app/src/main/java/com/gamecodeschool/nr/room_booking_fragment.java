@@ -203,15 +203,22 @@ public class room_booking_fragment extends Fragment {
         submitval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+        if (crisidval.getText().toString().isEmpty()||date != null || checkout != null || inTime!=null ||outTime!=null||trainnoval.getText().toString().isEmpty())
+        {
+            Toast.makeText(getActivity(),"Enter all fields",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            funbookdetails();
+            //DO OPERATIONS
+            checkoutval.getText().clear();
+            checkouttimeval.getText().clear();
+            checkinval.getText().clear();
+            checkintimeval.getText().clear();
+            crisidval.getText().clear();
+            trainnoval.getText().clear();
+        }
 
-                funbookdetails();
-                //DO OPERATIONS
-                checkoutval.getText().clear();
-                checkouttimeval.getText().clear();
-                checkinval.getText().clear();
-                checkintimeval.getText().clear();
-                crisidval.getText().clear();
-                trainnoval.getText().clear();
 
 
             }
