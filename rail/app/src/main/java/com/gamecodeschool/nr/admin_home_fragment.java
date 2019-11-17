@@ -26,10 +26,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 public class admin_home_fragment extends Fragment {
@@ -51,6 +54,8 @@ public class admin_home_fragment extends Fragment {
     TextView cityid2;
     DatabaseReference databaseRooms;
     ProgressDialog progressDialog;
+    Query qFerozpur,qLudhiana;
+    List<admin_book> qList;
 
 
     public admin_home_fragment() {
@@ -201,5 +206,45 @@ public class admin_home_fragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        String id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if (id.equals("Lm8FOLC8qjVkrg3Po78VIozLU7F3")){
+            qFerozpur=FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("status").equalTo("booked");
+            qFerozpur.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //qList.clear();
+                    for (DataSnapshot qdata:dataSnapshot.getChildren()){
+                        admin_book qbook=qdata.getValue(admin_book.class);
+                        String chkDate=qbook.getCheckoutDate();
+                       // String chkTime=qbook.getCheckoutTime();
+                       /* char[] cTime=new char[chkTime.length()];
+                        for (int i=0;i<chkTime.length();i++){
+                            cTime[i]=chkTime.charAt(i);
+                        }
+                        Calendar right=Calendar.getInstance();
+                        int hour=right.get(Calendar.HOUR_OF_DAY);
+                        int min=right.get(Calendar.MINUTE);*/
+                        //qList.add(qbook);
+                    }
 
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }else if (id.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")){
+            qLudhiana=FirebaseDatabase.getInstance().getReference("LUDHIANA").orderByChild("status").equalTo("booked");
+        }else {
+            Toast.makeText(getActivity(),"Auto-check out error due to invalid admin credentials",Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
 }
