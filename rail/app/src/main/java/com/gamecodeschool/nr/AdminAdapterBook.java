@@ -28,7 +28,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     @Override
     public AdminAdapterBook.BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(mctx);
-        View view=inflater.inflate(admin_card_book_previous,null);
+        View view=inflater.inflate(R.layout.admin_card_book_previous,null);
         BookViewHolder holder= new BookViewHolder(view);
         return holder;
 
@@ -39,11 +39,13 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
         admin_book abooked= AbookList.get(position);
         if(abooked.getStatus().equals("booked"))
         {
-
+            holder.tvSt.setVisibility(View.VISIBLE);
+            holder.tvStatus.setVisibility(View.VISIBLE);
         }
         else if(abooked.getStatus().equals("free"))
         {
-
+            holder.tvSt.setVisibility(View.GONE);
+            holder.tvStatus.setVisibility(View.GONE);
         }
         holder.username.setText(abooked.getName());
         holder.dateIn.setText(abooked.getCheckinDate());
@@ -69,6 +71,8 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
         TextView timeIn;
         TextView timeOut;
         TextView crisId;
+        TextView tvSt;
+        TextView tvStatus;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +83,8 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
             timeIn=itemView.findViewById(R.id.tvInTimeRight);
             timeOut=itemView.findViewById(R.id.tvOutTimeRight);
             crisId=itemView.findViewById(R.id.tvCrisRight);
+            tvSt=itemView.findViewById(R.id.tvSt);
+            tvStatus=itemView.findViewById(R.id.tvStatus);
         }
     }
 }
