@@ -2,6 +2,7 @@ package com.gamecodeschool.nr;
 
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class user_bookings_fragment extends Fragment {
     
     String CrisId;
     DatabaseReference databaseReference;
+    ProgressDialog progressDialog;
 
 
     public user_bookings_fragment() {
@@ -64,7 +66,15 @@ public class user_bookings_fragment extends Fragment {
          View view= inflater.inflate(R.layout.fragment_user_bookings_fragment, container, false);
 
          CrisId= FirebaseAuth.getInstance().getCurrentUser().getUid();
-         Toast.makeText(getActivity(),CrisId,Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getActivity(),CrisId,Toast.LENGTH_SHORT).show();
+        progressDialog=new ProgressDialog(getActivity());
+        progressDialog.setTitle("WAIT");
+        progressDialog.setMessage("Please wait while we are getting booking record");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setProgress(0);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         databaseReference= FirebaseDatabase.getInstance().getReference();
         //String crisId=this.getArguments().getString("CrisID");
         dbbooksferoz= FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("uid").equalTo(CrisId);
@@ -111,6 +121,7 @@ public class user_bookings_fragment extends Fragment {
                Collections.reverse(bookList);
                booking=new adapterbook(getActivity(),bookList);
                recyclerViewbook.setLayoutManager(new LinearLayoutManager(getActivity()));
+               progressDialog.dismiss();
                recyclerViewbook.setAdapter(booking);
                booking.notifyDataSetChanged();
            }
