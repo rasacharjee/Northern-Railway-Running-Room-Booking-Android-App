@@ -186,8 +186,10 @@
             android:layout_marginStart="154dp"
             android:layout_marginTop="6dp"
             android:textStyle="bold"
+            android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/tvUname"
             app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

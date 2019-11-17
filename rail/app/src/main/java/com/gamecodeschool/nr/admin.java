@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class admin extends AppCompatActivity {
     BottomNavigationView admin_bottomNavigation;
@@ -79,6 +80,7 @@ public class admin extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        FirebaseAuth.getInstance().signOut();
         Toast.makeText(this, "You are exiting the Admin Profile", Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(admin.this,MainActivity.class);
         startActivity(intent);

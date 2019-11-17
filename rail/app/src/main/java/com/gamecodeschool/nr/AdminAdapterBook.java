@@ -28,7 +28,7 @@ public class AdminAdapterBook extends RecyclerView.Adapter<AdminAdapterBook.Book
     @Override
     public AdminAdapterBook.BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(mctx);
-        View view=inflater.inflate(admin_card_book_previous,null);
+        View view=inflater.inflate(R.layout.admin_card_book_previous,null);
         BookViewHolder holder= new BookViewHolder(view);
         return holder;
 
