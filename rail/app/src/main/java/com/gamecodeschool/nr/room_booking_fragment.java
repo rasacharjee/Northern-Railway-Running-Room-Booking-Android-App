@@ -131,8 +131,6 @@ public class room_booking_fragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-
-
                         month = month + 1;
                         checkout = dayOfMonth + "-" + month + "-" + year;
 
@@ -160,6 +158,14 @@ public class room_booking_fragment extends Fragment {
                         }
                         else if (hourOfDay-hour==1 && checkout-present>=70)
                         {
+                            Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
+                            submitval.setEnabled(false);
+                        }
+                        else if(checkout-present<=0){
+                            Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
+                            submitval.setEnabled(false);
+                        }
+                        else if(hourOfDay-hour>1){
                             Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
                             submitval.setEnabled(false);
                         }
