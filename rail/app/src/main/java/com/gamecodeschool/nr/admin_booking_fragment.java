@@ -88,7 +88,7 @@ public class admin_booking_fragment extends Fragment {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setProgress(0);
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
         progressDialog.show();
         CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
 

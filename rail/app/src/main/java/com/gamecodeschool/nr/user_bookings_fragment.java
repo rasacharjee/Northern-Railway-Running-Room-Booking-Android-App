@@ -73,7 +73,7 @@ public class user_bookings_fragment extends Fragment {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setProgress(0);
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
         progressDialog.show();
         databaseReference= FirebaseDatabase.getInstance().getReference();
         //String crisId=this.getArguments().getString("CrisID");
