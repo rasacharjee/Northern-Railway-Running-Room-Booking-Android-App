@@ -2,6 +2,7 @@ package com.gamecodeschool.nr;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -198,8 +199,10 @@ public class admin_home_fragment extends Fragment {
                 input_recycler.setAdapter(customAdapter);
 
 
+
         return view;
+
     }
 
-
 }
+
