@@ -18,7 +18,7 @@
         android:fontFamily="@font/times_new_roman"
         android:text="PLEASE SELECT YOUR CITY"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#ffa500"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

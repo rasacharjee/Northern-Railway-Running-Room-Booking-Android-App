@@ -78,8 +78,8 @@ public class adapterbook extends RecyclerView.Adapter<adapterbook.BookViewHolder
              holder.btncomplaint.setVisibility(View.VISIBLE);
          }
          holder.cityidBook.setText(booked.getCityName());
-         holder.entervalin.setText(booked.getCheckOutdate());
-         holder.entervalout.setText(booked.getCheckInDate());
+         holder.entervalin.setText(booked.getCheckInDate());
+         holder.entervalout.setText(booked.getCheckOutdate());
          holder.tvtime1.setText(booked.getCheckInTime());
          holder.tvtime2.setText(booked.getCheckOutTime());
 

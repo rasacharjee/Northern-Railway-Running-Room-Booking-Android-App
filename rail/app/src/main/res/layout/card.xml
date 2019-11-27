@@ -31,7 +31,7 @@
         android:fontFamily="@font/times_new_roman"
         android:gravity="center"
         android:text="PATHANKOT"
-        android:textColor="#FFFFFF"
+        android:textColor="#ffa500"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.421"

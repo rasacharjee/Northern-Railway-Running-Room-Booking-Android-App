@@ -109,7 +109,8 @@ public class admin extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        FirebaseAuth.getInstance().signOut();
+       // FirebaseAuth.getInstance().signOut();
+        fauth.getInstance().signOut();
         Toast.makeText(this, "You are exiting the Admin Profile", Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(admin.this,MainActivity.class);
         startActivity(intent);
