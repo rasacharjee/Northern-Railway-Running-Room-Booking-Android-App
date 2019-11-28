@@ -1,6 +1,7 @@
 package com.gamecodeschool.nr;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -116,10 +118,10 @@ public class user_register_fragment extends Fragment {
 
                             if (task.isSuccessful())
                             {
-
-                                Toast.makeText(getActivity(),"User registered successfully",Toast.LENGTH_SHORT).show();
+                                sendEmailver();
+                              //  Toast.makeText(getActivity(),"User registered successfully",Toast.LENGTH_SHORT).show();
                                 addCredentials();
-                                Navigation.findNavController(view).navigate(R.id.action_user_register_fragment_to_user_login_fragment);
+                              //  Navigation.findNavController(view).navigate(R.id.action_user_register_fragment_to_user_login_fragment);
                             }
                             else
                             {
@@ -150,4 +152,26 @@ public class user_register_fragment extends Fragment {
         driver_credentials dCredentials= new driver_credentials(dvid,dvEmail,dvPhn,dvName,duid);
         databaseDrivers.child(dvid).setValue(dCredentials);
     }
+
+    private void sendEmailver(){
+        FirebaseUser firebaseUser=mAuth.getCurrentUser();
+        if(firebaseUser!=null){
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(getActivity(),"Successfully Registered, Verification mail sent!",Toast.LENGTH_SHORT).show();
+                        mAuth.signOut();
+                        Navigation.findNavController(getView()).navigate(R.id.action_user_register_fragment_to_user_login_fragment);
+                    }
+                    else {
+                        Toast.makeText(getActivity(),"Verification mail has'nt been send",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+    }
+
+
 }

@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -127,8 +128,10 @@ public class user_login_fragment extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
-                                Intent intent= new Intent(getActivity(),user_main_activity.class);
-                                startActivity(intent);
+                                progressDialog.dismiss();
+                                checkEmailver();
+                               // Intent intent= new Intent(getActivity(),user_main_activity.class);
+                              //  startActivity(intent);
                             }
                             else
                             {
@@ -150,5 +153,17 @@ public class user_login_fragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.user_register_fragment);
             }
         });
+    }
+    public void checkEmailver() {
+        FirebaseUser firebaseUser = fAuth.getCurrentUser();
+        Boolean emailflag = firebaseUser.isEmailVerified();
+
+        if (emailflag) {
+                startActivity(new Intent(getActivity(),user_main_activity.class));
+        }
+        else {
+            Toast.makeText(getActivity(),"Verify your email",Toast.LENGTH_SHORT).show();
+            fAuth.signOut();
+        }
     }
 }
