@@ -135,8 +135,9 @@ public class user_login_fragment extends Fragment {
                             }
                             else
                             {
-                                Toast.makeText(getActivity(),"Valid credentials required and error retrieved is"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(),"Invalid Credentials",Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
+                                btnLogin.setEnabled(true);
                             }
                         }
                     });
