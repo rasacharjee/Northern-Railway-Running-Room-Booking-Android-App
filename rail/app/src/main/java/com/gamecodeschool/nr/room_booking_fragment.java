@@ -59,6 +59,10 @@ public class room_booking_fragment extends Fragment {
     Query getname;
     String UID;
 
+    Query qFerozpur,qLudhiana;
+    String qstatus="free";
+    String qlstatus="free";
+
     public room_booking_fragment() {
         // Required empty public constructor
     }
@@ -98,11 +102,20 @@ public class room_booking_fragment extends Fragment {
         databaseKatraRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("KATRArooms");
         databasePathankotRooms=FirebaseDatabase.getInstance().getReference("Rooms").child("PATHANKOTrooms");
 
+
+
         UID=FirebaseAuth.getInstance().getCurrentUser().getUid();
         getname=FirebaseDatabase.getInstance().getReference("Driver_Credentials").orderByChild("duid").equalTo(UID);
         getname.addListenerForSingleValueEvent(valueEventListener);
 
+
+        qFerozpur=FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("uid").equalTo(UID);
+        qLudhiana=FirebaseDatabase.getInstance().getReference("LUDHIANA").orderByChild("uid").equalTo(UID);
+
+
+
         final Calendar c = Calendar.getInstance();
+
         final int day = c.get(Calendar.DAY_OF_MONTH);
         final int month = c.get(Calendar.MONTH);
         final int year = c.get(Calendar.YEAR);
@@ -257,8 +270,10 @@ public class room_booking_fragment extends Fragment {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
                         String time;
-                       /* if(hourOfDay>12)
+
+                        /*if(hourOfDay>12)
                         {
                             time=(hourOfDay-12)+":"+minute+" PM";
                         }
@@ -287,7 +302,7 @@ public class room_booking_fragment extends Fragment {
                         checkouttimeval.setText(time);
                         outTime=time;
                     }
-                }, hour, min, false);
+                }, hour, min, true);
                 timePickerDialog.show();
             }
         });
@@ -314,6 +329,11 @@ public class room_booking_fragment extends Fragment {
             Toast.makeText(getActivity(),"Please enter check out time",Toast.LENGTH_SHORT).show();
         }else if (date==null){
             Toast.makeText(getActivity(),"Please enter check in date",Toast.LENGTH_SHORT).show();
+        }else if (qstatus.equals("booked") ){
+            Toast.makeText(getActivity(),"You already have an ongoing booking,check out first to continue",Toast.LENGTH_SHORT).show();
+        }
+        else if (qlstatus.equals("booked")){
+            Toast.makeText(getActivity(),"You already have an ongoing booking,check out first to continue",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -338,6 +358,60 @@ public class room_booking_fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        qFerozpur.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              if (dataSnapshot.exists()){
+                  for (DataSnapshot qFeroz:dataSnapshot.getChildren()){
+                      auto_checkout auto=qFeroz.getValue(auto_checkout.class);
+                     String temp=auto.getStatus();
+                      if (temp.equals("booked")){
+                          qstatus="booked";
+                          break;
+                      }
+                      else{
+                          qstatus="free";
+                          continue;
+                      }
+
+                      // itterate over it
+                  }
+              }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("qError","error is"+databaseError);
+            }
+        });
+        qLudhiana.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+           if (dataSnapshot.exists()){
+               for (DataSnapshot qLud:dataSnapshot.getChildren()){
+                   auto_checkout lauto=qLud.getValue(auto_checkout.class);
+                   String ltemp=lauto.getStatus();
+                   if (ltemp.equals("booked")){
+                       qlstatus="booked";
+                       break;
+                   }
+                   else {
+                       qlstatus="free";
+                       continue;
+                   }
+               }
+
+           }
+                //again add the same thing
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         databaseFerozpurRooms.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -468,4 +542,5 @@ public class room_booking_fragment extends Fragment {
 
         }
     };
+
 }

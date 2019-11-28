@@ -3,6 +3,7 @@ package com.gamecodeschool.nr;
 public class auto_checkout {
 
     private String checkoutDate,checkoutTime,status,bId;
+
     public auto_checkout(){}
 
     public auto_checkout(String checkoutDate, String checkoutTime, String status,String bId) {

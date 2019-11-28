@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class admin_booking_fragment extends Fragment {
 
     DatabaseReference databaseFerozpur,databaseAmritsar,databasePathankot,databaseJammu,databaseKatra,databaseLudhiana,databaseBaijnath;
     DatabaseReference databaseReference;
+
     ProgressDialog progressDialog;
 
     public admin_booking_fragment() {
@@ -91,6 +93,8 @@ public class admin_booking_fragment extends Fragment {
         progressDialog.setCancelable(true);
         progressDialog.show();
         CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
 
         databaseAmritsar= FirebaseDatabase.getInstance().getReference("AMRITSAR");
         databaseBaijnath= FirebaseDatabase.getInstance().getReference("BAIJNATH");

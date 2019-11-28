@@ -98,10 +98,10 @@ public class admin_home_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
-        roomval=view.findViewById(R.id.roomval);
-        cityid2=view.findViewById(R.id.cityid2);
-        progressDialog=new ProgressDialog(getActivity());
+        View view = inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
+        roomval = view.findViewById(R.id.roomval);
+        cityid2 = view.findViewById(R.id.cityid2);
+        progressDialog = new ProgressDialog(getActivity());
 
         Bundle extras =getActivity().getIntent().getExtras();
         crisid=extras.getString("crisid");
@@ -109,12 +109,14 @@ public class admin_home_fragment extends Fragment {
         input_recycler=view.findViewById(R.id.input_recycler);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         input_recycler.setLayoutManager(linearLayoutManager);
-        list=new ArrayList<>();
+        list = new ArrayList<>();
 
 
         //list.add("FEROZPUR");
+
         CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d("LOG","OnResponse"+CrisIdObj);
+
         //Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
 
         progressDialog.setTitle("WAIT");
@@ -144,6 +146,7 @@ public class admin_home_fragment extends Fragment {
                 }
             });
             cityid2.setText("FEROZPUR");
+
         }
         else if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
             list.clear();
@@ -204,7 +207,6 @@ public class admin_home_fragment extends Fragment {
             list.add("KATRA");
             cityid2.setText("KATRA");
         }
-
 
         CustomAdapter customAdapter=new CustomAdapter(getActivity(),list);
         input_recycler.setAdapter(customAdapter);
@@ -297,7 +299,6 @@ public class admin_home_fragment extends Fragment {
                     }
 
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     Toast.makeText(getActivity(),"Auto-checkout failed due to"+databaseError.toString(),Toast.LENGTH_SHORT).show();
