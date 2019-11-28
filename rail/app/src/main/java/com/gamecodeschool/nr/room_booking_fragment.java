@@ -32,6 +32,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -106,34 +108,57 @@ public class room_booking_fragment extends Fragment {
         getname=FirebaseDatabase.getInstance().getReference("Driver_Credentials").orderByChild("duid").equalTo(UID);
         getname.addListenerForSingleValueEvent(valueEventListener);
 
+
         qFerozpur=FirebaseDatabase.getInstance().getReference("FEROZPUR").orderByChild("uid").equalTo(UID);
         qLudhiana=FirebaseDatabase.getInstance().getReference("LUDHIANA").orderByChild("uid").equalTo(UID);
 
-        Calendar c = Calendar.getInstance();
+
+
+        final Calendar c = Calendar.getInstance();
+
         final int day = c.get(Calendar.DAY_OF_MONTH);
         final int month = c.get(Calendar.MONTH);
         final int year = c.get(Calendar.YEAR);
+        final int currday = c.get(Calendar.DAY_OF_MONTH);
+        final int currmonth = c.get(Calendar.MONTH);
+        final int curryear = c.get(Calendar.YEAR);
         final int hour = c.get(Calendar.HOUR_OF_DAY);
         final int min = c.get(Calendar.MINUTE);
 
-        date = day+"-"+(month + 1)+"-"+year;
+        date = currday+"-"+(currmonth + 1)+"-"+curryear;
         checkinval.setText(date);
+        checkinval.setClickable(false);
 
-        checkinval.setOnClickListener(new View.OnClickListener() {
+      /*  checkinval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
+
+                    public void onDateSet(DatePicker view, int year, int mon, int dayOfMonth) {
+                     //   int inputtdate=Integer.valueOf(String.valueOf(dayOfMonth)+String.valueOf(mon)+String.valueOf(year));
+                      //  int presentdate=Integer.valueOf(String.valueOf(day)+String.valueOf(month)+String.valueOf(year));
+                       // if (inputtdate-presentdate>=0 && mon-month<=0){
+                            mon = mon + 1;
+                            date = dayOfMonth + "-" + mon + "-" + year;
+                            checkinval.setText(date);
+                     //   }
+                       // else{
+                            Toast.makeText(getActivity(),"BOOKING NOT ALLOWED",Toast.LENGTH_SHORT).show();
+                    //   }
+
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month + 1;
-                        date = dayOfMonth + "-" + month + "-" + year;
+                        if(year-curryear==0) {
+                            date = dayOfMonth + "-" + month + "-" + year;
+                            checkinval.setText(date);
+                        }
 
-                        checkinval.setText(date);
                     }
-                }, year, month, day);
+                }, curryear, currmonth, currday);
                 datePickerDialog.show();
             }
-        });
+        }); */
 
         checkoutval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,14 +166,39 @@ public class room_booking_fragment extends Fragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
                         month = month + 1;
-                        checkout = dayOfMonth + "-" + month + "-" + year;
-
-                        checkoutval.setText(checkout);
+                        if(year-curryear==0) {
+                            Log.d("Date",month+" "+(currmonth+1)+"");
+                            if(month-(currmonth+1)==0) {
+                                Log.d("Day 0",dayOfMonth+" "+currday);
+                                if(dayOfMonth-currday>=0) {
+                                    checkout = dayOfMonth + "-" + month + "-" + year;
+                                    checkoutval.setText(checkout);
+                                }
+                                else {
+                                    Toast.makeText(getActivity(),"Booking not allowed",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else if(month-(currmonth+1)==1){
+                                Log.d("Day 1",dayOfMonth+" "+currday);
+                                checkout = dayOfMonth + "-" + month + "-" + year;
+                                checkoutval.setText(checkout);
+                              /*  if(dayOfMonth-currday<=-29){
+                                }
+                                else {
+                                    Toast.makeText(getActivity(),"Booking not allowed",Toast.LENGTH_SHORT).show();
+                                }   */
+                            }
+                            else{
+                                Toast.makeText(getActivity(),"Select appropriate Month",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else {
+                            Toast.makeText(getActivity(),"Select appropriate Year",Toast.LENGTH_SHORT).show();
+                        }
 
                     }
-                }, year, month, day);
+                }, curryear, currmonth, currday);
                 datePickerDialog.show();
             }
         });

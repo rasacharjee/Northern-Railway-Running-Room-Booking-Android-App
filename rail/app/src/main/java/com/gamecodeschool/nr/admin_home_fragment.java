@@ -2,6 +2,7 @@ package com.gamecodeschool.nr;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -95,24 +96,24 @@ public class admin_home_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
-        roomval=view.findViewById(R.id.roomval);
-        cityid2=view.findViewById(R.id.cityid2);
-        progressDialog=new ProgressDialog(getActivity());
+        View view = inflater.inflate(R.layout.fragment_admin_home_fragment, container, false);
+        roomval = view.findViewById(R.id.roomval);
+        cityid2 = view.findViewById(R.id.cityid2);
+        progressDialog = new ProgressDialog(getActivity());
 
-        Bundle extras =getActivity().getIntent().getExtras();
-        crisid=extras.getString("crisid");
-      //  Toast.makeText(getActivity(),"CRISID"+crisid,Toast.LENGTH_SHORT).show();
-        input_recycler=view.findViewById(R.id.input_recycler);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+        Bundle extras = getActivity().getIntent().getExtras();
+        crisid = extras.getString("crisid");
+        //  Toast.makeText(getActivity(),"CRISID"+crisid,Toast.LENGTH_SHORT).show();
+        input_recycler = view.findViewById(R.id.input_recycler);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         input_recycler.setLayoutManager(linearLayoutManager);
-        list=new ArrayList<>();
+        list = new ArrayList<>();
 
 
-         //list.add("FEROZPUR");
-         CrisIdObj=FirebaseAuth.getInstance().getCurrentUser().getUid();
-         Log.d("LOG","OnResponse"+CrisIdObj);
-         //Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
+        //list.add("FEROZPUR");
+        CrisIdObj = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Log.d("LOG", "OnResponse" + CrisIdObj);
+        //Toast.makeText(getActivity(),CrisIdObj,Toast.LENGTH_SHORT).show();
 
         progressDialog.setTitle("WAIT");
         progressDialog.setMessage("Please wait while we are getting current room available");
@@ -121,94 +122,89 @@ public class admin_home_fragment extends Fragment {
         progressDialog.setCancelable(false);
 
 
-            if (CrisIdObj.equals("Lm8FOLC8qjVkrg3Po78VIozLU7F3")){
-                list.clear();
-                 list.add("FEROZPUR");
-                 progressDialog.show();
-                databaseRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
-                databaseRooms.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String vroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
-                        roomval.setText(vroot);
-                        progressDialog.dismiss();
-                    }
+        if (CrisIdObj.equals("Lm8FOLC8qjVkrg3Po78VIozLU7F3")) {
+            list.clear();
+            list.add("FEROZPUR");
+            progressDialog.show();
+            databaseRooms = FirebaseDatabase.getInstance().getReference("Rooms").child("FEROZPURrooms");
+            databaseRooms.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String vroot = dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
+                    roomval.setText(vroot);
+                    progressDialog.dismiss();
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                });
-                 cityid2.setText("FEROZPUR");
-             }
-             else if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")){
-                 list.clear();
-                 list.add("AMRITSAR");
-                progressDialog.show();
-                databaseRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("AMRITSARrooms");
-                databaseRooms.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String vroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
-                        roomval.setText(vroot);
-                        progressDialog.dismiss();
-                    }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            });
+            cityid2.setText("FEROZPUR");
+        } else if (CrisIdObj.equals("M3xqhpKnHUges7XZxoASr6x3VMw2")) {
+            list.clear();
+            list.add("AMRITSAR");
+            progressDialog.show();
+            databaseRooms = FirebaseDatabase.getInstance().getReference("Rooms").child("AMRITSARrooms");
+            databaseRooms.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String vroot = dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
+                    roomval.setText(vroot);
+                    progressDialog.dismiss();
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                });
-                cityid2.setText("AMRITSAR");
-             }
-             else if (CrisIdObj=="345678"){
-                 list.add("PATHANKOT");
-                cityid2.setText("PATHANKOT");
-             }
-             else if (CrisIdObj=="456789"){
-                 list.add("JAMMU");
-                cityid2.setText("JAMMU");
-             }
-             else if (CrisIdObj.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")){
-                 list.clear();
-                 list.add("LUDHIANA");
-                 progressDialog.show();
-                databaseRooms= FirebaseDatabase.getInstance().getReference("Rooms").child("LUDHIANArooms");
-                databaseRooms.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String vroot=dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
-                        roomval.setText(vroot);
-                        progressDialog.dismiss();
-                    }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            });
+            cityid2.setText("AMRITSAR");
+        } else if (CrisIdObj == "345678") {
+            list.add("PATHANKOT");
+            cityid2.setText("PATHANKOT");
+        } else if (CrisIdObj == "456789") {
+            list.add("JAMMU");
+            cityid2.setText("JAMMU");
+        } else if (CrisIdObj.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")) {
+            list.clear();
+            list.add("LUDHIANA");
+            progressDialog.show();
+            databaseRooms = FirebaseDatabase.getInstance().getReference("Rooms").child("LUDHIANArooms");
+            databaseRooms.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String vroot = dataSnapshot.getValue().toString();//directly getting the value of rooms,no further class required
+                    roomval.setText(vroot);
+                    progressDialog.dismiss();
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                });
-                progressDialog.dismiss();
-                cityid2.setText("LUDHIANA");
-             }
-             else if (CrisIdObj=="678901"){
-                 list.add("BAIJNATH");
-                cityid2.setText("BAIJNATH");
-             }
-             else {
-                 list.add("KATRA");
-                cityid2.setText("KATRA");
-             }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), "Try again later", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            });
+            progressDialog.dismiss();
+            cityid2.setText("LUDHIANA");
+        } else if (CrisIdObj == "678901") {
+            list.add("BAIJNATH");
+            cityid2.setText("BAIJNATH");
+        } else {
+            list.add("KATRA");
+            cityid2.setText("KATRA");
+        }
 
 
-                CustomAdapter customAdapter=new CustomAdapter(getActivity(),list);
-                input_recycler.setAdapter(customAdapter);
+        CustomAdapter customAdapter = new CustomAdapter(getActivity(), list);
+        input_recycler.setAdapter(customAdapter);
 
 
         return view;
     }
+
 
     @Override
     public void onStart() {
@@ -292,13 +288,17 @@ public class admin_home_fragment extends Fragment {
             });
 
 
+    }
+
+
         }/*else if (id.equals("EUqtFjPHxGaFcpAvLyMMtHB2Zpz2")){
             qLudhiana=FirebaseDatabase.getInstance().getReference("LUDHIANA").orderByChild("status").equalTo("booked");
-        }*/else {
+        }else {
             Toast.makeText(getActivity(),"Auto-check out error due to invalid admin credentials",Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
 
 
     }
-}
+
+
