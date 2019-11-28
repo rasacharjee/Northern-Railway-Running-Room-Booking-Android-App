@@ -199,10 +199,29 @@ public class room_booking_fragment extends Fragment {
                             submitval.setEnabled(false);
                         }
                         else {
-                            if (hourOfDay > 12) {
+                           /* if (hourOfDay > 12) {
                                 time = (hourOfDay - 12) + ":" + minute + " PM";
                             } else {
                                 time = hourOfDay + ":" + minute + " AM";
+                            } */
+                            if(hourOfDay<10)
+                            {
+                                if(minute<10)
+                                {
+                                    time ="0"+ hourOfDay + ":" + "0"+ minute;
+                                }
+                                else{
+                                    time ="0"+ hourOfDay + ":" + minute;
+                                }
+                            }
+                            else{
+                                if(minute<10)
+                                {
+                                    time =hourOfDay + ":" + "0"+ minute;
+                                }
+                                else{
+                                    time =hourOfDay + ":" + minute;
+                                }
                             }
                             checkintimeval.setText(time);
                             inTime = time;
@@ -220,13 +239,32 @@ public class room_booking_fragment extends Fragment {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         String time;
-                        if(hourOfDay>12)
+                       /* if(hourOfDay>12)
                         {
                             time=(hourOfDay-12)+":"+minute+" PM";
                         }
                         else {
                             time = hourOfDay + ":" + minute + " AM";
-                        }
+                        } */
+                       if(hourOfDay<10)
+                       {
+                           if(minute<10)
+                           {
+                               time ="0"+ hourOfDay + ":" + "0"+ minute;
+                           }
+                           else{
+                               time ="0"+ hourOfDay + ":" + minute;
+                           }
+                       }
+                       else{
+                           if(minute<10)
+                           {
+                               time =hourOfDay + ":" + "0"+ minute;
+                           }
+                           else{
+                               time =hourOfDay + ":" + minute;
+                           }
+                       }
                         checkouttimeval.setText(time);
                         outTime=time;
                     }
