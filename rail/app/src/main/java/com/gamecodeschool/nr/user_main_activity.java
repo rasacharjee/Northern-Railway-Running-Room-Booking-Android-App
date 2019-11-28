@@ -17,9 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
 
 public class user_main_activity extends AppCompatActivity  {
@@ -27,6 +30,7 @@ public class user_main_activity extends AppCompatActivity  {
 
     BottomNavigationView bottomNavigationView;
     NavController navController;
+    String CrisId;
 
     List<cities_java_class> citiesList;
 
@@ -36,9 +40,15 @@ public class user_main_activity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main_activity);
-
+        CrisId= FirebaseAuth.getInstance().getCurrentUser().getUid();
          bottomNavigationView= findViewById(R.id.bottomNav);
          navController= Navigation.findNavController(this,R.id.nav_host_fragment);
+         if(CrisId==NULL)
+         {
+             Toast.makeText(user_main_activity.this,"Invalid User Access",Toast.LENGTH_SHORT).show();
+             Intent intent=new Intent(user_main_activity.this,user_login_register_main_activity.class);
+             startActivity(intent);
+         }
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
 
